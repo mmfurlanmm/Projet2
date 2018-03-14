@@ -8,7 +8,7 @@ using namespace std;
 
 
 
-Ennemi1::Ennemi1(sf::Vector2f pattern):Ennemi(pattern, pv)
+Ennemi1::Ennemi1():Ennemi()
 {
 	if (!texture.loadFromFile("Images/ennemi.png"))
 	{
@@ -20,8 +20,11 @@ Ennemi1::Ennemi1(sf::Vector2f pattern):Ennemi(pattern, pv)
 	spriteEnnemi.setTextureRect(IntRect(0, 0, 16, 14));
 	spriteEnnemi.setScale(3, 3);
 	spriteEnnemi.setOrigin(spriteEnnemi.getTextureRect().width / 2, spriteEnnemi.getTextureRect().height);
-	this->pattern = pattern;
-	deplacement();
+	pattern = Vector2f(0.f, 15.f);
+	pv = 1;
+	points = 200;
+
+	
 }
 
 

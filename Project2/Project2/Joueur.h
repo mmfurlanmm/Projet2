@@ -5,9 +5,16 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string>
-
 #include "Ennemi.h"
 #include "Bordure.h"
+
+
+#define WINDOWX 700
+#define WINDOWY 700
+
+const sf::Vector2f POSITION_D_ORIGINE_JOUEUR(WINDOWX / 2, WINDOWY - 30);
+
+
 
 
 
@@ -20,14 +27,19 @@ public:
 
 	
 	sf::Vector2f deplacement();
+	
 	void collisionEnnemi(Ennemi ennemi);
 	void collisionBordure(Bordure bordure);
-	
+	void joueurMort();
 
+	sf::Clock clockJoueur;
+	sf::Time tempsJoueur;
 	
-	bool tirOK = true;
-
+	
+	
 	sf::Vector2f joueurPositionPrecedente;
+	
+	
 
 	sf::Texture texture;
 	sf::Sprite spriteJoueur;
@@ -38,6 +50,12 @@ public:
 	bool move;
 	bool tempsRestart;
 	bool boom;
+	bool animation;
+	bool tirOK = true;
+	int i = 0;
+
+	sf::Clock clock;
+	sf::Time elapsed;
 	
 	
 	

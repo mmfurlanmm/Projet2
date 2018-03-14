@@ -7,24 +7,32 @@
 #include <stdlib.h>
 #include <string>
 
-//#include "Ennemi1.h"
+
+
+
+
 
 class Ennemi
 {
 public:
-	Ennemi(sf::Vector2f pattern, int pv);
-	
-	
-	
+	Ennemi();
 	~Ennemi();
 	void deplacement();
-
+	void explosionEnnemi();
+	
+	
+	
+	sf::Texture explosion;
 	sf::Texture texture;
 	sf::Sprite spriteEnnemi;
 	
 	sf::Vector2f pattern;
-	int pv = 1;
-	
-	
+	int pv;
+	int points;
+	bool boom = false;
+	bool incrScore = true;
+	bool dégatsJoueur = true;
+	float inc = 0;
+
 };
 

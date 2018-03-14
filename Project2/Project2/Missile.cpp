@@ -6,11 +6,13 @@ using namespace std;
 
 Missile::Missile()
 {
-	missile.setSize(Vector2f(7.f, 10.f));
-	missile.setFillColor(Color::Cyan);
+	formeMissile.setSize(Vector2f(9.f, 12.f));
+	formeMissile.setFillColor(Color::Cyan);
 }
 
 
 Missile::~Missile()
 {
 }
+
+

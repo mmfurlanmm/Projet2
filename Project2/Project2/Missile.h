@@ -7,13 +7,13 @@
 #include <stdlib.h>
 #include <string>
 
+
 class Missile
 {
 public:
 	Missile();
 	~Missile();
-
-	sf::RectangleShape missile;
 	
+	sf::RectangleShape formeMissile;
 };
 
