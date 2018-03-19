@@ -21,26 +21,26 @@ Ennemi::~Ennemi()
 }
 void Ennemi::deplacement()
 {
-	//if(boom==false)
-	spriteEnnemi.move(pattern);
+	if(move)
+	sprite.move(pattern);
 }
 
 void Ennemi::explosionEnnemi()
 {
 	
 
-	spriteEnnemi.setTexture(explosion);
+	sprite.setTexture(explosion);
 	
-	spriteEnnemi.setTextureRect(IntRect(inc, 0, 14, 14));
-	spriteEnnemi.setScale(6, 6);
-	spriteEnnemi.setOrigin(spriteEnnemi.getTextureRect().width / 2, spriteEnnemi.getTextureRect().height-2);
+	sprite.setTextureRect(IntRect(inc, 0, 14, 14));
+	sprite.setScale(6, 6);
+	sprite.setOrigin(sprite.getTextureRect().width / 2, sprite.getTextureRect().height-2);
 	
 	if (boom == true)
 	{
 		inc += 14;
 		if (inc >56)
 		{
-			spriteEnnemi.setPosition(0, 1000);
+			sprite.setPosition(0, 1000);
 		}
 	}
 

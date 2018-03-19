@@ -6,13 +6,14 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string>
+#include "Entite.h"
 
-class Etoiles
+class Etoiles : public Entite
 {
 public:
 	Etoiles(sf::Color couleur, float vitesse);
 	~Etoiles();
-	sf::RectangleShape forme;
+	//sf::RectangleShape forme;
 	float vitesse;
 
 };

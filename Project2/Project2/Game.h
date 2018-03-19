@@ -15,6 +15,7 @@
 #include "Bordure.h"
 #include "Missile.h"
 #include "Explosion.h"
+#include "Entite.h"
 
 enum { JEU, GAMEOVER };//Gestion des évennements du jeu
 

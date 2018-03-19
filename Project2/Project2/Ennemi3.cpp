@@ -13,10 +13,10 @@ Ennemi3::Ennemi3() :Ennemi()
 		system("pause");
 	}
 
-	spriteEnnemi.setTexture(texture);
-	spriteEnnemi.setTextureRect(IntRect(0, 0, 16, 14));
-	spriteEnnemi.setScale(3, 3);
-	spriteEnnemi.setOrigin(spriteEnnemi.getTextureRect().width / 2, spriteEnnemi.getTextureRect().height);
+	sprite.setTexture(texture);
+	sprite.setTextureRect(IntRect(0, 0, 16, 14));
+	sprite.setScale(3, 3);
+	sprite.setOrigin(sprite.getTextureRect().width / 2, sprite.getTextureRect().height);
 	pattern = Vector2f(0.f, 5.f);
 	pv = 4;
 	points = 150;

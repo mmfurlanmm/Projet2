@@ -17,10 +17,10 @@ Joueur::Joueur()
 		cout << "erreur" << endl;
 		system("pause");
 	}
-	spriteJoueur.setTexture(texture);
-	spriteJoueur.setTextureRect(IntRect(0, 0, 16, 16));
-	spriteJoueur.setScale(3, 3);
-	spriteJoueur.setOrigin(spriteJoueur.getTextureRect().width / 2, spriteJoueur.getTextureRect().height);
+	sprite.setTexture(texture);
+	sprite.setTextureRect(IntRect(0, 0, 16, 16));
+	sprite.setScale(3, 3);
+	sprite.setOrigin(sprite.getTextureRect().width / 2, sprite.getTextureRect().height);
 	
 	
 
@@ -46,30 +46,34 @@ Joueur::~Joueur()
 Vector2f Joueur::deplacement()
 {
 	
+	
 	float px = 0;
 	float py = 0;
 
-	if (animation == true)
+	
+	if(clock.getElapsedTime().asMilliseconds()>45)
 	{
 		i += 17;
 		if (i > 49)
 			i = 0;
+
+		clock.restart();
 	}
 
 	if (Keyboard().isKeyPressed(Keyboard::Left)&&move==true)
 	{
 		px = -vitesse;
-		spriteJoueur.setTextureRect(IntRect(i, 33, 16, 16));
+		sprite.setTextureRect(IntRect(i, 33, 16, 16));
 	}
 	else if (!Keyboard().isKeyPressed(Keyboard::Left))
 	{
-		spriteJoueur.setTextureRect(IntRect(i, 0, 16, 16));
+		sprite.setTextureRect(IntRect(i, 0, 16, 16));
 	}
 
 	if (Keyboard().isKeyPressed(Keyboard::Right) && move == true)
 	{
 		px = vitesse;
-		spriteJoueur.setTextureRect(IntRect(i, 17, 16, 16));
+		sprite.setTextureRect(IntRect(i, 17, 16, 16));
 	}
 	
 	if (Keyboard().isKeyPressed(Keyboard::Up) && move == true)
@@ -91,12 +95,12 @@ Vector2f Joueur::deplacement()
 
 void Joueur::collisionEnnemi(Ennemi ennemi)
 {
-	if (hitBoxJoueur.getGlobalBounds().intersects(ennemi.spriteEnnemi.getGlobalBounds()) && invincible == false)
+	if (hitBoxJoueur.getGlobalBounds().intersects(ennemi.sprite.getGlobalBounds()) && invincible == false)
 	{
 		
 		tempsRestart = true;
 		move = false;
-		spriteJoueur.setColor(Color(0,0,0,0));
+		sprite.setColor(Color(0,0,0,0));
 		boom = true;
 		
 		invincible = true;
@@ -109,17 +113,13 @@ void Joueur::joueurMort()
 {
 	
 	
-	spriteJoueur.setColor(Color(255, 55, 55, 0));
-
+	//out << "explosion clock : " << clock.getElapsedTime().asMilliseconds() << endl;
+	sprite.setColor(Color(255, 55, 55, 80));
+	
 	
 	boom = false;
-	if (clockJoueur.getElapsedTime().asMilliseconds() >= 20)
-	{
-		spriteJoueur.setColor(Color(255, 55, 55, 80));
-		clockJoueur.restart();
-		
-	}
-	spriteJoueur.setPosition(POSITION_D_ORIGINE_JOUEUR);
+	
+	sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
 	move = true;
 	
 }
@@ -127,9 +127,9 @@ void Joueur::joueurMort()
 void Joueur::collisionBordure(Bordure bordure)
 {
 	
-	if (spriteJoueur.getGlobalBounds().intersects(bordure.forme.getGlobalBounds()))
+	if (sprite.getGlobalBounds().intersects(bordure.forme.getGlobalBounds()))
 	{
-		spriteJoueur.setPosition(joueurPositionPrecedente);
+		sprite.setPosition(joueurPositionPrecedente);
 	}
 	
 }

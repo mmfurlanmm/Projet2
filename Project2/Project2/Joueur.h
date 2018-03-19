@@ -5,6 +5,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string>
+#include "Entite.h"
 #include "Ennemi.h"
 #include "Bordure.h"
 
@@ -19,7 +20,7 @@ const sf::Vector2f POSITION_D_ORIGINE_JOUEUR(WINDOWX / 2, WINDOWY - 30);
 
 
 
-class Joueur
+class Joueur : public Entite
 {
 public:
 	Joueur();
@@ -32,8 +33,7 @@ public:
 	void collisionBordure(Bordure bordure);
 	void joueurMort();
 
-	sf::Clock clockJoueur;
-	sf::Time tempsJoueur;
+	
 	
 	
 	
@@ -42,7 +42,7 @@ public:
 	
 
 	sf::Texture texture;
-	sf::Sprite spriteJoueur;
+	//sf::Sprite sprite;
 	sf::RectangleShape hitBoxJoueur;
 	float vitesse;
 	int pv;
@@ -53,6 +53,7 @@ public:
 	bool animation;
 	bool tirOK = true;
 	int i = 0;
+	
 
 	sf::Clock clock;
 	sf::Time elapsed;

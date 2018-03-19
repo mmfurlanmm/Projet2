@@ -31,14 +31,16 @@ Explosion::~Explosion()
 
 void Explosion::animation()
 {
+	
 	if (trigger == false)
 		inc = 0;
 	
-	if (boom == true)
+	if (clock.getElapsedTime().asMilliseconds()>35)
 	{
 		inc += 14;
 		if (inc > 80)
 			inc = 0;
+		clock.restart();
 	}
 	
 	explosion.setTextureRect(IntRect(inc, 0, 14, 14));

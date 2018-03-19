@@ -6,14 +6,15 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string>
+#include "Entite.h"
 
 
-class Missile
+class Missile : public Entite
 {
 public:
 	Missile();
 	~Missile();
 	
-	sf::RectangleShape formeMissile;
+	//sf::RectangleShape forme;
 };
 

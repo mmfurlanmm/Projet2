@@ -6,8 +6,8 @@ using namespace std;
 
 Missile::Missile()
 {
-	formeMissile.setSize(Vector2f(9.f, 12.f));
-	formeMissile.setFillColor(Color::Cyan);
+	forme.setSize(Vector2f(9.f, 12.f));
+	forme.setFillColor(Color::Cyan);
 }
 
 

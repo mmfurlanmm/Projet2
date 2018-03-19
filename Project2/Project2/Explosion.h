@@ -15,6 +15,7 @@ public:
 	~Explosion();
 	void animation();
 	int inc = 0;
+	sf::Clock clock;
 	
 	bool boom;
 	bool trigger;

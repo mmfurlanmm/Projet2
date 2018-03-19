@@ -6,13 +6,14 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string>
+#include "Entite.h"
 
 
 
 
 
 
-class Ennemi
+class Ennemi : public Entite
 {
 public:
 	Ennemi();
@@ -24,7 +25,7 @@ public:
 	
 	sf::Texture explosion;
 	sf::Texture texture;
-	sf::Sprite spriteEnnemi;
+	//sf::Sprite sprite;
 	
 	sf::Vector2f pattern;
 	int pv;
@@ -32,6 +33,7 @@ public:
 	bool boom = false;
 	bool incrScore = true;
 	bool dégatsJoueur = true;
+	bool move = true;
 	float inc = 0;
 
 };
