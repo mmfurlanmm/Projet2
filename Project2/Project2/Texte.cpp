@@ -19,6 +19,7 @@ Texte::Texte(int tailleTexte, Vector2f position, string textString)
 	text.setStyle(sf::Text::Bold);
 	
 	
+	
 
 	
 
@@ -34,6 +35,7 @@ Text Texte::ecrireTexte()
 	text.setCharacterSize(tailleTexte);
 	text.setString(textString);
 	text.setPosition(position);
+	text.setOrigin(text.getLocalBounds().width / 2, text.getLocalBounds().height / 2);
 
 	return text;
 

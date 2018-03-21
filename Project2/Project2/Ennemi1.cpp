@@ -20,7 +20,7 @@ Ennemi1::Ennemi1():Ennemi()
 	sprite.setTextureRect(IntRect(0, 0, 16, 14));
 	sprite.setScale(3, 3);
 	sprite.setOrigin(sprite.getTextureRect().width / 2, sprite.getTextureRect().height);
-	pattern = Vector2f(0.f, 15.f);
+	//pattern = xy;
 	pv = 1;
 	points = 200;
 

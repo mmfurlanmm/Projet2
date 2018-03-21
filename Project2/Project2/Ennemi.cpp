@@ -47,3 +47,25 @@ void Ennemi::explosionEnnemi()
 	
 		
 }
+
+void Ennemi::ennemiHit()
+{
+	cout << clock.getElapsedTime().asSeconds() << endl;
+	cout << hit << endl;
+	if (hit == false)
+		sprite.setColor(Color(255, 255, 255, 255));
+
+
+	
+		sprite.setColor(Color(255, 0, 0, 80));
+		clock.restart();
+	
+	//if (clock.getElapsedTime().asSeconds() > 1)
+		//hit = false;
+	
+
+	
+	
+	
+	
+}

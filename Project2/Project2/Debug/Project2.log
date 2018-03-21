@@ -1,13 +1,13 @@
 ﻿  Game.cpp
-c:\users\mmfur\adai\projet2\project2\project2\game.cpp(8): warning C4018: '<' : incompatibilité signed/unsigned
-c:\users\mmfur\adai\projet2\project2\project2\game.cpp(29): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
-c:\users\mmfur\adai\projet2\project2\project2\game.cpp(139): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-c:\users\mmfur\adai\projet2\project2\project2\game.cpp(140): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-c:\users\mmfur\adai\projet2\project2\project2\game.cpp(234): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-c:\users\mmfur\adai\projet2\project2\project2\game.cpp(240): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-c:\users\mmfur\adai\projet2\project2\project2\game.cpp(245): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-c:\users\mmfur\adai\projet2\project2\project2\game.cpp(419): warning C4244: 'argument' : conversion de 'float' en 'sf::Uint8', perte possible de données
-c:\users\mmfur\adai\projet2\project2\project2\game.cpp(421): warning C4305: '+=' : troncation de 'double' à 'float'
-c:\users\mmfur\adai\projet2\project2\project2\game.cpp(425): warning C4305: '-=' : troncation de 'double' à 'float'
-c:\users\mmfur\adai\projet2\project2\project2\game.cpp(444): warning C4018: '<' : incompatibilité signed/unsigned
-  Project2.vcxproj -> C:\Users\mmfur\ADAI\Projet2\Project2\Debug\Project2.exe
+d:\projet c++\projet2\project2\project2\game.cpp(8): warning C4018: '<' : incompatibilité signed/unsigned
+d:\projet c++\projet2\project2\project2\game.cpp(29): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+d:\projet c++\projet2\project2\project2\game.cpp(164): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\game.cpp(165): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\game.cpp(413): warning C4244: 'argument' : conversion de 'float' en 'sf::Uint8', perte possible de données
+d:\projet c++\projet2\project2\project2\game.cpp(414): warning C4244: 'argument' : conversion de 'float' en 'sf::Uint8', perte possible de données
+d:\projet c++\projet2\project2\project2\game.cpp(450): warning C4244: 'argument' : conversion de 'float' en 'sf::Uint8', perte possible de données
+d:\projet c++\projet2\project2\project2\game.cpp(452): warning C4305: '+=' : troncation de 'double' à 'float'
+d:\projet c++\projet2\project2\project2\game.cpp(456): warning C4305: '-=' : troncation de 'double' à 'float'
+d:\projet c++\projet2\project2\project2\game.cpp(477): warning C4018: '<' : incompatibilité signed/unsigned
+  Project2.vcxproj -> D:\projet C++\Projet2\Project2\Debug\Project2.exe
+  Project2.vcxproj -> D:\projet C++\Projet2\Project2\Debug\Project2.pdb (Partial PDB)

@@ -29,26 +29,42 @@ void Game::jeu()
 	srand(time(NULL));
 
 	//Variables diverses
+	float rouge = 20;
+	float vert = 20;
 	float bleu = 20;
+
+
+	bool goOn;
 	bool back = false;
 	bool move = true;
 	bool invincible = false;
-	int jeu = JEU; //Par défaut, la variable de gestion d'évennement est à "JEU"
+	int jeu = TITRE; //Par défaut, la variable de gestion d'évennement est à "JEU"
+	int niveauEnCours = 1;
 	//Gestion du temps
 	Clock temps;
-	Clock ennemiPop;
-	bool shoot1=false;
+	//Clock ennemiPop;
+	Clock tempsTitre;
+	Clock vitesseEnnemiPop1;
+	Clock vitesseEnnemiPop2;
+	Clock vitesseEnnemiPop3;
+
+
+	bool shoot1 = false;
 	bool shoot2 = false;
 	bool shoot3 = false;
+	bool shootOK = false;
 
 
 
-	RenderWindow window(VideoMode(700, 700), "GalacticClash");
+	RenderWindow window(VideoMode(700, 800), "GalacticClash");
 	window.setPosition(Vector2i(350, 0));
 	window.setMouseCursorVisible(0);
 
 	window.setVerticalSyncEnabled(true);
 	window.setFramerateLimit(60);
+
+	//niveaux
+	Niveaux niveaux;
 
 	//décors
 	Etoiles etoile1(Color::White, 1.5);
@@ -61,7 +77,7 @@ void Game::jeu()
 	Joueur joueur;
 	joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
 	Vector2f positionPrecedente;
-	
+
 	//explosion
 	Explosion explosionJoueur(7);
 	Explosion explosionEnnemi(5);
@@ -70,12 +86,11 @@ void Game::jeu()
 	bool boum = false;
 
 	//ennemis
-	Ennemi1 ennemi1;
-	ennemi1.sprite.setPosition(100, 0);
-	Ennemi2 ennemi2;
-	Ennemi3 ennemi3;
-	vector<Ennemi> ennemis;
-	
+	//Ennemi1 ennemi1;
+	//Ennemi2 ennemi2;
+	//Ennemi3 ennemi3;
+	//vector<Ennemi> ennemis;
+
 
 	int ennemiSpawn1 = 0;
 	int ennemiSpawn2 = 0;
@@ -103,17 +118,27 @@ void Game::jeu()
 	Bordure bordureBas(Vector2f(0.f, WINDOWY + 5), Vector2f(WINDOWX, 1.f));
 
 	//Texte "Perdu & appuyez sur espace"
-	Texte textePerdu(50, Vector2f(WINDOWX/2-55, WINDOWY/2-50), "PERDU !");
-	Texte texteAppuyezEspace(40, Vector2f(WINDOWX/2-210, WINDOWY/2+30), "Appuyez sur ESPACE pour rejouer");
+	Texte textePerdu(180, Vector2f(WINDOWX / 2, 300), "PERDU !");
+	Texte texteAppuyezEspace(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur ESPACE pour rejouer");
 
 	//Texte Score
-	Texte score(30, Vector2f(10.f, 5.f), "0");
+	Texte score(30, Vector2f(50.f, 5.f), "0");
 	string scoreString;
 	int scoreInt = 0;
 
 	//Texte PV
 	string pointsVieString = "VIES : " + to_string(joueur.pv);
-	Texte pointsVie(30, Vector2f(WINDOWX-80, 5), pointsVieString);
+	Texte pointsVie(30, Vector2f(WINDOWX - 50, 5), pointsVieString);
+
+	//Texte titre
+	Texte ecranTitre1(180, Vector2f(WINDOWX / 2, 250), "GALACTIC");
+	Texte ecranTitre2(180, Vector2f(WINDOWX / 2, 360), "CLASH");
+	Texte ecranTitre3(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur ESPACE pour jouer");
+
+	//Texte ecran score
+	Texte ecranScore(180, Vector2f(WINDOWX / 2, 250), "GAGNE !!");
+	Texte ecranScore2(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur ESPACE");
+
 
 	//Boucle de jeu
 	while (window.isOpen())
@@ -157,8 +182,8 @@ void Game::jeu()
 		}
 
 		//Déplacement et animation joueur//////////////////////////////////////////////////////
+
 		
-		//cout << "joueur : " << joueur.boom<< endl;
 
 		joueur.joueurPositionPrecedente = joueur.sprite.getPosition(); //permet de récupérer la position du joueur avant déplacement afin de gérer les collisions avec le bord de l'écran
 		joueur.sprite.move(joueur.deplacement().x, joueur.deplacement().y);
@@ -179,13 +204,13 @@ void Game::jeu()
 
 		//Tir/////////////////////////////////////////////////////////////////////
 
-		if (Keyboard().isKeyPressed(Keyboard::LControl) && joueur.tirOK == true && joueur.move == true)
+		if (Keyboard::isKeyPressed(Keyboard::LControl) && joueur.tirOK == true && joueur.move == true)
 		{
 			missile.forme.setPosition(Vector2f(joueur.sprite.getPosition().x - missile.forme.getSize().x / 2, joueur.sprite.getPosition().y - joueur.sprite.getTextureRect().height));
 			missiles.push_back(missile);
 			joueur.tirOK = false;
 		}
-		else if (!Keyboard().isKeyPressed(Keyboard::LControl))
+		else if (!Keyboard::isKeyPressed(Keyboard::LControl))
 		{
 			joueur.tirOK = true;
 		}
@@ -201,53 +226,24 @@ void Game::jeu()
 		}
 
 		//Déplacement ennemis	/////////////////////////////////////////////////////////////////////
+
+		/*/*
+		if (vitesseEnnemiPop2.getElapsedTime().asMilliseconds() > 600 && niveaux.shoot2 == true)
+		{
+			//ennemi2.sprite.setPosition(rand() % int(window.getSize().x - ennemi2.sprite.getGlobalBounds().width), 0);
+			ennemis.push_back(niveaux.ennemi2);
+			vitesseEnnemiPop2.restart();
+		}
+		if (vitesseEnnemiPop3.getElapsedTime().asMilliseconds() > 300 && niveaux.shoot3 == true)
+		{
+			//ennemi3.sprite.setPosition(rand() % int(window.getSize().x - ennemi3.sprite.getGlobalBounds().width), 0);
+			ennemis.push_back(niveaux.ennemi3);
+			vitesseEnnemiPop3.restart();
+		}*/
+		
 		
 
-		/*if (Keyboard().isKeyPressed(Keyboard::Num1))
-		{
-			shoot1 = true;
-		}
-		else
-			shoot1 = false;
-		if (Keyboard().isKeyPressed(Keyboard::Num2))
-		{
-			shoot2 = true;
-		}
-		else
-			shoot2 = false;
-		if (Keyboard().isKeyPressed(Keyboard::Num3))
-		{
-			shoot3 = true;
-		}
-		else
-			shoot3 = false;*/
-
-		if (ennemiSpawn1 < 8)
-			ennemiSpawn1++;
-		if (ennemiSpawn2 < 30)
-			ennemiSpawn2++;
-		if (ennemiSpawn3 < 15)
-			ennemiSpawn3++;
-
-		if (ennemiSpawn1 >= 8 && shoot1 == true)
-		{
-			ennemi1.sprite.setPosition(rand() % int(window.getSize().x - ennemi1.sprite.getGlobalBounds().width), 0);
-			ennemis.push_back(ennemi1);
-			ennemiSpawn1 = 0;
-		}
-		if (ennemiSpawn2 >= 30 && shoot2 == true)
-		{
-			ennemi2.sprite.setPosition(rand() % int(window.getSize().x - ennemi2.sprite.getGlobalBounds().width), 0);
-			ennemis.push_back(ennemi2);
-			ennemiSpawn2 = 0;
-		}if (ennemiSpawn3 >= 15 && shoot3 == true)
-		{
-			ennemi3.sprite.setPosition(rand() % int(window.getSize().x - ennemi3.sprite.getGlobalBounds().width), 0);
-			ennemis.push_back(ennemi3);
-			ennemiSpawn3 = 0;
-		}
-
-		for (unsigned int i = 0; i < ennemis.size(); i++)
+		/*for (unsigned int i = 0; i < ennemis.size(); i++)
 		{
 			ennemis[i].deplacement();
 
@@ -256,111 +252,82 @@ void Game::jeu()
 				ennemis.erase(ennemis.begin() + i);
 			}
 
-		}
+		}*/
 
-		if (ennemiPop.getElapsedTime().asSeconds() >= 3)
-		{
-			shoot3 = true;
-		}
-		if (ennemiPop.getElapsedTime().asSeconds() >= 6)
-		{
-			shoot1 = true;
-		}
-		if (ennemiPop.getElapsedTime().asSeconds() >= 8)
-		{
-			shoot3 = false;
-			shoot1 = false;
-		}
-		if (ennemiPop.getElapsedTime().asSeconds() >= 10)
-		{
-			shoot2 = true;
-		}
-		if (ennemiPop.getElapsedTime().asSeconds() >= 15)
-		{
-			shoot1 = true;
-		}
-		if (ennemiPop.getElapsedTime().asSeconds() >= 18)
-		{
-			shoot1 = false;
-			shoot2 = false;
-		}
-		if (ennemiPop.getElapsedTime().asSeconds() >= 25)
-		{
-			shoot1 = true;
-			shoot2 = true;
-			shoot3 = true;
 
-		}
-		if (ennemiPop.getElapsedTime().asSeconds() >= 30)
-		{
-			shoot1 = false;
-			shoot2 = false;
-			shoot3 = false;
+		//Gestion des niveaux
 
-		}
-		if (ennemiPop.getElapsedTime().asSeconds() >= 35)
-		{
-			shoot1 = true;
-			shoot2 = true;
-			shoot3 = true;
 
-		}
-		if (ennemiPop.getElapsedTime().asSeconds() >= 43)
+		switch (niveauEnCours)
 		{
-			shoot1 = false;
-			shoot2 = false;
-			shoot3 = false;
+		case 1:
+			niveaux.niveau1();
 
-		}
-		if (ennemiPop.getElapsedTime().asSeconds() >= 48)
-		{
-			jeu = GAMEOVER;
+			break;
+		case 2:
+			niveaux.niveau2();
+
+			break;
 
 		}
 
-		//cout << "timeline : " << ennemiPop.getElapsedTime().asSeconds() << endl;
+
+
+		if (niveaux.fini == true)
+		{
+			
+			niveaux.shoot1 = false;
+			niveaux.shoot2 = false;
+			niveaux.shoot3 = false;
+			
+			jeu = SCORE;
+
+		}
+
+
+
 		//Collisions ennemis/missiles et affichage du score		/////////////////////////////////////////////////////////////////////
 
-
-		for (unsigned j = 0; j < ennemis.size(); j++)
+		
+		for (unsigned j = 0; j < niveaux.ennemis.size(); j++)
 		{
+
 
 			for (unsigned int i = 0; i < missiles.size(); i++)
 			{
-				if (missiles[i].forme.getGlobalBounds().intersects(ennemis[j].sprite.getGlobalBounds()) && ennemis[j].pv > 0)
+				if (missiles[i].forme.getGlobalBounds().intersects(niveaux.ennemis[j].sprite.getGlobalBounds()) && niveaux.ennemis[j].pv > 0)
 				{
-					
-					missiles[i].forme.setSize(Vector2f(0,0));
-					ennemis[j].pv--;
-					//cout << ennemis[j].pv << endl;
+
+					missiles[i].forme.setSize(Vector2f(0, 0));
+					niveaux.ennemis[j].pv--;
 
 					break;
 
 				}
-				if (ennemis[j].pv < 1 && ennemis[j].incrScore == true)
+				if (niveaux.ennemis[j].pv < 1 && niveaux.ennemis[j].incrScore == true)
 				{
-					scoreInt += ennemis[j].points;
+					scoreInt += niveaux.ennemis[j].points;
 					scoreString = to_string(scoreInt);
 					score.textString = scoreString;
-					ennemis[j].incrScore = false;
+					niveaux.ennemis[j].incrScore = false;
 
 				}
-				if (ennemis[j].pv <= 0)
+				if (niveaux.ennemis[j].pv <= 0)
 				{
-					
-					ennemis[j].move = false;
-					ennemis[j].explosionEnnemi();
-					ennemis[j].dégatsJoueur = false;
+
+					niveaux.ennemis[j].move = false;
+					niveaux.ennemis[j].explosionEnnemi();
+					niveaux.ennemis[j].dégatsJoueur = false;
 					if (dureeExplosionEnnemi < 3)
 					{
-						ennemis[j].boom = false;
+						niveaux.ennemis[j].boom = false;
 
 						dureeExplosionEnnemi++;
 					}
 
 					if (dureeExplosionEnnemi >= 3)
 					{
-						ennemis[j].boom = true;
+						niveaux.ennemis[j].boom = true;
 
 						dureeExplosionEnnemi = 0;
 					}
@@ -374,11 +341,11 @@ void Game::jeu()
 		//Collision joueur/ennemis /////////////////////////////////////////////////////////////////////
 
 
-		for (unsigned int i = 0; i < ennemis.size(); i++)
+		for (unsigned int i = 0; i < niveaux.ennemis.size(); i++)
 		{
-			if (ennemis[i].dégatsJoueur == true)
+			if (niveaux.ennemis[i].dégatsJoueur == true)
 			{
-				joueur.collisionEnnemi(ennemis[i]);
+				joueur.collisionEnnemi(niveaux.ennemis[i]);
 				pointsVie.textString = "VIES : " + to_string(joueur.pv);
 			}
 
@@ -394,7 +361,7 @@ void Game::jeu()
 		if (elapsed.asSeconds() > 0.8 && joueur.move == false)
 		{
 			temps.restart();
-			
+
 			joueur.joueurMort();
 		}
 
@@ -406,16 +373,80 @@ void Game::jeu()
 
 		if (joueur.pv < 0)
 		{
+			shootOK = false;
+			niveaux.shoot1 = false;
+			niveaux.shoot2 = false;
+			niveaux.shoot3 = false;
+
+
+			
+			niveaux.clock1.restart();
 			jeu = GAMEOVER;
+
 		}
+
+		//std::cout << "clock" << niveaux.clock1.getElapsedTime().asSeconds()<< std::endl;
+		//std::cout << "ennemis " << ennemis.size() << std::endl;
+		std::cout << "niveau " << niveauEnCours << std::endl;
+
+
+
 
 		//Affichage ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 		switch (jeu)
 		{
+		case TITRE:
+
+			//ennemiPop.restart();
+			window.clear();
+			goOn = false;
+
+			window.draw(ecranTitre1.ecrireTexte());
+			window.draw(ecranTitre2.ecrireTexte());
+			if (tempsTitre.getElapsedTime().asSeconds() > 2)
+			{
+				window.draw(ecranTitre3.ecrireTexte());
+				goOn = true;
+			}
+
+			ecranTitre1.text.setFillColor(Color(rouge, vert, bleu));
+			ecranTitre2.text.setFillColor(Color(rouge, vert, bleu));
+
+			if (temps.getElapsedTime().asMilliseconds() > 20)
+			{
+				bleu += 22;
+				if (bleu > 150)
+					bleu = 20;
+				rouge += 20;
+				vert += 2;
+
+				temps.restart();
+			}
+
+			niveaux.shoot1 = false;
+			niveaux.shoot2 = false;
+			niveaux.shoot3 = false;
+
+			niveaux.ennemis.clear();
+			missiles.clear();
+
+
+			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true)
+			{
+				niveaux.clock1.restart();
+				niveauEnCours = 1;
+				shootOK = true;
+
+				jeu = JEU;
+
+			}
+
+			break;
+
 		case JEU:
 
+			//
 			window.clear(Color(30, 0, bleu));
 			if (back == false)
 				bleu += 0.04;
@@ -426,12 +457,14 @@ void Game::jeu()
 			if (bleu < 20)
 				back = false;
 
+
 			for (unsigned int i = 0; i < etoilesDecors.size(); i++)
 			{
 				window.draw(etoilesDecors[i].forme);
 			}
 
-			
+
+
 			window.draw(joueur.sprite);
 			window.draw(joueur.hitBoxJoueur);
 			bordureGauche.contruire(window);
@@ -440,13 +473,13 @@ void Game::jeu()
 			bordureBas.contruire(window);
 
 			//Boucle d'affichage des ennemis
-			
-			for (int i = 0; i < ennemis.size(); i++)
+
+			for (int i = 0; i < niveaux.ennemis.size(); i++)
 			{
-				window.draw(ennemis[i].sprite);
+				window.draw(niveaux.ennemis[i].sprite);
 
 			}
-			
+
 			//Boucle d'affichage des missiles
 			for (unsigned int i = 0; i < missiles.size(); i++)
 			{
@@ -463,31 +496,52 @@ void Game::jeu()
 			window.draw(score.ecrireTexte());
 			window.draw(pointsVie.ecrireTexte());
 
+			break;
 
-			window.display();
+		case SCORE:
+			window.clear();
+
+			window.draw(ecranScore.ecrireTexte());
+			niveaux.fini = false;//
+
+			joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
+			goOn = false;
+
+			//Permet de bloquer l'écran "PERDU" pendant une certaine durée
+			if (elapsed.asSeconds() > 1.5)
+			{
+				window.draw(ecranScore2.ecrireTexte());
+				goOn = true;
+			}
+			
+			niveaux.ennemis.clear();
+			missiles.clear();
+			//
+			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true)
+			{
+				shootOK = true;
+				niveaux.clock1.restart();
+				niveauEnCours++;
+				jeu = JEU;
+			}
+
 			break;
 
 		case GAMEOVER:
 			window.clear();
 
-			//window.draw(textePerdu.ecrireTexte());
+			window.draw(textePerdu.ecrireTexte());
+
+			niveauEnCours = 0;
 
 			scoreInt = 0;
 			score.textString = "0";
-			joueur.pv = 3;
+			joueur.pv = PVORIGINE;
 			pointsVieString = "VIES : " + to_string(joueur.pv);
 			pointsVie.textString = pointsVieString;
-			for (unsigned int i = 0; i < ennemis.size(); i++)
-			{
-				ennemis.erase(ennemis.begin(), ennemis.end());
-			}
-			for (unsigned int i = 0; i < missiles.size(); i++)
-			{
-				missiles.erase(missiles.begin(), missiles.end());
-			}
 
 			joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
-			bool goOn = false;
+			goOn = false;
 
 			//Permet de bloquer l'écran "PERDU" pendant une certaine durée
 			if (elapsed.asSeconds() > 1.5)
@@ -496,14 +550,27 @@ void Game::jeu()
 				goOn = true;
 			}
 
-			window.display();
-			if (Keyboard().isKeyPressed(Keyboard::Space) && goOn == true)
+			niveaux.ennemis.clear();
+			missiles.clear();
+
+			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true)
 			{
+
+				shootOK = true;
+				//ennemiPop.restart();
+				niveauEnCours = 1;
+				niveaux.clock1.restart();
 				jeu = JEU;
-				ennemiPop.restart();
 			}
+
 			break;
+
 		}
+		window.display();
 	}
-	
+
+}
+
+void Game::affichage()
+{
 }

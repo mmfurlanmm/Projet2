@@ -20,6 +20,7 @@ public:
 	~Ennemi();
 	void deplacement();
 	void explosionEnnemi();
+	void ennemiHit();
 	
 	
 	
@@ -34,7 +35,11 @@ public:
 	bool incrScore = true;
 	bool dégatsJoueur = true;
 	bool move = true;
+	bool hit = false;
 	float inc = 0;
+	sf::Clock clock;
+	sf::Clock blink;
+
 
 };
 

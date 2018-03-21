@@ -17,7 +17,7 @@ Ennemi3::Ennemi3() :Ennemi()
 	sprite.setTextureRect(IntRect(0, 0, 16, 14));
 	sprite.setScale(3, 3);
 	sprite.setOrigin(sprite.getTextureRect().width / 2, sprite.getTextureRect().height);
-	pattern = Vector2f(0.f, 5.f);
+	//pattern = Vector2f(0.f, 5.f);
 	pv = 4;
 	points = 150;
 	

@@ -16,8 +16,9 @@
 #include "Missile.h"
 #include "Explosion.h"
 #include "Entite.h"
+#include "Niveaux.h"
 
-enum { JEU, GAMEOVER };//Gestion des évennements du jeu
+enum { JEU, GAMEOVER, TITRE, SCORE};//Gestion des évennements du jeu
 
 class Game
 {
@@ -25,5 +26,6 @@ public:
 	Game();
 	~Game();
 	void jeu();
+	void affichage();
 };
 

@@ -1,0 +1,37 @@
+﻿  Texte.cpp
+  Missile.cpp
+  Main.cpp
+  Joueur.cpp
+d:\projet c++\projet2\project2\project2\joueur.cpp(23): warning C4244: 'argument' : conversion de 'const int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\joueur.cpp(23): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  Game.cpp
+d:\projet c++\projet2\project2\project2\game.cpp(29): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+d:\projet c++\projet2\project2\project2\game.cpp(139): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\game.cpp(140): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\game.cpp(234): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\game.cpp(240): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\game.cpp(245): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\game.cpp(419): warning C4244: 'argument' : conversion de 'float' en 'sf::Uint8', perte possible de données
+d:\projet c++\projet2\project2\project2\game.cpp(421): warning C4305: '+=' : troncation de 'double' à 'float'
+d:\projet c++\projet2\project2\project2\game.cpp(425): warning C4305: '-=' : troncation de 'double' à 'float'
+  Explosion.cpp
+d:\projet c++\projet2\project2\project2\explosion.cpp(20): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\explosion.cpp(21): warning C4244: 'argument' : conversion de 'const int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\explosion.cpp(21): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  Etoiles.cpp
+  Entite.cpp
+  Ennemi3.cpp
+d:\projet c++\projet2\project2\project2\ennemi3.cpp(19): warning C4244: 'argument' : conversion de 'const int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\ennemi3.cpp(19): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  Ennemi2.cpp
+d:\projet c++\projet2\project2\project2\ennemi2.cpp(19): warning C4244: 'argument' : conversion de 'const int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\ennemi2.cpp(19): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  Ennemi1.cpp
+d:\projet c++\projet2\project2\project2\ennemi1.cpp(22): warning C4244: 'argument' : conversion de 'const int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\ennemi1.cpp(22): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  Ennemi.cpp
+d:\projet c++\projet2\project2\project2\ennemi.cpp(34): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+d:\projet c++\projet2\project2\project2\ennemi.cpp(36): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  Bordure.cpp
+  Génération de code en cours...
+sfml-graphics-s-d.lib(RenderStates.cpp.obj) : fatal error LNK1112: type d'ordinateur module 'X86' en conflit avec le type d'ordinateur cible 'x64'

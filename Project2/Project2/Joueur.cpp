@@ -32,7 +32,7 @@ Joueur::Joueur()
 	
 	//Caractéristiques de base du joueur
 	vitesse = 6;
-	pv = 3;
+	pv = PVORIGINE;
 	invincible = false;
 	move = true;
 	tempsRestart = false;
