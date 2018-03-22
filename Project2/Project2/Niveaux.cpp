@@ -19,9 +19,9 @@ Niveaux::~Niveaux()
 
 void Niveaux::niveau1()
 {
-	cout << "ennemi " << ennemis.size() << endl;
+	//cout << "ennemi " << ennemis.size() << endl;
 	//cout << "pos "<<ennemi1.sprite.getPosition().x << endl;
-	cout << "shoot " << shoot1 << endl;
+	//cout << "shoot " << shoot1 << endl;
 
 
 
@@ -58,7 +58,7 @@ void Niveaux::niveau1()
 	if (clock1.getElapsedTime().asSeconds() >= 6)
 	{
 		shoot1 = true;
-		ennemiPop1 = 140;
+		ennemiPop1 = 130;
 		ennemi1.sprite.setPosition(200, 0);
 		ennemi1.pattern = Vector2f(0, 17);
 	}
@@ -169,9 +169,9 @@ void Niveaux::niveau1()
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Niveaux::niveau2()
 {
-	cout << "shoot12 " << shoot12 << endl;
+	//cout << "shoot12 " << shoot12 << endl;
 	//cout << "pos "<<ennemi1.sprite.getPosition().x << endl;
-	cout << "shoot1 " << shoot1 << endl;
+	//cout << "shoot1 " << shoot1 << endl;
 
 
 	if (clock1.getElapsedTime().asSeconds() >= 2 && clock1.getElapsedTime().asSeconds() < 5)
@@ -222,9 +222,9 @@ void Niveaux::niveau2()
 
 		shoot1 = true;
 		shoot12 = true;
-		ennemi1.sprite.setPosition(200, 0);
+		ennemi1.sprite.setPosition(150, 0);
 		ennemi1.pattern = Vector2f(0, 20);
-		ennemi12.sprite.setPosition(500, 0);
+		ennemi12.sprite.setPosition(550, 0);
 		ennemi12.pattern = Vector2f(0, 20);
 
 	}
@@ -250,28 +250,30 @@ void Niveaux::niveau2()
 		ennemi1.pattern = Vector2f(0, 20);
 		ennemi12.pattern = Vector2f(0, 20);
 	}
+
 	if (clock1.getElapsedTime().asSeconds() >= 12)
 	{
-		ennemi1.pattern = Vector2f(6, 20);
+		ennemi1.pattern = Vector2f(5, 20);
 		ennemi12.pattern = Vector2f(0, 20);
 	}
-
-	if (clock1.getElapsedTime().asSeconds() >= 12.5)
+	if (clock1.getElapsedTime().asSeconds() >= 12.8)
 	{
 		ennemi1.pattern = Vector2f(0, 20);
 		ennemi12.pattern = Vector2f(0, 20);
 	}
+
 	if (clock1.getElapsedTime().asSeconds() >= 13)
 	{
 		ennemi1.pattern = Vector2f(0, 20);
-		ennemi12.pattern = Vector2f(-6, 20);
+		ennemi12.pattern = Vector2f(-5, 20);
 	}
 
-	if (clock1.getElapsedTime().asSeconds() >= 13.5)
+	if (clock1.getElapsedTime().asSeconds() >= 13.8)
 	{
 		ennemi1.pattern = Vector2f(0, 20);
 		ennemi12.pattern = Vector2f(0, 20);
 	}
+
 	if (clock1.getElapsedTime().asSeconds() >= 14)
 	{
 
@@ -294,7 +296,7 @@ void Niveaux::niveau2()
 
 	if (clock1.getElapsedTime().asSeconds() >= 15)
 	{
-		
+
 		shoot2 = false;
 		shoot3 = false;
 	}
@@ -302,7 +304,7 @@ void Niveaux::niveau2()
 	{
 
 		shoot1 = false;
-		
+
 	}
 	if (clock1.getElapsedTime().asSeconds() >= 17.5)
 	{
@@ -324,18 +326,18 @@ void Niveaux::niveau2()
 
 	if (clock1.getElapsedTime().asSeconds() >= 18.5)
 	{
-		
+
 		shoot2 = false;
 		shoot3 = false;
 	}
 	if (clock1.getElapsedTime().asSeconds() >= 19.2)
 	{
 		shoot1 = false;
-		
+
 	}
 
 
-	if (clock1.getElapsedTime().asSeconds() >= 21)
+	if (clock1.getElapsedTime().asSeconds() >= 22.5)
 	{
 		fini = true;
 	}
@@ -374,6 +376,96 @@ void Niveaux::niveau2()
 		}
 
 	}
+
+
+}
+void Niveaux::niveauTest()
+{
+	
+
+
+
+
+
+
+
+
+	if (clock1.getElapsedTime().asSeconds() >= 2)
+	{
+		shoot3 = true;
+		ennemiPop3 = 3000;
+		ennemi3.sprite.setPosition(350, 0);
+		ennemi3.pattern = Vector2f(0, 5);
+	}
+	for (int i = 0; i < ennemis.size(); i++)
+	{
+		shoot3 = false;
+		if (ennemis[i].sprite.getPosition().y == 200)
+		{
+			if (clock1.getElapsedTime().asSeconds() <= 3)
+			{
+				ennemis[i].pattern = Vector2f(5, 0);
+			}
+			if (ennemis[i].sprite.getPosition().x >= 650)
+			{
+				ennemis[i].pattern = Vector2f(-5, 0);
+			}
+			else if (ennemis[i].sprite.getPosition().x <= 50)
+			{
+				ennemis[i].pattern = Vector2f(5, 0);
+			}
+			cout << "shoot " << ennemis[i].tirOk << endl;
+
+		}
+		if (ennemis[i].pv <= 0)
+		{
+			clock1.restart();
+		
+			
+		}
+	}
+
+
+
+
+
+
+
+	if (vitesseEnnemiPop1.getElapsedTime().asMilliseconds() > ennemiPop1)
+	{
+		if (shoot1 == true)
+			ennemis.push_back(ennemi1);
+		if (shoot12 == true)
+			ennemis.push_back(ennemi12);
+
+		vitesseEnnemiPop1.restart();
+	}
+
+
+	if (shoot2 == true && vitesseEnnemiPop2.getElapsedTime().asMilliseconds() > ennemiPop2)
+	{
+		ennemis.push_back(ennemi2);
+		vitesseEnnemiPop2.restart();
+	}
+	if (shoot3 == true && vitesseEnnemiPop3.getElapsedTime().asMilliseconds() > ennemiPop3)
+	{
+		ennemis.push_back(ennemi3);
+		vitesseEnnemiPop3.restart();
+	}
+
+
+
+	for (unsigned int i = 0; i < ennemis.size(); i++)
+	{
+		ennemis[i].deplacement();
+
+		if (ennemis[i].sprite.getPosition().y > 800 + 50)
+		{
+			ennemis.erase(ennemis.begin() + i);
+		}
+
+	}
+
 
 
 }

@@ -13,6 +13,7 @@
 
 
 
+
 class Ennemi : public Entite
 {
 public:
@@ -21,6 +22,9 @@ public:
 	void deplacement();
 	void explosionEnnemi();
 	void ennemiHit();
+
+
+	void tirer(Ennemi missile);
 	
 	
 	
@@ -36,9 +40,13 @@ public:
 	bool dégatsJoueur = true;
 	bool move = true;
 	bool hit = false;
+	bool tirOk = false;
 	float inc = 0;
 	sf::Clock clock;
 	sf::Clock blink;
+	sf::Clock missileClock;
+
+	std::vector<Ennemi> missiles;
 
 
 };

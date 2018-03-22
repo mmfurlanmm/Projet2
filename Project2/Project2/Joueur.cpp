@@ -95,7 +95,7 @@ Vector2f Joueur::deplacement()
 
 void Joueur::collisionEnnemi(Ennemi ennemi)
 {
-	if (hitBoxJoueur.getGlobalBounds().intersects(ennemi.sprite.getGlobalBounds()) && invincible == false)
+	if (hitBoxJoueur.getGlobalBounds().intersects(ennemi.sprite.getGlobalBounds()) && invincible == false || hitBoxJoueur.getGlobalBounds().intersects(ennemi.forme.getGlobalBounds()) && invincible == false)
 	{
 		
 		tempsRestart = true;

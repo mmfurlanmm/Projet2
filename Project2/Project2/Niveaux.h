@@ -18,6 +18,8 @@ public:
 	~Niveaux();
 	void niveau1();
 	void niveau2();
+	void niveauTest();
+
 
 	bool shoot1=false;
 	bool shoot12 = false;

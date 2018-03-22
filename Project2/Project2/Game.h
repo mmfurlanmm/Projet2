@@ -10,6 +10,7 @@
 #include "Ennemi1.h"
 #include "Ennemi2.h"
 #include "Ennemi3.h"
+#include "MissileEnnemi.h"
 #include "Etoiles.h"
 #include "Texte.h"
 #include "Bordure.h"

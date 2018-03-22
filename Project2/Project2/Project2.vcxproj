@@ -143,6 +143,7 @@
     <ClCompile Include="Joueur.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Missile.cpp" />
+    <ClCompile Include="MissileEnnemi.cpp" />
     <ClCompile Include="Niveaux.cpp" />
     <ClCompile Include="Texte.cpp" />
   </ItemGroup>
@@ -158,6 +159,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Joueur.h" />
     <ClInclude Include="Missile.h" />
+    <ClInclude Include="MissileEnnemi.h" />
     <ClInclude Include="Niveaux.h" />
     <ClInclude Include="Texte.h" />
   </ItemGroup>
