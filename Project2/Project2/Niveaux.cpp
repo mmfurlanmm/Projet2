@@ -306,6 +306,13 @@ void Niveaux::niveau2()
 		shoot1 = false;
 
 	}
+
+	if (clock1.getElapsedTime().asSeconds() >= 17.5)
+	{
+
+	}
+
+
 	if (clock1.getElapsedTime().asSeconds() >= 17.5)
 	{
 
@@ -382,14 +389,7 @@ void Niveaux::niveau2()
 void Niveaux::niveauTest()
 {
 	
-
-
-
-
-
-
-
-
+	
 	if (clock1.getElapsedTime().asSeconds() >= 2)
 	{
 		shoot3 = true;
@@ -404,32 +404,28 @@ void Niveaux::niveauTest()
 		{
 			if (clock1.getElapsedTime().asSeconds() <= 3)
 			{
-				ennemis[i].pattern = Vector2f(5, 0);
+				ennemis[i].pattern = Vector2f(6, 0);
 			}
-			if (ennemis[i].sprite.getPosition().x >= 650)
+			if (ennemis[i].sprite.getPosition().x >= 600)
 			{
-				ennemis[i].pattern = Vector2f(-5, 0);
+				ennemis[i].pattern = Vector2f(-6, 0);
 			}
-			else if (ennemis[i].sprite.getPosition().x <= 50)
+			else if (ennemis[i].sprite.getPosition().x <= 100)
 			{
-				ennemis[i].pattern = Vector2f(5, 0);
+				ennemis[i].pattern = Vector2f(6, 0);
 			}
 			cout << "shoot " << ennemis[i].tirOk << endl;
 
 		}
-		if (ennemis[i].pv <= 0)
+		if (ennemis[i].inc >36)
 		{
+			
 			clock1.restart();
+			ennemis[i].sprite.setPosition(0, 1000);
 		
 			
 		}
 	}
-
-
-
-
-
-
 
 	if (vitesseEnnemiPop1.getElapsedTime().asMilliseconds() > ennemiPop1)
 	{

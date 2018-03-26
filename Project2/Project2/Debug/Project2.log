@@ -1,25 +1,4 @@
-﻿  Game.cpp
-d:\projet c++\projet2\project2\project2\game.cpp(8): warning C4018: '<' : incompatibilité signed/unsigned
-d:\projet c++\projet2\project2\project2\game.cpp(29): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
-d:\projet c++\projet2\project2\project2\game.cpp(162): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\game.cpp(163): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\game.cpp(227): warning C4018: '<' : incompatibilité signed/unsigned
-d:\projet c++\projet2\project2\project2\game.cpp(322): warning C4018: '<' : incompatibilité signed/unsigned
-d:\projet c++\projet2\project2\project2\game.cpp(338): warning C4018: '<' : incompatibilité signed/unsigned
-d:\projet c++\projet2\project2\project2\game.cpp(410): warning C4244: 'argument' : conversion de 'float' en 'sf::Uint8', perte possible de données
-d:\projet c++\projet2\project2\project2\game.cpp(411): warning C4244: 'argument' : conversion de 'float' en 'sf::Uint8', perte possible de données
-d:\projet c++\projet2\project2\project2\game.cpp(447): warning C4244: 'argument' : conversion de 'float' en 'sf::Uint8', perte possible de données
-d:\projet c++\projet2\project2\project2\game.cpp(449): warning C4305: '+=' : troncation de 'double' à 'float'
-d:\projet c++\projet2\project2\project2\game.cpp(453): warning C4305: '-=' : troncation de 'double' à 'float'
-d:\projet c++\projet2\project2\project2\game.cpp(474): warning C4018: '<' : incompatibilité signed/unsigned
-d:\projet c++\projet2\project2\project2\game.cpp(487): warning C4018: '<' : incompatibilité signed/unsigned
-  Ennemi.cpp
-d:\projet c++\projet2\project2\project2\ennemi.cpp(34): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
-d:\projet c++\projet2\project2\project2\ennemi.cpp(36): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\ennemi.cpp(79): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
-  Génération de code en cours...
-  Compilation en cours...
-  Niveaux.cpp
+﻿  Niveaux.cpp
 d:\projet c++\projet2\project2\project2\niveaux.cpp(113): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
 d:\projet c++\projet2\project2\project2\niveaux.cpp(116): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
 d:\projet c++\projet2\project2\project2\niveaux.cpp(119): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
@@ -27,26 +6,9 @@ d:\projet c++\projet2\project2\project2\niveaux.cpp(183): warning C4018: '<' : 
 d:\projet c++\projet2\project2\project2\niveaux.cpp(282): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
 d:\projet c++\projet2\project2\project2\niveaux.cpp(286): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
 d:\projet c++\projet2\project2\project2\niveaux.cpp(290): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\niveaux.cpp(314): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\niveaux.cpp(317): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\niveaux.cpp(320): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\niveaux.cpp(321): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\niveaux.cpp(324): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+d:\projet c++\projet2\project2\project2\niveaux.cpp(327): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
 d:\projet c++\projet2\project2\project2\niveaux.cpp(400): warning C4018: '<' : incompatibilité signed/unsigned
-  MissileEnnemi.cpp
-  Main.cpp
-  Joueur.cpp
-d:\projet c++\projet2\project2\project2\joueur.cpp(23): warning C4244: 'argument' : conversion de 'const int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\joueur.cpp(23): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-  Ennemi3.cpp
-d:\projet c++\projet2\project2\project2\ennemi3.cpp(19): warning C4244: 'argument' : conversion de 'const int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\ennemi3.cpp(19): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-  Ennemi2.cpp
-d:\projet c++\projet2\project2\project2\ennemi2.cpp(19): warning C4244: 'argument' : conversion de 'const int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\ennemi2.cpp(19): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-  Ennemi1.cpp
-d:\projet c++\projet2\project2\project2\ennemi1.cpp(22): warning C4244: 'argument' : conversion de 'const int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\ennemi1.cpp(22): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-  Génération de code en cours...
-  Ignoré... (aucune modification pertinente détectée)
-  Explosion.cpp
   Project2.vcxproj -> D:\projet C++\Projet2\Project2\Debug\Project2.exe
   Project2.vcxproj -> D:\projet C++\Projet2\Project2\Debug\Project2.pdb (Partial PDB)

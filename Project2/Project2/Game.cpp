@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <math.h>
 
 using namespace sf;
 using namespace std;
@@ -105,6 +106,16 @@ void Game::jeu()
 	vector<Missile> missiles;
 
 	MissileEnnemi missileEnnemi;
+	MissileEnnemi missileEnnemi2;
+	float missileDirX = 0;
+	float missileDirY = 15;
+	bool backX=false;
+	bool backY=false;
+
+
+	Clock balayage;
+	
+
 
 	
 
@@ -224,9 +235,51 @@ void Game::jeu()
 		}
 
 		//Ennemis	/////////////////////////////////////////////////////////////////////
+		missileEnnemi.pattern.x = missileDirX;
+		missileEnnemi.pattern.y = missileDirY;
+		missileEnnemi2.pattern.x = -missileDirX;
+		missileEnnemi2.pattern.y = -missileDirY;
+		
+		
+		if (backX == true)
+		{
+			missileDirX -= 1;
+		}
+			
+		if (backX == false)
+		{
+			missileDirX += 1;
+		}
+			
+		if (missileDirX > 15)
+		{
+			
+			backX = true;
+			missileDirY = 0;
+		}
+			
+		if (missileDirX < -15)
+		{
+			backX = false;
+		}
+			
+		
+		if (backY == true)
+			missileDirY -= 1;
+		if (backY == false)
+			missileDirY += 1;
+		if (missileDirY > 15)
+			backY = true;
+		if (missileDirY < -15)
+			backY = false;
+		
+
+
 		for (int i = 0; i < niveaux.ennemis.size(); i++)
 		{
-			niveaux.ennemis[i].tirer(missileEnnemi);
+			niveaux.ennemis[i].tirer(missileEnnemi, missileEnnemi2);
+			
+
 		}
 
 		//Gestion des niveaux
@@ -486,10 +539,16 @@ void Game::jeu()
 			{
 				for (int j = 0; j < niveaux.ennemis[i].missiles.size(); j++)
 				{
+					
 					window.draw(niveaux.ennemis[i].missiles[j].forme);
+				}
+				for (int j = 0; j < niveaux.ennemis[i].missiles2.size(); j++)
+				{
+					window.draw(niveaux.ennemis[i].missiles2[j].forme);
 				}
 				
 			}
+
 
 			if (joueur.boom == true)
 			{

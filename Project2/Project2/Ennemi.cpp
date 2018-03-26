@@ -74,43 +74,54 @@ void Ennemi::ennemiHit()
 
 }
 
-void Ennemi::tirer(Ennemi missile)
+void Ennemi::tirer(Ennemi missile, Ennemi missile2)
 {
-	std::srand(time(NULL));
+	
 
-	if (Keyboard::isKeyPressed(Keyboard::A) && missileClock.getElapsedTime().asSeconds()>0.15)
+	if (/*Keyboard::isKeyPressed(Keyboard::A) &&*/ missileClock.getElapsedTime().asMilliseconds()>30)
 	{
 
 		tirOk = true;
 		missileClock.restart();
+		
+		
 
 	}
 	else 
 	{
 		tirOk = false;
+		
 	}
+
 
 	if (tirOk == true)
 	{
-		missile.forme.setPosition(Vector2f(sprite.getPosition().x - missile.forme.getSize().x / 2, sprite.getPosition().y - sprite.getTextureRect().height));
+		missile.forme.setPosition(Vector2f(sprite.getPosition().x, sprite.getPosition().y - sprite.getTextureRect().height));
 		missiles.push_back(missile);
+		missile2.forme.setPosition(Vector2f(sprite.getPosition().x, sprite.getPosition().y - sprite.getTextureRect().height));
+		missiles.push_back(missile2);
+	
 	}
+	
 
 
-	cout << "missile Clock : " << missileClock.getElapsedTime().asSeconds() << endl;
+	cout << "missile" << missiles.size() << endl;
 
 
 
 
 	for (unsigned int i = 0; i < missiles.size(); i++)
 	{
-		missiles[i].forme.move(0.f, 20.f);
+		missiles[i].forme.move(missiles[i].pattern.x, missiles[i].pattern.y);
 
-		if (missiles[i].forme.getPosition().y > 810)
+
+		if (missiles[i].forme.getPosition().y > 810 || missiles[i].forme.getPosition().y < -10 || missiles[i].forme.getPosition().x > 800 || missiles[i].forme.getPosition().x < -10)
 		{
 			missiles.erase(missiles.begin() + i);
 		}
 	}
+	
+	
 
 
 

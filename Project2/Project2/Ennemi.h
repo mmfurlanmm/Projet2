@@ -14,6 +14,7 @@
 
 
 
+
 class Ennemi : public Entite
 {
 public:
@@ -24,7 +25,7 @@ public:
 	void ennemiHit();
 
 
-	void tirer(Ennemi missile);
+	void tirer(Ennemi missile, Ennemi missile2);
 	
 	
 	
@@ -41,12 +42,20 @@ public:
 	bool move = true;
 	bool hit = false;
 	bool tirOk = false;
+	bool tirOk2 = false;
+
 	float inc = 0;
 	sf::Clock clock;
 	sf::Clock blink;
 	sf::Clock missileClock;
+	sf::Clock missileClock2;
+
 
 	std::vector<Ennemi> missiles;
+	std::vector<Ennemi> missiles2;
+
+	
+
 
 
 };

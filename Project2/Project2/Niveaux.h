@@ -26,6 +26,7 @@ public:
 	bool shoot2=false;
 	bool shoot3=false;
 	bool fini = false;
+	bool go = true;
 	
 	sf::Clock clock1;
 	sf::Clock vitesseEnnemiPop1;

@@ -15,6 +15,8 @@ class MissileEnnemi :
 public:
 	MissileEnnemi();
 	~MissileEnnemi();
+	sf::Vector2f patternMissile;
+
 
 	
 };
