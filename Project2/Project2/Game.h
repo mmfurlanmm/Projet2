@@ -28,5 +28,7 @@ public:
 	~Game();
 	void jeu();
 	void affichage();
+
+
 };
 

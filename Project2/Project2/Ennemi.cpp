@@ -74,55 +74,33 @@ void Ennemi::ennemiHit()
 
 }
 
-void Ennemi::tirer(Ennemi missile, Ennemi missile2)
+void Ennemi::tirer()
 {
 	
-
-	if (/*Keyboard::isKeyPressed(Keyboard::A) &&*/ missileClock.getElapsedTime().asMilliseconds()>30)
-	{
-
+	/*if (Keyboard::isKeyPressed(Keyboard::A))
 		tirOk = true;
-		missileClock.restart();
-		
-		
-
-	}
-	else 
-	{
-		tirOk = false;
-		
-	}
-
-
+	if (!Keyboard::isKeyPressed(Keyboard::A))
+		tirOk = false;*/
+	
 	if (tirOk == true)
 	{
-		missile.forme.setPosition(Vector2f(sprite.getPosition().x, sprite.getPosition().y - sprite.getTextureRect().height));
-		missiles.push_back(missile);
-		missile2.forme.setPosition(Vector2f(sprite.getPosition().x, sprite.getPosition().y - sprite.getTextureRect().height));
-		missiles.push_back(missile2);
-	
-	}
-	
-
-
-	cout << "missile" << missiles.size() << endl;
-
-
-
-
-	for (unsigned int i = 0; i < missiles.size(); i++)
-	{
-		missiles[i].forme.move(missiles[i].pattern.x, missiles[i].pattern.y);
-
-
-		if (missiles[i].forme.getPosition().y > 810 || missiles[i].forme.getPosition().y < -10 || missiles[i].forme.getPosition().x > 800 || missiles[i].forme.getPosition().x < -10)
+		if (missileClock.getElapsedTime().asMilliseconds() > vitesseTir)
 		{
-			missiles.erase(missiles.begin() + i);
+
+			shoot = true;
+			missileClock.restart();
+
+
+
+		}
+		else
+		{
+			shoot = false;
+
 		}
 	}
+	else
+		shoot = false;
 	
-	
-
-
 
 }

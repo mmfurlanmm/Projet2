@@ -1,14 +1,16 @@
-﻿  Niveaux.cpp
-d:\projet c++\projet2\project2\project2\niveaux.cpp(113): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\niveaux.cpp(116): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\niveaux.cpp(119): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\niveaux.cpp(183): warning C4018: '<' : incompatibilité signed/unsigned
-d:\projet c++\projet2\project2\project2\niveaux.cpp(282): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\niveaux.cpp(286): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\niveaux.cpp(290): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\niveaux.cpp(321): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\niveaux.cpp(324): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\niveaux.cpp(327): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-d:\projet c++\projet2\project2\project2\niveaux.cpp(400): warning C4018: '<' : incompatibilité signed/unsigned
+﻿  Ennemi.cpp
+d:\projet c++\projet2\project2\project2\ennemi.cpp(34): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+d:\projet c++\projet2\project2\project2\ennemi.cpp(36): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  Génération de code en cours...
+  Ignoré... (aucune modification pertinente détectée)
+  Niveaux.cpp
+  MissileEnnemi.cpp
+  Main.cpp
+  Joueur.cpp
+  Game.cpp
+  Explosion.cpp
+  Ennemi3.cpp
+  Ennemi2.cpp
+  Ennemi1.cpp
   Project2.vcxproj -> D:\projet C++\Projet2\Project2\Debug\Project2.exe
   Project2.vcxproj -> D:\projet C++\Projet2\Project2\Debug\Project2.pdb (Partial PDB)

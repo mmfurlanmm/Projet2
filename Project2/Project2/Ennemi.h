@@ -25,7 +25,7 @@ public:
 	void ennemiHit();
 
 
-	void tirer(Ennemi missile, Ennemi missile2);
+	void tirer();
 	
 	
 	
@@ -41,18 +41,22 @@ public:
 	bool dégatsJoueur = true;
 	bool move = true;
 	bool hit = false;
+	bool shoot = false;
 	bool tirOk = false;
-	bool tirOk2 = false;
+
+	
 
 	float inc = 0;
 	sf::Clock clock;
-	sf::Clock blink;
+	
 	sf::Clock missileClock;
 	sf::Clock missileClock2;
+	int vitesseTir = 30;
 
 
-	std::vector<Ennemi> missiles;
-	std::vector<Ennemi> missiles2;
+
+	//std::vector<Ennemi> missiles;
+	
 
 	
 
