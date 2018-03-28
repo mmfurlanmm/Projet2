@@ -6,10 +6,13 @@ using namespace std;
 
 MissileEnnemi::MissileEnnemi()
 {
-	forme.setSize(Vector2f(10.f, 10.f));
+	cercle.setRadius(9);
+	cercle.setPointCount(8);
+	cercle.setOutlineThickness(-4);
 
 	cout << "clock" << clock.getElapsedTime().asSeconds() << endl;
-	forme.setFillColor(Color::Magenta);
+	cercle.setFillColor(Color::White);
+	cercle.setOutlineColor(Color::Magenta);
 	
 	
 }

@@ -77,26 +77,17 @@ void Ennemi::ennemiHit()
 void Ennemi::tirer()
 {
 	
-	/*if (Keyboard::isKeyPressed(Keyboard::A))
-		tirOk = true;
-	if (!Keyboard::isKeyPressed(Keyboard::A))
-		tirOk = false;*/
 	
 	if (tirOk == true)
 	{
 		if (missileClock.getElapsedTime().asMilliseconds() > vitesseTir)
 		{
-
 			shoot = true;
 			missileClock.restart();
-
-
-
 		}
 		else
 		{
 			shoot = false;
-
 		}
 	}
 	else

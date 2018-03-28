@@ -167,18 +167,22 @@ void Niveaux::niveau2()
 	//cout << "go  " << go << endl;
 	//cout << "bossgo  " << bossGo << endl;
 	//cout << "clock  " << clock1.getElapsedTime().asSeconds() << endl;
+	
+	//Pattern de tir en spirale
 	missileEnnemi.pattern.x = sin(angle)*vitesseMissile;
 	missileEnnemi.pattern.y = cos(angle)*vitesseMissile;
-	missileEnnemi2.pattern.x = -sin(angle)*vitesseMissile;
-	missileEnnemi2.pattern.y = -cos(angle)*vitesseMissile;
+	missileEnnemi2.pattern.x = -sin(angle2)*vitesseMissile2;
+	missileEnnemi2.pattern.y = -cos(angle2)*vitesseMissile2;
+	//vitesse de rotation :
 	angle += 3;
-	//angle2 += 5;
+	angle2 += 3;
 	if (angle >= 360)
 		angle = 0;
-/*	if (angle2 >= 360)
-		angle2 = 0;*/
+	if (angle2 >= 360)
+		angle2 = 0;
+	//vitesse de déplacement :
 	vitesseMissile = 7;
-	//vitesseMissile2 = 10;
+	vitesseMissile2 = 7;
 	
 
 
@@ -335,10 +339,12 @@ void Niveaux::niveau2()
 		shoot2 = true;
 		ennemiPop2 = 3000;
 		ennemi2.sprite.setPosition(350, 0);
-		ennemi2.pv = 25;
+		ennemi2.pv = 20;
+		
 		ennemi2.points = 2000;
+		ennemi2.sprite.setTexture(ennemi2.texture2);
 
-		ennemi2.sprite.setScale(5, 5);
+		ennemi2.sprite.setScale(6, 6);
 
 		ennemi2.pattern = Vector2f(0, 3);
 
@@ -389,7 +395,7 @@ void Niveaux::niveau2()
 		ennemiPop2 = 250;
 		ennemi2.pv = 7;
 		ennemi2.points = 500;
-
+		ennemi2.sprite.setTexture(ennemi2.texture);
 		ennemi2.sprite.setScale(4, 4);
 		ennemi2.sprite.setPosition(rand() % int(700 - ennemi2.sprite.getGlobalBounds().width), 0);
 		ennemi2.pattern = Vector2f(0, 5);
@@ -464,7 +470,7 @@ void Niveaux::niveauTest()
 	
 	for (int i = 0; i < ennemis.size(); i++)
 	{
-	//	missileEnnemi.pattern.x =  ;
+		missileEnnemi.pattern.x = sin(angle)*vitesseMissile;
 		missileEnnemi.pattern.y = cos(angle)*vitesseMissile;
 	}
 	

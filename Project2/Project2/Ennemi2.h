@@ -7,6 +7,7 @@ public:
 	Ennemi2();
 	
 	~Ennemi2();
+	sf::Texture texture2;
 	
 };
 

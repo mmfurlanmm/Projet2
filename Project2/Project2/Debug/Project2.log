@@ -1,16 +1,3 @@
-﻿  Ennemi.cpp
-d:\projet c++\projet2\project2\project2\ennemi.cpp(34): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
-d:\projet c++\projet2\project2\project2\ennemi.cpp(36): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-  Génération de code en cours...
-  Ignoré... (aucune modification pertinente détectée)
-  Niveaux.cpp
-  MissileEnnemi.cpp
-  Main.cpp
-  Joueur.cpp
-  Game.cpp
-  Explosion.cpp
-  Ennemi3.cpp
-  Ennemi2.cpp
-  Ennemi1.cpp
+﻿  MissileEnnemi.cpp
   Project2.vcxproj -> D:\projet C++\Projet2\Project2\Debug\Project2.exe
   Project2.vcxproj -> D:\projet C++\Projet2\Project2\Debug\Project2.pdb (Partial PDB)

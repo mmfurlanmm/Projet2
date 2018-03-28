@@ -201,9 +201,9 @@ void Game::jeu()
 			if (niveaux.ennemis[i].shoot== true)
 			{
 				
-				niveaux.missileEnnemi.forme.setPosition(Vector2f(niveaux.ennemis[i].sprite.getPosition().x, niveaux.ennemis[i].sprite.getPosition().y - niveaux.ennemis[i].sprite.getTextureRect().height));
+				niveaux.missileEnnemi.cercle.setPosition(Vector2f(niveaux.ennemis[i].sprite.getPosition().x, niveaux.ennemis[i].sprite.getPosition().y - niveaux.ennemis[i].sprite.getTextureRect().height));
 				niveaux.vectMissileEnnemi.push_back(niveaux.missileEnnemi);
-				niveaux.missileEnnemi2.forme.setPosition(Vector2f(niveaux.ennemis[i].sprite.getPosition().x, niveaux.ennemis[i].sprite.getPosition().y - niveaux.ennemis[i].sprite.getTextureRect().height));
+				niveaux.missileEnnemi2.cercle.setPosition(Vector2f(niveaux.ennemis[i].sprite.getPosition().x, niveaux.ennemis[i].sprite.getPosition().y - niveaux.ennemis[i].sprite.getTextureRect().height));
 				niveaux.vectMissileEnnemi.push_back(niveaux.missileEnnemi2);
 
 			}
@@ -211,11 +211,11 @@ void Game::jeu()
 		}
 		for (unsigned int i = 0; i < niveaux.vectMissileEnnemi.size(); i++)
 		{
-			niveaux.vectMissileEnnemi[i].forme.move(niveaux.vectMissileEnnemi[i].pattern.x, niveaux.vectMissileEnnemi[i].pattern.y);
+			niveaux.vectMissileEnnemi[i].cercle.move(niveaux.vectMissileEnnemi[i].pattern.x, niveaux.vectMissileEnnemi[i].pattern.y);
 
 
-			if (niveaux.vectMissileEnnemi[i].forme.getPosition().y > 810 || niveaux.vectMissileEnnemi[i].forme.getPosition().y < -10
-				|| niveaux.vectMissileEnnemi[i].forme.getPosition().x > 800 || niveaux.vectMissileEnnemi[i].forme.getPosition().x < -10)
+			if (niveaux.vectMissileEnnemi[i].cercle.getPosition().y > 810 || niveaux.vectMissileEnnemi[i].cercle.getPosition().y < -10
+				|| niveaux.vectMissileEnnemi[i].cercle.getPosition().x > 800 || niveaux.vectMissileEnnemi[i].cercle.getPosition().x < -10)
 			{
 				niveaux.vectMissileEnnemi.erase(niveaux.vectMissileEnnemi.begin() + i);
 			}
@@ -374,20 +374,13 @@ void Game::jeu()
 
 		}
 
-		//std::cout << "clock" << niveaux.clock1.getElapsedTime().asSeconds()<< std::endl;
-		//std::cout << "ennemis " << ennemis.size() << std::endl;
-		//std::cout << "niveau " << niveauEnCours << std::endl;
-
-
-
-
 		//Affichage ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		switch (jeu)
 		{
 		case TITRE:
 
-			//ennemiPop.restart();
+			
 			window.clear();
 			goOn = false;
 
@@ -402,6 +395,7 @@ void Game::jeu()
 			ecranTitre1.text.setFillColor(Color(rouge, vert, bleu));
 			ecranTitre2.text.setFillColor(Color(rouge, vert, bleu));
 
+			//Permet de faire varier la couleur de l'écran titre
 			if (temps.getElapsedTime().asMilliseconds() > 20)
 			{
 				bleu += 22;
@@ -412,19 +406,22 @@ void Game::jeu()
 
 				temps.restart();
 			}
-
+			//Désactivation des booléens permettant de "lancer" les vagues d'ennemis
 			niveaux.shoot1 = false;
+			niveaux.shoot12 = false;
 			niveaux.shoot2 = false;
 			niveaux.shoot3 = false;
 
 			niveaux.ennemis.clear();
+			niveaux.vectMissileEnnemi.clear();
 			missiles.clear();
+			
 
-
+			//On lance le jeu en appuyant sur espace (un message l'indique à l'écran)
 			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true)
 			{
 				niveaux.clock1.restart();
-				niveauEnCours = 1;
+				niveauEnCours = 2;
 
 				jeu = JEU;
 
@@ -434,25 +431,25 @@ void Game::jeu()
 
 		case JEU:
 
-			//
+			//Permet de faire varier la couleur du fond
 			window.clear(Color(30, 0, bleu));
 			if (back == false)
 				bleu += 0.04;
-			if (bleu > 100)
+			if (bleu > 180)
 				back = true;
 			if (back == true)
 				bleu -= 0.04;
-			if (bleu < 20)
+			if (bleu < 40)
 				back = false;
 
-
+			//Affichage du fond étoilé
 			for (unsigned int i = 0; i < etoilesDecors.size(); i++)
 			{
 				window.draw(etoilesDecors[i].forme);
 			}
 
 
-
+			//Affichage des différents objets
 			window.draw(joueur.sprite);
 			window.draw(joueur.hitBoxJoueur);
 			bordureGauche.contruire(window);
@@ -477,9 +474,9 @@ void Game::jeu()
 			for (int j = 0; j < niveaux.vectMissileEnnemi.size(); j++)
 			{
 
-				window.draw(niveaux.vectMissileEnnemi[j].forme);
+				window.draw(niveaux.vectMissileEnnemi[j].cercle);
 			}
-
+			//Condition pour afficher l'explosion du joueur
 			if (joueur.boom == true)
 			{
 				window.draw(explosionJoueur.explosion);
