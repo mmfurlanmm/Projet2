@@ -17,10 +17,6 @@
 const sf::Vector2f POSITION_D_ORIGINE_JOUEUR(WINDOWX / 2, WINDOWY - 30);
 
 
-
-
-
-
 class Joueur : public Entite
 {
 public:

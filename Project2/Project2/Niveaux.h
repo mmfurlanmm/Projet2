@@ -11,6 +11,7 @@
 #include "Ennemi2.h"
 #include "Ennemi3.h"
 #include "MissileEnnemi.h"
+#include "Joueur.h"
 
 class Niveaux
 {
@@ -58,6 +59,9 @@ public:
 	int vitesseMissile = 0;
 	float angle2 = 0;
 	int vitesseMissile2 = 0;
+
+	////////////////////////////////////// JOUEUR
+	Joueur joueur;
 
 	
 

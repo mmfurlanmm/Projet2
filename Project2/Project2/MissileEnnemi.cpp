@@ -6,8 +6,8 @@ using namespace std;
 
 MissileEnnemi::MissileEnnemi()
 {
-	cercle.setRadius(9);
-	cercle.setPointCount(8);
+	cercle.setRadius(10);
+	cercle.setPointCount(10);
 	cercle.setOutlineThickness(-4);
 
 	cout << "clock" << clock.getElapsedTime().asSeconds() << endl;

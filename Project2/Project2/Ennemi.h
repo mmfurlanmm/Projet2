@@ -9,12 +9,6 @@
 #include "Entite.h"
 
 
-
-
-
-
-
-
 class Ennemi : public Entite
 {
 public:

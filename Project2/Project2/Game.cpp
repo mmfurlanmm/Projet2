@@ -62,14 +62,12 @@ void Game::jeu()
 	vector<Etoiles>etoilesDecors;
 
 	//joueur
-	Joueur joueur;
-	joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
+	//Joueur joueur;
+	niveaux.joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
 	Vector2f positionPrecedente; // pour la gestion des collisions
 
 	//explosion
 	Explosion explosionJoueur(7);
-	Explosion explosionEnnemi(5);
-	vector<Explosion>explosions;
 	float dureeExplosion = 0.0;
 	bool boum = false;
 
@@ -97,7 +95,7 @@ void Game::jeu()
 	int scoreInt = 0;
 
 	//Texte PV
-	string pointsVieString = "VIES : " + to_string(joueur.pv);
+	string pointsVieString = "VIES : " + to_string(niveaux.joueur.pv);
 	Texte pointsVie(30, Vector2f(WINDOWX - 50, 5), pointsVieString);
 
 	//Texte titre
@@ -153,34 +151,34 @@ void Game::jeu()
 
 		//Déplacement et animation joueur//////////////////////////////////////////////////////
 
-		joueur.joueurPositionPrecedente = joueur.sprite.getPosition(); //permet de récupérer la position du joueur avant déplacement afin de gérer les collisions avec le bord de l'écran
-		joueur.sprite.move(joueur.deplacement().x, joueur.deplacement().y);
+		niveaux.joueur.joueurPositionPrecedente = niveaux.joueur.sprite.getPosition(); //permet de récupérer la position du joueur avant déplacement afin de gérer les collisions avec le bord de l'écran
+		niveaux.joueur.sprite.move(niveaux.joueur.deplacement().x, niveaux.joueur.deplacement().y);
 
 		//HitBox du joueur//////////////////////////////////////////////////////////////////
-		joueur.hitBoxJoueur.setPosition(Vector2f(joueur.sprite.getPosition().x, joueur.sprite.getPosition().y));
+		niveaux.joueur.hitBoxJoueur.setPosition(Vector2f(niveaux.joueur.sprite.getPosition().x, niveaux.joueur.sprite.getPosition().y));
 
 		//Collision joueur/bord écran/////////////////////////////////////////////////////////////////////
-		joueur.collisionBordure(bordureGauche);
-		joueur.collisionBordure(bordureDroite);
-		joueur.collisionBordure(bordureHaut);
-		joueur.collisionBordure(bordureBas);
+		niveaux.joueur.collisionBordure(bordureGauche);
+		niveaux.joueur.collisionBordure(bordureDroite);
+		niveaux.joueur.collisionBordure(bordureHaut);
+		niveaux.joueur.collisionBordure(bordureBas);
 
 		//Explosion /////////////////////////////////////////////////////////////////
-		explosionJoueur.explosion.setPosition(Vector2f(joueur.sprite.getPosition().x + 1, joueur.sprite.getPosition().y + 7));
-		explosionJoueur.trigger = joueur.boom;
+		explosionJoueur.explosion.setPosition(Vector2f(niveaux.joueur.sprite.getPosition().x + 1, niveaux.joueur.sprite.getPosition().y + 7));
+		explosionJoueur.trigger = niveaux.joueur.boom;
 		explosionJoueur.animation();
 
 		//Tir/////////////////////////////////////////////////////////////////////
 
-		if (Keyboard::isKeyPressed(Keyboard::LControl) && joueur.tirOK == true && joueur.move == true)
+		if (Keyboard::isKeyPressed(Keyboard::LControl) && niveaux.joueur.tirOK == true && niveaux.joueur.move == true)
 		{
-			missile.forme.setPosition(Vector2f(joueur.sprite.getPosition().x - missile.forme.getSize().x / 2, joueur.sprite.getPosition().y - joueur.sprite.getTextureRect().height));
+			missile.forme.setPosition(Vector2f(niveaux.joueur.sprite.getPosition().x - missile.forme.getSize().x / 2, niveaux.joueur.sprite.getPosition().y - niveaux.joueur.sprite.getTextureRect().height));
 			missiles.push_back(missile);
-			joueur.tirOK = false;
+			niveaux.joueur.tirOK = false;
 		}
 		else if (!Keyboard::isKeyPressed(Keyboard::LControl))
 		{
-			joueur.tirOK = true;
+			niveaux.joueur.tirOK = true;
 		}
 
 		for (unsigned int i = 0; i < missiles.size(); i++)
@@ -324,44 +322,44 @@ void Game::jeu()
 		{
 			if (niveaux.ennemis[i].dégatsJoueur == true)
 			{
-				joueur.collisionEnnemi(niveaux.ennemis[i]);
-				pointsVie.textString = "VIES : " + to_string(joueur.pv);
+				niveaux.joueur.collisionEnnemi(niveaux.ennemis[i]);
+				pointsVie.textString = "VIES : " + to_string(niveaux.joueur.pv);
 
 			}
 			for (int j = 0; j < niveaux.vectMissileEnnemi.size(); j++)
 			{
 				if (niveaux.vectMissileEnnemi[j].dégatsJoueur == true)
 				{
-					joueur.collisionEnnemi(niveaux.vectMissileEnnemi[j]);
-					pointsVie.textString = "VIES : " + to_string(joueur.pv);
+					niveaux.joueur.collisionEnnemi(niveaux.vectMissileEnnemi[j]);
+					pointsVie.textString = "VIES : " + to_string(niveaux.joueur.pv);
 
 				}
 
 			}
 
 		}
-		if (joueur.tempsRestart == true)
+		if (niveaux.joueur.tempsRestart == true)
 		{
 			temps.restart();
-			joueur.tempsRestart = false;
+			niveaux.joueur.tempsRestart = false;
 		}
 
 		Time elapsed = temps.getElapsedTime();
 
-		if (elapsed.asSeconds() > 0.8 && joueur.move == false)
+		if (elapsed.asSeconds() > 0.8 && niveaux.joueur.move == false)
 		{
 			temps.restart();
 
-			joueur.joueurMort();
+			niveaux.joueur.joueurMort();
 		}
 
 		if (elapsed.asSeconds() > 1.5)
 		{
-			joueur.sprite.setColor(Color(255, 255, 255, 255));
-			joueur.invincible = false;
+			niveaux.joueur.sprite.setColor(Color(255, 255, 255, 255));
+			niveaux.joueur.invincible = false;
 		}
 
-		if (joueur.pv < 0)
+		if (niveaux.joueur.pv < 0)
 		{
 			niveaux.shoot1 = false;
 			niveaux.shoot2 = false;
@@ -386,7 +384,7 @@ void Game::jeu()
 
 			window.draw(ecranTitre1.ecrireTexte());
 			window.draw(ecranTitre2.ecrireTexte());
-			if (tempsTitre.getElapsedTime().asSeconds() > 2)
+			if (tempsTitre.getElapsedTime().asSeconds() > 3)
 			{
 				window.draw(ecranTitre3.ecrireTexte());
 				goOn = true;
@@ -421,7 +419,7 @@ void Game::jeu()
 			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true)
 			{
 				niveaux.clock1.restart();
-				niveauEnCours = 2;
+				niveauEnCours = 1;
 
 				jeu = JEU;
 
@@ -450,8 +448,8 @@ void Game::jeu()
 
 
 			//Affichage des différents objets
-			window.draw(joueur.sprite);
-			window.draw(joueur.hitBoxJoueur);
+			window.draw(niveaux.joueur.sprite);
+			window.draw(niveaux.joueur.hitBoxJoueur);
 			bordureGauche.contruire(window);
 			bordureDroite.contruire(window);
 			bordureHaut.contruire(window);
@@ -477,7 +475,7 @@ void Game::jeu()
 				window.draw(niveaux.vectMissileEnnemi[j].cercle);
 			}
 			//Condition pour afficher l'explosion du joueur
-			if (joueur.boom == true)
+			if (niveaux.joueur.boom == true)
 			{
 				window.draw(explosionJoueur.explosion);
 
@@ -495,7 +493,7 @@ void Game::jeu()
 			window.draw(ecranScore.ecrireTexte());
 			niveaux.fini = false;//
 
-			joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
+			niveaux.joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
 			goOn = false;
 
 			//Permet de bloquer l'écran "PERDU" pendant une certaine durée
@@ -526,11 +524,11 @@ void Game::jeu()
 
 			scoreInt = 0;
 			score.textString = "0";
-			joueur.pv = PVORIGINE;
-			pointsVieString = "VIES : " + to_string(joueur.pv);
+			niveaux.joueur.pv = PVORIGINE;
+			pointsVieString = "VIES : " + to_string(niveaux.joueur.pv);
 			pointsVie.textString = pointsVieString;
 
-			joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
+			niveaux.joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
 			goOn = false;
 
 			//Permet de bloquer l'écran "PERDU" pendant une certaine durée
