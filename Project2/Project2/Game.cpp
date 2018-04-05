@@ -446,7 +446,7 @@ void Game::jeu()
 				niveaux.clock1.restart();
 				niveaux.bossGo = false;
 				niveaux.go = false;
-				niveauEnCours = 3;
+				niveauEnCours = 99;
 				jeu = JEU;
 			}
 
@@ -489,10 +489,6 @@ void Game::jeu()
 			//Affichage des ennemis
 			afficherVector(niveaux.ennemis, window);
 
-			for (int i = 0; i < explosions.size(); i++)
-			{
-				window.draw(explosions[i].explosion);
-			}
 
 			//Condition pour afficher l'explosion du joueur
 			if (niveaux.joueur.boom == true)

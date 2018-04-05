@@ -10,7 +10,7 @@ MissileEnnemi::MissileEnnemi()
 	cercle.setPointCount(10);
 	cercle.setOutlineThickness(-4);
 
-	cout << "clock" << clock.getElapsedTime().asSeconds() << endl;
+	
 	cercle.setFillColor(Color::White);
 	cercle.setOutlineColor(Color::Magenta);
 	

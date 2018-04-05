@@ -149,8 +149,8 @@ void Joueur::jaugecanon()
 	}
 	formeJaugeCanon.setSize(Vector2f(valeurJaugeCanon, 15));
 	contourJaugeCanon.setSize(Vector2f(100, 15));
-	formeJaugeCanon.setPosition(580, 680);
-	contourJaugeCanon.setPosition(580, 680);
+	formeJaugeCanon.setPosition(580, 770);
+	contourJaugeCanon.setPosition(580, 770);
 	if(valeurJaugeCanon>60)
 	formeJaugeCanon.setFillColor(Color::Yellow);
 	else if (valeurJaugeCanon<30)

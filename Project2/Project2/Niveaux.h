@@ -97,6 +97,7 @@ public:
 			vitesseApparition1 = vitesseApparition;
 			ennemi1.sprite.setPosition(x, y);
 			ennemi1.pattern = sf::Vector2f(vitesseX, vitesseY);
+			
 		}
 		if (clock1.getElapsedTime().asSeconds() >= fin)
 		{
@@ -113,6 +114,7 @@ public:
 			vitesseApparition12 = vitesseApparition;
 			ennemi12.sprite.setPosition(x, y);
 			ennemi12.pattern = sf::Vector2f(vitesseX, vitesseY);
+			
 		}
 		if (clock1.getElapsedTime().asSeconds() >= fin)
 		{
@@ -129,6 +131,7 @@ public:
 			vitesseApparition2 = vitesseApparition;
 			ennemi2.sprite.setPosition(x, y);
 			ennemi2.pattern = sf::Vector2f(vitesseX, vitesseY);
+			
 		}
 		if (clock1.getElapsedTime().asSeconds() >= fin)
 		{
@@ -144,6 +147,7 @@ public:
 			vitesseApparition3 = vitesseApparition;
 			ennemi3.sprite.setPosition(x, y);
 			ennemi3.pattern = sf::Vector2f(vitesseX, vitesseY);
+			
 		}
 		if (clock1.getElapsedTime().asSeconds() >= fin)
 		{
