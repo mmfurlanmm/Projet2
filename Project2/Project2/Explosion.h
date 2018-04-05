@@ -16,6 +16,7 @@ public:
 	void animation();
 	int inc = 0;
 	sf::Clock clock;
+	sf::Clock dureeExplosion;
 	
 	bool boom;
 	bool trigger;

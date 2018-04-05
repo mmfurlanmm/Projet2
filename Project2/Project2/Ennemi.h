@@ -36,16 +36,19 @@ public:
 	bool move = true;
 	bool hit = false;
 	bool shoot = false;
+	
 	bool tirOk = false;
 
 	
 
 	float inc = 0;
 	sf::Clock clock;
+	sf::Clock clockExplosion;
+	
 	
 	sf::Clock missileClock;
 	sf::Clock missileClock2;
-	int vitesseTir = 30;
+	int vitesseTir;
 
 
 

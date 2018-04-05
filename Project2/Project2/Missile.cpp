@@ -6,8 +6,12 @@ using namespace std;
 
 Missile::Missile()
 {
-	forme.setSize(Vector2f(9.f, 12.f));
-	forme.setFillColor(Color::Cyan);
+	
+	cercle.setRadius(9);
+	cercle.setFillColor(Color::White);
+	cercle.setOutlineThickness(-3);
+	cercle.setOutlineColor(Color::Cyan);
+	
 }
 
 

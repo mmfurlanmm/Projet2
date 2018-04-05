@@ -14,6 +14,8 @@ class Missile : public Entite
 public:
 	Missile();
 	~Missile();
+	sf::Clock clock;
+	
 	
 	//sf::RectangleShape forme;
 };

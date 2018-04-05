@@ -19,7 +19,7 @@
 #include "Entite.h"
 #include "Niveaux.h"
 
-enum { JEU, GAMEOVER, TITRE, SCORE};//Gestion des évennements du jeu
+//Gestion des évennements du jeu
 
 class Game
 {
@@ -28,6 +28,11 @@ public:
 	~Game();
 	void jeu();
 	void affichage();
+
+	//Niveaux
+	Niveaux niveaux;
+
+	
 
 
 };

@@ -17,5 +17,6 @@ public:
 	sf::Sprite sprite;
 	sf::RectangleShape forme;
 	sf::CircleShape cercle;
+	
 };
 

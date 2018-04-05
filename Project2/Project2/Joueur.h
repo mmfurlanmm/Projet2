@@ -11,7 +11,7 @@
 
 
 #define WINDOWX 700
-#define WINDOWY 800
+#define WINDOWY 700
 #define PVORIGINE 4
 
 const sf::Vector2f POSITION_D_ORIGINE_JOUEUR(WINDOWX / 2, WINDOWY - 30);
@@ -28,7 +28,9 @@ public:
 	
 	void collisionEnnemi(Ennemi ennemi);
 	void collisionBordure(Bordure bordure);
-	void joueurMort();
+	void joueurRepopInvincible(sf::Clock clock);
+	void joueurNormalApresInvincible();
+	void jaugecanon();
 
 	
 	
@@ -39,8 +41,11 @@ public:
 	
 
 	sf::Texture texture;
-	//sf::Sprite sprite;
 	sf::RectangleShape hitBoxJoueur;
+	sf::RectangleShape formeJaugeCanon;
+	sf::RectangleShape contourJaugeCanon;
+
+
 	float vitesse;
 	int pv;
 	bool invincible;
@@ -49,10 +54,16 @@ public:
 	bool boom;
 	bool animation;
 	bool tirOK = true;
+	bool canonActif = false;
 	int i = 0;
+
+	float valeurJaugeCanon = 100;
 	
 
 	sf::Clock clock;
+	
+	
+
 	sf::Time elapsed;
 	
 	

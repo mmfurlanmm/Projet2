@@ -21,27 +21,31 @@ Ennemi::~Ennemi()
 }
 void Ennemi::deplacement()
 {
+	
 	if (move)
-		sprite.move(pattern);
+		sprite.move(pattern.x, pattern.y);
+	
+	
 }
 
 void Ennemi::explosionEnnemi()
 {
 
-
+	
 	sprite.setTexture(explosion);
 
 	sprite.setTextureRect(IntRect(inc, 0, 14, 14));
+	sprite.setColor(Color(0, 0, 0));
 	sprite.setScale(6, 6);
 	sprite.setOrigin(sprite.getTextureRect().width / 2, sprite.getTextureRect().height - 2);
-
-	if (boom == true)
+	
+	if (clockExplosion.getElapsedTime().asMilliseconds()>30)
 	{
-		inc += 14;
+		inc+= 14;
+		clockExplosion.restart();
 		if (inc > 56)
-		{
-			sprite.setPosition(0, 1000);
-		}
+		sprite.setPosition(0, 1000);
+		
 	}
 
 
@@ -50,11 +54,7 @@ void Ennemi::explosionEnnemi()
 
 void Ennemi::ennemiHit()
 {
-	//cout << "hit " << hit << endl;
-	//cout << "clock ennemi" << clock.getElapsedTime().asSeconds() << endl;
-
-
-
+	
 	if (hit == true)
 	{
 		sprite.setColor(Color(255, 0, 0, 190));

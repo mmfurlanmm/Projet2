@@ -22,7 +22,7 @@ Ennemi1::Ennemi1():Ennemi()
 	sprite.setOrigin(sprite.getTextureRect().width / 2, sprite.getTextureRect().height);
 	//pattern = xy;
 	pv = 1;
-	points = 200;
+	points = 150;
 
 	
 }
