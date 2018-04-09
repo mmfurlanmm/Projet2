@@ -11,7 +11,7 @@
 
 
 #define WINDOWX 700
-#define WINDOWY 800
+#define WINDOWY 700
 #define PVORIGINE 4
 
 const sf::Vector2f POSITION_D_ORIGINE_JOUEUR(WINDOWX / 2, WINDOWY - 30);
@@ -55,6 +55,7 @@ public:
 	bool animation;
 	bool tirOK = true;
 	bool canonActif = false;
+	bool slow = false;
 	int i = 0;
 
 	float valeurJaugeCanon = 100;

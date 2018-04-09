@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <math.h>
+#include <algorithm>
 
 using namespace sf;
 using namespace std;
@@ -34,16 +35,7 @@ void afficherVector(vector<Ennemi> vecteur, RenderWindow &window)
 	}
 
 }
-void afficherVector(vector<Ennemi*> vecteur, RenderWindow &window)
-{
-	for (int i = 0; i < vecteur.size(); i++)
-	{
-		window.draw(vecteur[i]->forme);
-		window.draw(vecteur[i]->sprite);
-		window.draw(vecteur[i]->cercle);
-	}
 
-}
 void reinitialisationLancementDesEnnemis(bool shoot1, bool shoot12, bool shoot2, bool shoot3)
 {
 	shoot1 = false;
@@ -78,6 +70,7 @@ void Game::jeu()
 	bool back = false;
 	bool move = true;
 	bool invincible = false;
+
 	int jeu = TITRE; //Par défaut, la variable de gestion d'évènement est à "TITRE"
 	int niveauEnCours = 0;
 	//Gestion du temps
@@ -87,12 +80,18 @@ void Game::jeu()
 	Clock tempsActivationCanon;
 	Clock tempsExplosion;
 	sf::Clock frame;
-	
-	
+
+	Clock megaBombeClock;
+	Clock megaBombExplosionsClock;
+	bool megaBombeActive = false;
+	bool megaBombeRechargee = true;
+	int megaBombeCmpt = 0;
 
 
 
-	RenderWindow window(VideoMode(700, 800), "GalacticClash");
+
+
+	RenderWindow window(VideoMode(WINDOWX, WINDOWY), "GalacticClash");
 	window.setPosition(Vector2i(350, 0));
 	window.setMouseCursorVisible(0);
 
@@ -116,7 +115,9 @@ void Game::jeu()
 
 	//explosion
 	Explosion explosionJoueur(7);
-	Explosion explosionEnnemi(6);
+	Explosion megaBombeExplosion(14);
+	megaBombeExplosion.explosion.setColor(Color(255, 255, 255, 150));
+	
 	vector<Explosion> explosions;
 	float dureeExplosion = 0.0;
 	bool boum = false;
@@ -165,11 +166,11 @@ void Game::jeu()
 	//Boucle de jeu
 	while (window.isOpen())
 	{
-		
+
 		Time frameRate = frame.restart();
 
 
-		cout << "frame rate : " << 1.f / frameRate.asMilliseconds() * 1000 << endl;
+		//cout << "frame rate : " << 1.f / frameRate.asMilliseconds() * 1000 << endl;
 		Event event;
 		//Gestion de la saisie utilisateur
 		while (window.pollEvent(event))
@@ -212,7 +213,7 @@ void Game::jeu()
 
 		niveaux.joueur.joueurPositionPrecedente = niveaux.joueur.sprite.getPosition(); //permet de récupérer la position du joueur avant déplacement afin de gérer les collisions avec le bord de l'écran
 		niveaux.joueur.sprite.move(niveaux.joueur.deplacement().x, niveaux.joueur.deplacement().y);
-		
+
 		//HitBox du joueur//////////////////////////////////////////////////////////////////
 		niveaux.joueur.hitBoxJoueur.setPosition(Vector2f(niveaux.joueur.sprite.getPosition().x, niveaux.joueur.sprite.getPosition().y));
 
@@ -226,6 +227,23 @@ void Game::jeu()
 		explosionJoueur.explosion.setPosition(Vector2f(niveaux.joueur.sprite.getPosition().x + 1, niveaux.joueur.sprite.getPosition().y + 7));
 		explosionJoueur.trigger = niveaux.joueur.boom;
 		explosionJoueur.animation();
+		if (megaBombeRechargee == false && megaBombeCmpt<3)
+		{
+			if (megaBombExplosionsClock.getElapsedTime().asMilliseconds() > 5)
+			{
+				megaBombeExplosion.explosion.setPosition(Vector2f(rand() % int(WINDOWX), rand() % int(WINDOWY)));
+				explosions.push_back(megaBombeExplosion);
+			}
+			megaBombExplosionsClock.restart();
+		}
+		if (megaBombeCmpt >=3)
+			explosions.clear();
+		for (int i = 0; i < explosions.size(); i++)
+		{
+				
+			explosions[i].animation();
+		}
+		
 
 		//Tir/////////////////////////////////////////////////////////////////////
 
@@ -246,7 +264,7 @@ void Game::jeu()
 				niveaux.joueur.canonActif = true;
 				if (niveaux.joueur.valeurJaugeCanon > 0)
 				{
-					canon.cercle.setPosition(Vector2f(niveaux.joueur.sprite.getPosition().x - 15 + +rand() % 10, niveaux.joueur.sprite.getPosition().y- niveaux.joueur.sprite.getTextureRect().height*3));
+					canon.cercle.setPosition(Vector2f(niveaux.joueur.sprite.getPosition().x - 15 + +rand() % 10, niveaux.joueur.sprite.getPosition().y - niveaux.joueur.sprite.getTextureRect().height * 3));
 					missiles.push_back(canon);
 					cadenceCanon.restart();
 				}
@@ -259,15 +277,15 @@ void Game::jeu()
 			niveaux.joueur.canonActif = false;
 		}
 
-		
-		
-		
+
+
+
 
 		for (unsigned int i = 0; i < missiles.size(); i++)
 		{
 
 			missiles[i].cercle.move(0.f, -22.f);
-			
+
 
 			if (missiles[i].forme.getPosition().y < -10 || missiles[i].cercle.getPosition().y < -10)
 			{
@@ -315,7 +333,7 @@ void Game::jeu()
 
 		for (unsigned j = 0; j < niveaux.ennemis.size(); j++)
 		{
-			
+
 
 
 			for (unsigned int i = 0; i < missiles.size(); i++)
@@ -332,26 +350,61 @@ void Game::jeu()
 					break;
 
 				}
-				if (niveaux.ennemis[j].pv < 1 && niveaux.ennemis[j].incrScore == true)
-				{
-					scoreInt += niveaux.ennemis[j].points;
-					scoreString = to_string(scoreInt);
-					score.textString = scoreString;
-					niveaux.ennemis[j].incrScore = false;
-					niveaux.ennemis[j].hit = false;
 
 
-				}
-				if (niveaux.ennemis[j].pv < 1)
-				{
-					niveaux.ennemis[j].explosionEnnemi();
-					niveaux.ennemis[j].move = false;
-					niveaux.ennemis[j].dégatsJoueur = false;
-					
-				}
+
+
+			}
+			if (niveaux.ennemis[j].pv < 1 && niveaux.ennemis[j].incrScore == true)
+			{
+				scoreInt += niveaux.ennemis[j].points;
+				scoreString = to_string(scoreInt);
+				score.textString = scoreString;
+				niveaux.ennemis[j].incrScore = false;
+				niveaux.ennemis[j].hit = false;
+
+
+			}
+			if (niveaux.ennemis[j].pv < 1)
+			{
+				niveaux.ennemis[j].explosionEnnemi();
+				niveaux.ennemis[j].move = false;
+				niveaux.ennemis[j].dégatsJoueur = false;
+
+			}
+
+		}
+		if (Keyboard::isKeyPressed(Keyboard::W) && megaBombeRechargee == true && megaBombeActive == false)
+		{
+			megaBombeActive = true;
+			megaBombeRechargee = false;
+		}
+		
+
+		if (megaBombeActive == true)
+		{
+			if (megaBombeClock.getElapsedTime().asMilliseconds() > 400 && megaBombeCmpt < 3)
+			{
+				for (unsigned int j = 0; j < niveaux.ennemis.size(); j++)
+					niveaux.ennemis[j].pv -= 5;
+				megaBombeCmpt++;
+				megaBombeClock.restart();
 
 			}
 		}
+		if (megaBombeClock.getElapsedTime().asMilliseconds() > 400 && !Keyboard::isKeyPressed(Keyboard::W))
+		{
+			megaBombeActive = false;
+			megaBombeRechargee = true;
+			megaBombeCmpt = 0;
+		}
+		
+			
+		
+		cout << "clock" << megaBombExplosionsClock.getElapsedTime().asSeconds() << endl;
+		
+
+
 
 
 
@@ -460,7 +513,7 @@ void Game::jeu()
 				niveaux.clock1.restart();
 				niveaux.bossGo = false;
 				niveaux.go = false;
-				niveauEnCours = 99;
+				niveauEnCours = 1;
 				jeu = JEU;
 			}
 
@@ -508,6 +561,10 @@ void Game::jeu()
 			if (niveaux.joueur.boom == true)
 			{
 				window.draw(explosionJoueur.explosion);
+			}
+			for (int i = 0; i < explosions.size(); i++)
+			{
+				window.draw(explosions[i].explosion);
 			}
 
 			//Affichage des textes
@@ -577,6 +634,14 @@ void Game::jeu()
 				window.draw(texteAppuyezEspace.ecrireTexte());
 				goOn = true;
 			}
+
+			reinitialisationLancementDesEnnemis(niveaux.shoot1, niveaux.shoot2, niveaux.shoot3, niveaux.shoot12);
+			niveaux.ennemi1.tirOk = false;
+			niveaux.ennemi12.tirOk = false;
+			niveaux.ennemi2.tirOk = false;
+			niveaux.ennemi3.tirOk = false;
+
+
 
 			niveaux.ennemis.clear();
 			missiles.clear();

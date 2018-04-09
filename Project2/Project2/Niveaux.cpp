@@ -24,7 +24,7 @@ void Niveaux::niveau1()
 	{
 		float angle = atan2(-ennemis[i].pattern.x, ennemis[i].pattern.y) * 180 / 3.141;
 		ennemis[i].sprite.setRotation(angle);
-		cout << ennemis[i].vitesseTir << endl;
+		
 	}
 
 	lancementEnnemis1(2, 3, 80, 200, 0, 2.5, 14);
@@ -86,8 +86,8 @@ void Niveaux::niveau2()
 
 	//Pattern de tir en spirale
 	missile2Actif = true;
-	missileEnnemi.pattern = spirale(3, 5);
-	missileEnnemi2.pattern = spirale(3, 5);
+	missileEnnemi.pattern = spirale(4, 2);
+	missileEnnemi2.pattern = reverseSpirale(3, 1.5);
 	missileEnnemi.cercle.setRadius(10);
 
 
@@ -147,7 +147,7 @@ void Niveaux::niveau2()
 		ennemi2.sprite.setTexture(ennemi2.texture2);
 		ennemi2.sprite.setScale(6, 6);
 		ennemi2.pattern = Vector2f(0, 3);
-		ennemi2.vitesseTir = 30;
+		ennemi2.vitesseTir = 20;
 		missileEnnemi.cercle.setRadius(15);
 
 
@@ -162,15 +162,15 @@ void Niveaux::niveau2()
 				ennemis[i].tirOk = true;
 				if (bossPattern == false)//bossPattern, quand il est TRUE, permet de lancer le pattern droite/gauche du boss 
 				{
-					ennemis[i].pattern = Vector2f(4, 0);
+					ennemis[i].pattern = Vector2f(3, 0);
 					bossPattern = true;
 				}
 				else
 				{
 					if (ennemis[i].sprite.getPosition().x >= 600)
-						ennemis[i].pattern = Vector2f(-4, 0);
+						ennemis[i].pattern = Vector2f(-3, 0);
 					if (ennemis[i].sprite.getPosition().x <= 100)
-						ennemis[i].pattern = Vector2f(4, 0);
+						ennemis[i].pattern = Vector2f(3, 0);
 				}
 			}
 
@@ -365,8 +365,8 @@ void Niveaux::niveauTest()
 	int al2 = aleatoire();
 
 	missile2Actif = true;
-	missileEnnemi2.pattern = spirale(2, 1);
-	missileEnnemi.pattern = spirale(2, 1);
+	missileEnnemi2.pattern = spirale(4, 1);
+	missileEnnemi.pattern = reverseSpirale(5, 1);
 
 
 	for (int i = 0; i < ennemis.size(); i++)
@@ -377,7 +377,7 @@ void Niveaux::niveauTest()
 			ennemis[i].pattern.y = 0;
 		else if (ennemis[i].sprite.getPosition().y < 100)
 			ennemis[i].pattern.y = 5;
-		ennemis[i].vitesseTir = 10;
+		ennemis[i].vitesseTir = 2;
 
 
 
@@ -437,7 +437,7 @@ void Niveaux::gestionVecteurEnnemisEtMissilesEnnemis()
 	for (unsigned int i = 0; i < ennemis.size(); i++)
 	{
 		ennemis[i].tirer();
-		if (ennemis[i].shoot == true && vectMissileEnnemi.size() < 800)
+		if (ennemis[i].shoot == true && vectMissileEnnemi.size() < 1000)
 		{
 
 			missileEnnemi.cercle.setPosition(Vector2f(ennemis[i].sprite.getPosition().x, ennemis[i].sprite.getPosition().y - ennemis[i].sprite.getTextureRect().height));
@@ -462,6 +462,6 @@ void Niveaux::gestionVecteurEnnemisEtMissilesEnnemis()
 		if (Keyboard::isKeyPressed(Keyboard::M))
 			vectMissileEnnemi.clear();
 	}
-	cout << "bullets " << vectMissileEnnemi.size() << endl;
+	//cout << "bullets " << vectMissileEnnemi.size() << endl;
 }
 
