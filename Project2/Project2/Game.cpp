@@ -213,9 +213,6 @@ void Game::jeu()
 		niveaux.joueur.joueurPositionPrecedente = niveaux.joueur.sprite.getPosition(); //permet de récupérer la position du joueur avant déplacement afin de gérer les collisions avec le bord de l'écran
 		niveaux.joueur.sprite.move(niveaux.joueur.deplacement().x, niveaux.joueur.deplacement().y);
 		
-		
-		
-		
 		//HitBox du joueur//////////////////////////////////////////////////////////////////
 		niveaux.joueur.hitBoxJoueur.setPosition(Vector2f(niveaux.joueur.sprite.getPosition().x, niveaux.joueur.sprite.getPosition().y));
 
@@ -242,7 +239,7 @@ void Game::jeu()
 			tempsActivationCanon.restart();
 
 		}
-		else if (Keyboard::isKeyPressed(Keyboard::LControl) && niveaux.joueur.move == true && tempsActivationCanon.getElapsedTime().asSeconds() > 0.6)
+		else if (Keyboard::isKeyPressed(Keyboard::LControl) && niveaux.joueur.move == true && tempsActivationCanon.getElapsedTime().asSeconds() > 0.4)
 		{
 			if (cadenceCanon.getElapsedTime().asMilliseconds() >= 50)
 			{
@@ -463,7 +460,7 @@ void Game::jeu()
 				niveaux.clock1.restart();
 				niveaux.bossGo = false;
 				niveaux.go = false;
-				niveauEnCours = 1;
+				niveauEnCours = 99;
 				jeu = JEU;
 			}
 
@@ -479,7 +476,7 @@ void Game::jeu()
 				window.clear(Color(0, 20, 30));
 				break;
 			case 2:
-				window.clear(Color(40, 0, 50));
+				window.clear(Color(30, 0, 50));
 				break;
 			default:
 				window.clear(Color(0, 20, 30));

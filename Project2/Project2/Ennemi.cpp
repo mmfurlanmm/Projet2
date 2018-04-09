@@ -8,11 +8,7 @@ using namespace std;
 
 Ennemi::Ennemi()
 {
-	if (!explosion.loadFromFile("Images/explosion.png"))
-	{
-		cout << "erreur" << endl;
-		system("pause");
-	}
+	
 
 }
 
@@ -30,7 +26,11 @@ void Ennemi::deplacement()
 
 void Ennemi::explosionEnnemi()
 {
-
+	if (!explosion.loadFromFile("Images/explosion.png"))
+	{
+		cout << "erreur" << endl;
+		system("pause");
+	}
 	
 	sprite.setTexture(explosion);
 

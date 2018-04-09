@@ -31,21 +31,21 @@ Niveaux.cpp(156): warning C4018: '<' : incompatibilité signed/unsigned
 Niveaux.cpp(196): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
 Niveaux.cpp(204): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
 Niveaux.cpp(208): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-Niveaux.cpp(250): warning C4018: '<' : incompatibilité signed/unsigned
-Niveaux.cpp(252): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
-Niveaux.cpp(257): warning C4018: '<' : incompatibilité signed/unsigned
-Niveaux.cpp(275): warning C4305: '+=' : troncation de 'double' à 'float'
-Niveaux.cpp(283): warning C4018: '<' : incompatibilité signed/unsigned
-Niveaux.cpp(295): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
-Niveaux.cpp(301): warning C4018: '<' : incompatibilité signed/unsigned
-Niveaux.cpp(305): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-Niveaux.cpp(310): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
-Niveaux.cpp(320): warning C4018: '<' : incompatibilité signed/unsigned
-Niveaux.cpp(329): warning C4305: '-=' : troncation de 'double' à 'float'
-Niveaux.cpp(338): warning C4305: 'argument' : troncation de 'double' à 'float'
-Niveaux.cpp(369): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(252): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(254): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+Niveaux.cpp(259): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(277): warning C4305: '+=' : troncation de 'double' à 'float'
+Niveaux.cpp(285): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(297): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+Niveaux.cpp(303): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(307): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+Niveaux.cpp(312): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+Niveaux.cpp(322): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(331): warning C4305: '-=' : troncation de 'double' à 'float'
+Niveaux.cpp(340): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(372): warning C4018: '<' : incompatibilité signed/unsigned
   Génération de code en cours
-  1 of 724 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  2 of 724 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     1 functions had inline decision re-evaluated but remain unchanged
   Fin de la génération du code

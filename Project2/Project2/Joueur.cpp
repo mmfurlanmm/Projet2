@@ -27,8 +27,8 @@ Joueur::Joueur()
 
 	//Gestion de la hitbox du joueur
 	hitBoxJoueur.setFillColor(Color::Transparent);
-	hitBoxJoueur.setSize(Vector2f(5, 20));
-	hitBoxJoueur.setOrigin(Vector2f(hitBoxJoueur.getSize().x / 2, hitBoxJoueur.getSize().y+7));
+	hitBoxJoueur.setSize(Vector2f(6, 6));
+	hitBoxJoueur.setOrigin(Vector2f(hitBoxJoueur.getSize().x / 2, hitBoxJoueur.getSize().y+16));
 
 	//Caractéristiques de base du joueur
 	vitesse = 6;

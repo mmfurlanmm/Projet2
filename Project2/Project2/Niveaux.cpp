@@ -19,7 +19,7 @@ Niveaux::~Niveaux()
 
 void Niveaux::niveau1()
 {
-	
+
 	for (int i = 0; i < ennemis.size(); i++)
 	{
 		float angle = atan2(-ennemis[i].pattern.x, ennemis[i].pattern.y) * 180 / 3.141;
@@ -53,15 +53,15 @@ void Niveaux::niveau1()
 	}
 
 	////////////////////////////////////////////////////PATTERN ENNEMI EN CROIX
-	
+
 	lancementEnnemis3(15, 15.1, 20, 0, 0, 8, 6);
 	lancementEnnemis3(16.5, 16.6, 20, WINDOWX, 0, -8, 6);
 	lancementEnnemis3(18, 18.1, 20, 0, 0, 8, 6);
 	//GROS
-	
+
 	lancementEnnemis2(19.5, 19.6, 20, WINDOWX / 2, 0, 0, 4);
 	///// FIN GROS
-	
+
 	lancementEnnemis1(23, 23.5, 20, 0, 40, 8, 2.5);
 
 	if (clock1.getElapsedTime().asSeconds() >= 27)
@@ -149,7 +149,7 @@ void Niveaux::niveau2()
 		ennemi2.pattern = Vector2f(0, 3);
 		ennemi2.vitesseTir = 30;
 		missileEnnemi.cercle.setRadius(15);
-		
+
 
 
 
@@ -245,104 +245,107 @@ float timeBossFloat = 0;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Niveaux::niveau3()
 {
-	
-	missile2Actif = false;
-	for (int i = 0; i < ennemis.size(); i++)
+
+	if (go == false)
 	{
-		float angle = atan2(-ennemis[i].pattern.x, ennemis[i].pattern.y) * 180 / 3.141;
-		ennemis[i].sprite.setRotation(angle);
-	}
-	if (clock1.getElapsedTime().asSeconds() < 12)
-	{
+		missile2Actif = false;
 		for (int i = 0; i < ennemis.size(); i++)
 		{
-			missileEnnemi.pattern = teteChercheuse(joueur, ennemis[i], 15, 0);
-			missileEnnemi.cercle.setRadius(15);
-			ennemis[i].vitesseTir = 1500;
-			ennemis[i].tirOk = tirX(ennemis[i], 210, 500);
-			
-
+			float angle = atan2(-ennemis[i].pattern.x, ennemis[i].pattern.y) * 180 / 3.141;
+			ennemis[i].sprite.setRotation(angle);
 		}
-	}
-	lancementEnnemis1(3, 4, 20, 0, 0, 7, 5);
-	lancementEnnemis1(5, 6, 20, WINDOWX, 0, -7, 5);
-	lancementEnnemis1(7, 8, 20, 0, 0, 7, 5);
-	lancementEnnemis1(9, 10, 20, WINDOWX, 0, -7, 5);
-	int al = rand()%(450-250+1)+250;
-	if (clock1.getElapsedTime().asSeconds() >= 16.2 && clock1.getElapsedTime().asSeconds() <= 17.5)
-	{
-		app++;
-		vit += 0.05;
-	}
-	lancementEnnemis1(12, 18, app, al, 0, teteChercheuse(joueur, al, vit).x, teteChercheuse(joueur, al, vit).y);
-	
-
-	if (clock1.getElapsedTime().asSeconds() >= 18 && clock1.getElapsedTime().asSeconds() < 25.4)
-	{
-		missile2Actif = true;
-		for (int i = 0; i < ennemis.size(); i++)
+		if (clock1.getElapsedTime().asSeconds() < 12)
 		{
-			ennemi2.tirOk = true;
-			ennemi2.pv =15;
-			missileEnnemi2.pattern = spirale(7, 10);
-			missileEnnemi.pattern = reverseSpirale(7, 10);
+			for (int i = 0; i < ennemis.size(); i++)
+			{
+				missileEnnemi.pattern = teteChercheuse(joueur, ennemis[i], 15, 0);
+				missileEnnemi.cercle.setRadius(15);
+				ennemis[i].vitesseTir = 1500;
+				ennemis[i].tirOk = tirX(ennemis[i], 210, 500);
 
-			ennemis[i].vitesseTir = 80;
 
+			}
 		}
-	}
-	lancementEnnemis2(20, 21, 10, WINDOWX / 2, 0, 0, 2.5);
-	lancementEnnemis3(20.5, 23, 20, joueur.sprite.getPosition().x + rand() % 20 - 10, 0, 0, 15);
-
-	if (clock1.getElapsedTime().asSeconds() >= 25.5)
-	{
-		ennemi3.tirOk = true;
-
-		for (int i = 0; i < ennemis.size(); i++)
+		lancementEnnemis1(3, 4, 20, 0, 0, 7, 5);
+		lancementEnnemis1(5, 6, 20, WINDOWX, 0, -7, 5);
+		lancementEnnemis1(7, 8, 20, 0, 0, 7, 5);
+		lancementEnnemis1(9, 10, 20, WINDOWX, 0, -7, 5);
+		int al = rand() % (450 - 250 + 1) + 250;
+		if (clock1.getElapsedTime().asSeconds() >= 16.2 && clock1.getElapsedTime().asSeconds() <= 17.5)
 		{
-			missile2Actif = false;
-
-			missileEnnemi.pattern = teteChercheuse(joueur, ennemis[i], 15, (rand() % (4) - 2));
-			ennemis[i].vitesseTir = 500;
-
+			app++;
+			vit += 0.05;
 		}
-	}
-	lancementEnnemis1(27, 34, 30, joueur.sprite.getPosition().x + rand() % 20 - 10, 0, 0, 18);
+		lancementEnnemis1(12, 18, app, al, 0, teteChercheuse(joueur, al, vit).x, teteChercheuse(joueur, al, vit).y);
 
-	lancementEnnemis3(26, 27, 10, 0, 0, 7, 5);
-	lancementEnnemis3(28, 29, 10, WINDOWX, 0, -7, 5);
-	lancementEnnemis3(30, 31, 10, 0, 0, 7, 5);
-	lancementEnnemis3(32, 33, 10, WINDOWX, 0, -7, 5);
 
-	if (clock1.getElapsedTime().asSeconds() >= 35)
-	{
-		missile2Actif = true;
-		for (int i = 0; i < ennemis.size(); i++)
+		if (clock1.getElapsedTime().asSeconds() >= 18 && clock1.getElapsedTime().asSeconds() < 25.4)
 		{
-			ennemi2.tirOk = true;
-			ennemi2.pv = 15;
-			missileEnnemi2.pattern = spirale(7, 5);
-			missileEnnemi.pattern = reverseSpirale(7, 7);
+			missile2Actif = true;
+			for (int i = 0; i < ennemis.size(); i++)
+			{
+				ennemi2.tirOk = true;
+				ennemi2.pv = 15;
+				missileEnnemi2.pattern = spirale(7, 10);
+				missileEnnemi.pattern = reverseSpirale(7, 10);
 
-			ennemis[i].vitesseTir = 50;
-			if (ennemis[i].sprite.getPosition().y > 80)
-				ennemis[i].pattern.y-=0.1 ;
-			if (ennemis[i].pattern.y <= 0)
-				ennemis[i].pattern.y = 0;
-			
+				ennemis[i].vitesseTir = 80;
+
+			}
+		}
+		lancementEnnemis2(20, 21, 10, WINDOWX / 2, 0, 0, 2.5);
+		lancementEnnemis3(20.5, 23, 20, joueur.sprite.getPosition().x + rand() % 20 - 10, 0, 0, 15);
+
+		if (clock1.getElapsedTime().asSeconds() >= 25.5)
+		{
+			ennemi3.tirOk = true;
+
+			for (int i = 0; i < ennemis.size(); i++)
+			{
+				missile2Actif = false;
+
+				missileEnnemi.pattern = teteChercheuse(joueur, ennemis[i], 15, (rand() % (4) - 2));
+				ennemis[i].vitesseTir = 500;
+
+			}
+		}
+		lancementEnnemis1(27, 34, 30, joueur.sprite.getPosition().x + rand() % 20 - 10, 0, 0, 18);
+
+		lancementEnnemis3(26, 27, 10, 0, 0, 7, 5);
+		lancementEnnemis3(28, 29, 10, WINDOWX, 0, -7, 5);
+		lancementEnnemis3(30, 31, 10, 0, 0, 7, 5);
+		lancementEnnemis3(32, 33, 10, WINDOWX, 0, -7, 5);
+
+		if (clock1.getElapsedTime().asSeconds() >= 35)
+		{
+			missile2Actif = true;
+			for (int i = 0; i < ennemis.size(); i++)
+			{
+				ennemi2.tirOk = true;
+				ennemi2.pv = 15;
+				missileEnnemi2.pattern = spirale(7, 5);
+				missileEnnemi.pattern = reverseSpirale(7, 7);
+
+				ennemis[i].vitesseTir = 50;
+				if (ennemis[i].sprite.getPosition().y > 80)
+					ennemis[i].pattern.y -= 0.1;
+				if (ennemis[i].pattern.y <= 0)
+					ennemis[i].pattern.y = 0;
+
+
+			}
 
 		}
-		
-	}
 
-	lancementEnnemis2(35, 35.4, 10, 500, 0, 0, 6);
-	lancementEnnemis2(38, 38.5, 10, 200, 0, 0, 6.5);
-	
-	lancementEnnemis2(42, 42.5, 10, WINDOWX/2, 0, 0, 7);
-	if (clock1.getElapsedTime().asSeconds() > 42 && ennemis.size() == 0)
-	{
-		go = true;
-		clock1.restart();
+		lancementEnnemis2(35, 35.4, 10, 500, 0, 0, 6);
+		lancementEnnemis2(38, 38.5, 10, 200, 0, 0, 6.5);
+
+		lancementEnnemis2(42, 42.5, 10, WINDOWX / 2, 0, 0, 7);
+		if (clock1.getElapsedTime().asSeconds() > 42 && ennemis.size() == 0)
+		{
+			go = true;
+			clock1.restart();
+		}
 	}
 	if (go == true && clock1.getElapsedTime().asSeconds() > 5)
 		fini = true;
@@ -354,7 +357,7 @@ void Niveaux::niveau3()
 
 void Niveaux::niveauTest()
 {
-	
+
 
 	int al = aleatoire();
 	lancementEnnemis1(0, 150, 6, al, 0, teteChercheuse(joueur, al, 10).x, teteChercheuse(joueur, al, 10).y);
@@ -362,26 +365,26 @@ void Niveaux::niveauTest()
 	int al2 = aleatoire();
 
 	missile2Actif = true;
-	missileEnnemi2.pattern =spirale(7, 4);
-	missileEnnemi.pattern = spirale(7, 4);
+	missileEnnemi2.pattern = spirale(2, 1);
+	missileEnnemi.pattern = spirale(2, 1);
 
 
-	for(int i=0; i<ennemis.size(); i++)
+	for (int i = 0; i < ennemis.size(); i++)
 	{
-		
-		
-		if (ennemis[i].sprite.getPosition().y > 200)
-				ennemis[i].pattern.y = 0;
+
+
+		if (ennemis[i].sprite.getPosition().y > 400)
+			ennemis[i].pattern.y = 0;
 		else if (ennemis[i].sprite.getPosition().y < 100)
-				ennemis[i].pattern.y = 5;
-			ennemis[i].vitesseTir = 15;
-		
+			ennemis[i].pattern.y = 5;
+		ennemis[i].vitesseTir = 10;
+
 
 
 	}
 	lancementEnnemis1(0, 1, 10, 350, 10, 0, 5);
 	ennemi1.tirOk = true;
-	
+
 
 
 
@@ -396,8 +399,8 @@ void Niveaux::niveauTest()
 
 void Niveaux::gestionVecteurEnnemisEtMissilesEnnemis()
 {
-	
-	
+
+
 	if (vitesseEnnemiPop1.getElapsedTime().asMilliseconds() > ennemiPop(vitesseApparition1))
 	{
 		if (shoot1 == true)
@@ -434,7 +437,7 @@ void Niveaux::gestionVecteurEnnemisEtMissilesEnnemis()
 	for (unsigned int i = 0; i < ennemis.size(); i++)
 	{
 		ennemis[i].tirer();
-		if (ennemis[i].shoot == true && vectMissileEnnemi.size()<300)
+		if (ennemis[i].shoot == true && vectMissileEnnemi.size() < 800)
 		{
 
 			missileEnnemi.cercle.setPosition(Vector2f(ennemis[i].sprite.getPosition().x, ennemis[i].sprite.getPosition().y - ennemis[i].sprite.getTextureRect().height));
