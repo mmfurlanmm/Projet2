@@ -17,6 +17,9 @@
 class Niveaux
 {
 public:
+	
+
+
 	Niveaux();
 	~Niveaux();
 	void niveau1();
@@ -79,6 +82,10 @@ public:
 	//////////////////////////////////////// PROJECTILES ENNEMIS
 	MissileEnnemi missileEnnemi;
 	MissileEnnemi missileEnnemi2;
+	/*MissileEnnemi *ptr = &missileEnnemi;
+	MissileEnnemi *ptr2 =&missileEnnemi2;*/
+	
+	
 	std::vector<Ennemi> vectMissileEnnemi;
 	float angle = 0;
 	int vitesseMissile = 0;

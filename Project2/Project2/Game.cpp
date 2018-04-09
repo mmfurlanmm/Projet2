@@ -34,6 +34,16 @@ void afficherVector(vector<Ennemi> vecteur, RenderWindow &window)
 	}
 
 }
+void afficherVector(vector<Ennemi*> vecteur, RenderWindow &window)
+{
+	for (int i = 0; i < vecteur.size(); i++)
+	{
+		window.draw(vecteur[i]->forme);
+		window.draw(vecteur[i]->sprite);
+		window.draw(vecteur[i]->cercle);
+	}
+
+}
 void reinitialisationLancementDesEnnemis(bool shoot1, bool shoot12, bool shoot2, bool shoot3)
 {
 	shoot1 = false;
@@ -76,6 +86,8 @@ void Game::jeu()
 	Clock cadenceCanon;
 	Clock tempsActivationCanon;
 	Clock tempsExplosion;
+	sf::Clock frame;
+	
 	
 
 
@@ -84,8 +96,8 @@ void Game::jeu()
 	window.setPosition(Vector2i(350, 0));
 	window.setMouseCursorVisible(0);
 
-	//window.setVerticalSyncEnabled(true);
-	window.setFramerateLimit(70);
+	window.setVerticalSyncEnabled(true);
+	//window.setFramerateLimit(300);
 
 	//niveaux
 	//Niveaux niveaux;
@@ -153,6 +165,11 @@ void Game::jeu()
 	//Boucle de jeu
 	while (window.isOpen())
 	{
+		
+		Time frameRate = frame.restart();
+
+
+		cout << "frame rate : " << 1.f / frameRate.asMilliseconds() * 1000 << endl;
 		Event event;
 		//Gestion de la saisie utilisateur
 		while (window.pollEvent(event))
@@ -446,7 +463,7 @@ void Game::jeu()
 				niveaux.clock1.restart();
 				niveaux.bossGo = false;
 				niveaux.go = false;
-				niveauEnCours = 99;
+				niveauEnCours = 1;
 				jeu = JEU;
 			}
 
@@ -523,6 +540,11 @@ void Game::jeu()
 
 			niveaux.ennemis.clear();
 			missiles.clear();
+			reinitialisationLancementDesEnnemis(niveaux.shoot1, niveaux.shoot2, niveaux.shoot3, niveaux.shoot12);
+			niveaux.ennemi1.tirOk = false;
+			niveaux.ennemi12.tirOk = false;
+			niveaux.ennemi2.tirOk = false;
+			niveaux.ennemi3.tirOk = false;
 			//
 			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true)
 			{
