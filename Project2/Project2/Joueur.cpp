@@ -59,7 +59,7 @@ Vector2f Joueur::deplacement()
 
 		clock.restart();
 	}
-	if (Keyboard().isKeyPressed(Keyboard::LShift))
+	if (Keyboard().isKeyPressed(Keyboard::LAlt))
 	{
 		vitesse = 3;
 	}
@@ -144,7 +144,7 @@ void Joueur::jaugecanon()
 {
 	if (canonActif == true)
 	{
-		valeurJaugeCanon -= 1.3;
+		valeurJaugeCanon -= 1.1;
 		if (valeurJaugeCanon <= 0)
 			valeurJaugeCanon = 0;
 	}
@@ -158,6 +158,7 @@ void Joueur::jaugecanon()
 	contourJaugeCanon.setSize(Vector2f(100, 15));
 	formeJaugeCanon.setPosition(580, WINDOWY-30);
 	contourJaugeCanon.setPosition(580, WINDOWY - 30);
+	
 	if(valeurJaugeCanon>60)
 	formeJaugeCanon.setFillColor(Color::Yellow);
 	else if (valeurJaugeCanon<30)

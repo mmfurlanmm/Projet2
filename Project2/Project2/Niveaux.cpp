@@ -84,13 +84,7 @@ void Niveaux::niveau2()
 		}
 	}
 
-	//Pattern de tir en spirale
-	missile2Actif = true;
-	missileEnnemi.pattern = spirale(4, 2);
-	missileEnnemi2.pattern = reverseSpirale(3, 1.5);
-	missileEnnemi.cercle.setRadius(10);
-
-
+	
 	if (go == false)
 	{
 		if (clock1.getElapsedTime().asSeconds() >= 2 && clock1.getElapsedTime().asSeconds() < 5)
@@ -134,7 +128,11 @@ void Niveaux::niveau2()
 
 		}
 	}
-
+	//Pattern de tir en spirale
+	missile2Actif = true;
+	missileEnnemi.pattern = spirale(4, 3);
+	missileEnnemi2.pattern = reverseSpirale(3, 2);
+	missileEnnemi.cercle.setRadius(10);
 
 	//////////////////////////////////////////////////////////////// ENNEMI QUI TIRE
 	if (bossGo == true)
@@ -274,7 +272,7 @@ void Niveaux::niveau3()
 		if (clock1.getElapsedTime().asSeconds() >= 16.2 && clock1.getElapsedTime().asSeconds() <= 17.5)
 		{
 			app++;
-			vit += 0.05;
+			vit += 0.08;
 		}
 		lancementEnnemis1(12, 18, app, al, 0, teteChercheuse(joueur, al, vit).x, teteChercheuse(joueur, al, vit).y);
 
@@ -341,7 +339,7 @@ void Niveaux::niveau3()
 		lancementEnnemis2(38, 38.5, 10, 200, 0, 0, 6.5);
 
 		lancementEnnemis2(42, 42.5, 10, WINDOWX / 2, 0, 0, 7);
-		if (clock1.getElapsedTime().asSeconds() > 42 && ennemis.size() == 0)
+		if (clock1.getElapsedTime().asSeconds() > 44 && ennemis.size() == 0)
 		{
 			go = true;
 			clock1.restart();
@@ -428,7 +426,7 @@ void Niveaux::gestionVecteurEnnemisEtMissilesEnnemis()
 	{
 		ennemis[i].deplacement();
 
-		if (ennemis[i].sprite.getPosition().y > 800 + 50 || ennemis[i].sprite.getPosition().x > 700 + 50 ||
+		if (ennemis[i].sprite.getPosition().y > WINDOWY + 50 || ennemis[i].sprite.getPosition().x > WINDOWX + 50 ||
 			ennemis[i].sprite.getPosition().x < -50 || ennemis[i].sprite.getPosition().y < -50)
 		{
 			ennemis.erase(ennemis.begin() + i);
@@ -454,8 +452,8 @@ void Niveaux::gestionVecteurEnnemisEtMissilesEnnemis()
 		vectMissileEnnemi[i].cercle.move(vectMissileEnnemi[i].pattern.x, vectMissileEnnemi[i].pattern.y);
 
 
-		if (vectMissileEnnemi[i].cercle.getPosition().y > 810 || vectMissileEnnemi[i].cercle.getPosition().y < -10
-			|| vectMissileEnnemi[i].cercle.getPosition().x > 800 || vectMissileEnnemi[i].cercle.getPosition().x < -10)
+		if (vectMissileEnnemi[i].cercle.getPosition().y > WINDOWY + 15 || vectMissileEnnemi[i].cercle.getPosition().y < -15
+			|| vectMissileEnnemi[i].cercle.getPosition().x > WINDOWX + 15 || vectMissileEnnemi[i].cercle.getPosition().x < -15)
 		{
 			vectMissileEnnemi.erase(vectMissileEnnemi.begin() + i);
 		}

@@ -229,7 +229,7 @@ void Game::jeu()
 		explosionJoueur.animation();
 		if (megaBombeRechargee == false && megaBombeCmpt<3)
 		{
-			if (megaBombExplosionsClock.getElapsedTime().asMilliseconds() > 5)
+			if (megaBombExplosionsClock.getElapsedTime().asMilliseconds() > 3)
 			{
 				megaBombeExplosion.explosion.setPosition(Vector2f(rand() % int(WINDOWX), rand() % int(WINDOWY)));
 				explosions.push_back(megaBombeExplosion);
@@ -374,7 +374,7 @@ void Game::jeu()
 			}
 
 		}
-		if (Keyboard::isKeyPressed(Keyboard::W) && megaBombeRechargee == true && megaBombeActive == false)
+		if (Keyboard::isKeyPressed(Keyboard::LShift) && megaBombeRechargee == true && megaBombeActive == false)
 		{
 			megaBombeActive = true;
 			megaBombeRechargee = false;
@@ -392,7 +392,7 @@ void Game::jeu()
 
 			}
 		}
-		if (megaBombeClock.getElapsedTime().asMilliseconds() > 400 && !Keyboard::isKeyPressed(Keyboard::W))
+		if (megaBombeClock.getElapsedTime().asMilliseconds() > 400 && !Keyboard::isKeyPressed(Keyboard::LShift))
 		{
 			megaBombeActive = false;
 			megaBombeRechargee = true;
@@ -526,10 +526,13 @@ void Game::jeu()
 			switch (niveauEnCours)
 			{
 			case 1:
-				window.clear(Color(0, 20, 30));
+				window.clear(Color(0, 10, 20));
 				break;
 			case 2:
 				window.clear(Color(30, 0, 50));
+				break;
+			case 3:
+				window.clear(Color(25, 25, 50));
 				break;
 			default:
 				window.clear(Color(0, 20, 30));
