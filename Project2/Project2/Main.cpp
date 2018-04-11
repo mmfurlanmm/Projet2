@@ -3,7 +3,7 @@
 int main()
 {
 	Game partie;
-	partie.jeu();
+	partie.logiqueDuJeu();
 	
 	return 0;
 }

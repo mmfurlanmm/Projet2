@@ -21,8 +21,6 @@ void afficherVector(vector<Etoiles> vecteur, RenderWindow &window)
 	for (int i = 0; i < vecteur.size(); i++)
 	{
 		window.draw(vecteur[i].forme);
-		window.draw(vecteur[i].sprite);
-		window.draw(vecteur[i].cercle);
 	}
 }
 void afficherVector(vector<Ennemi> vecteur, RenderWindow &window)
@@ -35,20 +33,43 @@ void afficherVector(vector<Ennemi> vecteur, RenderWindow &window)
 	}
 
 }
+void afficherVector(vector<Explosion> vecteur, RenderWindow &window)
+{
+	for (int i = 0; i < vecteur.size(); i++)
+	{
+		window.draw(vecteur[i].explosion);
+		
+	}
+
+}
 
 void reinitialisationLancementDesEnnemis(bool shoot1, bool shoot12, bool shoot2, bool shoot3)
 {
 	shoot1 = false;
 	shoot12 = false;
-
 	shoot2 = false;
 	shoot3 = false;
 
+}
+void reinitialisationTirDesEnnemis(bool tirOK1, bool tirOK12, bool tirOK2, bool tirOK3)
+{
+	tirOK1 = false;
+	tirOK12 = false;
+	tirOK2 = false;
+	tirOK3 = false;
+
+}
+void reinitialisationDesParametresDuNiveaux(bool bossGo, bool go)
+{
+	bossGo = false;
+	go = false;
+	
 }
 
 
 Game::Game()
 {
+	
 }
 
 
@@ -56,62 +77,29 @@ Game::~Game()
 {
 }
 
-void Game::jeu()
+void Game::logiqueDuJeu()
 {
 	srand(time(NULL));
 
-	//Variables diverses
-	float rouge = 20;
-	float vert = 20;
-	float bleu = 20;
-
-
-	bool goOn = false;//goOn = false empêche le joueur de passer à un autre état du jeu
-	bool back = false;
-	bool move = true;
-	bool invincible = false;
-
 	int jeu = TITRE; //Par défaut, la variable de gestion d'évènement est à "TITRE"
-	int niveauEnCours = 0;
-	//Gestion du temps
-	Clock temps; //horloge principale du jeu
-	Clock tempsTitre;
-	Clock cadenceCanon;
-	Clock tempsActivationCanon;
-	Clock tempsExplosion;
-	sf::Clock frame;
-
-	Clock megaBombeClock;
-	Clock megaBombExplosionsClock;
-	bool megaBombeActive = false;
-	bool megaBombeRechargee = true;
-	int megaBombeCmpt = 0;
+	niveaux.joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
 
 
 
-
-
-	RenderWindow window(VideoMode(WINDOWX, WINDOWY), "GalacticClash");
+	sf::RenderWindow window(VideoMode(WINDOWX, WINDOWY), "GalacticClash");
 	window.setPosition(Vector2i(350, 0));
 	window.setMouseCursorVisible(0);
 
 	window.setVerticalSyncEnabled(true);
 	//window.setFramerateLimit(300);
 
-	//niveaux
-	//Niveaux niveaux;
-
+	
 	//décors
-	Etoiles etoile1(Color::White, 4);
-	Etoiles etoile2(Color(250, 250, 255, 150), 2.5);
-	int etoilesSpawn = 0;
-	int spawn1 = 35;
+	Etoiles etoile1(sf::Color::White, 4);
+	Etoiles etoile2(sf::Color(250, 250, 255, 150), 2.5);
 	vector<Etoiles>etoilesDecors;
 
-	//joueur
-	//Joueur joueur;
-	niveaux.joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
-	Vector2f positionPrecedente; // pour la gestion des collisions
+	
 
 	//explosion
 	Explosion explosionJoueur(7);
@@ -171,6 +159,17 @@ void Game::jeu()
 
 
 		//cout << "frame rate : " << 1.f / frameRate.asMilliseconds() * 1000 << endl;
+		cout << "shoot1 " << niveaux.shoot1 << endl;
+		cout << "shoot12 " << niveaux.shoot12 << endl;
+		cout << "shoot2 " << niveaux.shoot2 << endl;
+		cout << "shoot3 " << niveaux.shoot3 << endl;
+		cout << "fini " << niveaux.fini << endl;
+		cout << "go " << niveaux.go << endl;
+		cout << "bossGo " << niveaux.bossGo << endl;
+		cout << "clock " << niveaux.clock1.getElapsedTime().asSeconds() << endl;
+
+
+
 		Event event;
 		//Gestion de la saisie utilisateur
 		while (window.pollEvent(event))
@@ -351,9 +350,6 @@ void Game::jeu()
 
 				}
 
-
-
-
 			}
 			if (niveaux.ennemis[j].pv < 1 && niveaux.ennemis[j].incrScore == true)
 			{
@@ -401,13 +397,8 @@ void Game::jeu()
 		
 			
 		
-		cout << "clock" << megaBombExplosionsClock.getElapsedTime().asSeconds() << endl;
+		//cout << "clock" << megaBombExplosionsClock.getElapsedTime().asSeconds() << endl;
 		
-
-
-
-
-
 
 		for (int i = 0; i < niveaux.ennemis.size(); i++)
 		{
@@ -423,7 +414,6 @@ void Game::jeu()
 			{
 				niveaux.joueur.collisionEnnemi(niveaux.ennemis[i]);
 				pointsVie.textString = "VIES : " + to_string(niveaux.joueur.pv);
-
 			}
 			for (int j = 0; j < niveaux.vectMissileEnnemi.size(); j++)
 			{
@@ -431,11 +421,8 @@ void Game::jeu()
 				{
 					niveaux.joueur.collisionEnnemi(niveaux.vectMissileEnnemi[j]);
 					pointsVie.textString = "VIES : " + to_string(niveaux.joueur.pv);
-
 				}
-
 			}
-
 		}
 		if (niveaux.joueur.tempsRestart == true)
 		{
@@ -463,7 +450,7 @@ void Game::jeu()
 			jeu = GAMEOVER;
 		}
 
-		//Affichage ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//Etats du jeu et affichage ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		switch (jeu)
 		{
@@ -471,7 +458,7 @@ void Game::jeu()
 
 
 			window.clear();
-
+			//AFFICHAGE
 			window.draw(ecranTitre1.ecrireTexte());
 			window.draw(ecranTitre2.ecrireTexte());
 			if (tempsTitre.getElapsedTime().asSeconds() > 3)
@@ -494,12 +481,11 @@ void Game::jeu()
 
 				temps.restart();
 			}
-
+			//LOGIQUE
 			//Désactivation des booléens permettant de "lancer" les vagues d'ennemis
 
 			reinitialisationLancementDesEnnemis(niveaux.shoot1, niveaux.shoot2, niveaux.shoot3, niveaux.shoot12);
-
-
+			reinitialisationTirDesEnnemis(niveaux.ennemi1.tirOk, niveaux.ennemi12.tirOk, niveaux.ennemi2.tirOk, niveaux.ennemi3.tirOk);
 			niveaux.ennemis.clear();
 			niveaux.vectMissileEnnemi.clear();
 			missiles.clear();
@@ -510,9 +496,8 @@ void Game::jeu()
 
 			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true)
 			{
+				reinitialisationDesParametresDuNiveaux(niveaux.bossGo, niveaux.go);
 				niveaux.clock1.restart();
-				niveaux.bossGo = false;
-				niveaux.go = false;
 				niveauEnCours = 1;
 				jeu = JEU;
 			}
@@ -522,6 +507,7 @@ void Game::jeu()
 
 		case JEU:
 
+			//LOGIQUE
 			//Permet de faire varier la couleur du fond en fonction du niveau
 			switch (niveauEnCours)
 			{
@@ -538,6 +524,8 @@ void Game::jeu()
 				window.clear(Color(0, 20, 30));
 				break;
 			}
+
+			//AFFICHAGE
 
 			//Affichage du fond étoilé
 			afficherVector(etoilesDecors, window);
@@ -565,11 +553,8 @@ void Game::jeu()
 			{
 				window.draw(explosionJoueur.explosion);
 			}
-			for (int i = 0; i < explosions.size(); i++)
-			{
-				window.draw(explosions[i].explosion);
-			}
-
+			afficherVector(explosions, window);
+			
 			//Affichage des textes
 			window.draw(score.ecrireTexte());
 			window.draw(pointsVie.ecrireTexte());
@@ -597,11 +582,10 @@ void Game::jeu()
 
 			niveaux.ennemis.clear();
 			missiles.clear();
+			niveaux.vectMissileEnnemi.clear();
 			reinitialisationLancementDesEnnemis(niveaux.shoot1, niveaux.shoot2, niveaux.shoot3, niveaux.shoot12);
-			niveaux.ennemi1.tirOk = false;
-			niveaux.ennemi12.tirOk = false;
-			niveaux.ennemi2.tirOk = false;
-			niveaux.ennemi3.tirOk = false;
+			reinitialisationTirDesEnnemis(niveaux.ennemi1.tirOk, niveaux.ennemi12.tirOk, niveaux.ennemi2.tirOk, niveaux.ennemi3.tirOk);
+			
 			//
 			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true)
 			{
@@ -639,13 +623,8 @@ void Game::jeu()
 			}
 
 			reinitialisationLancementDesEnnemis(niveaux.shoot1, niveaux.shoot2, niveaux.shoot3, niveaux.shoot12);
-			niveaux.ennemi1.tirOk = false;
-			niveaux.ennemi12.tirOk = false;
-			niveaux.ennemi2.tirOk = false;
-			niveaux.ennemi3.tirOk = false;
-
-
-
+			reinitialisationTirDesEnnemis(niveaux.ennemi1.tirOk, niveaux.ennemi12.tirOk, niveaux.ennemi2.tirOk, niveaux.ennemi3.tirOk);
+			niveaux.vectMissileEnnemi.clear();
 			niveaux.ennemis.clear();
 			missiles.clear();
 

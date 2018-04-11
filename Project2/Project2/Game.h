@@ -26,13 +26,51 @@ class Game
 public:
 	Game();
 	~Game();
-	void jeu();
+	void logiqueDuJeu();
 	void affichage();
 
 	//Niveaux
 	Niveaux niveaux;
 
+	//Variables diverses
+	float rouge = 20;
+	float vert = 20;
+	float bleu = 20;
+
+	bool goOn = false;//goOn = false empêche le joueur de passer à un autre état du jeu
+
+
+
 	
+	int niveauEnCours = 0;
+	//Gestion du temps
+	sf::Clock temps; //horloge principale du jeu
+	sf::Clock tempsTitre;
+
+	sf::Clock frame; // pour le calcul du frame rate
+
+					 //joueur
+	
+	sf::Vector2f positionPrecedente; // pour la gestion des collisions
+									 //armes du joueur
+	sf::Clock cadenceCanon;
+	sf::Clock tempsActivationCanon;
+	sf::Clock tempsExplosion;
+
+
+	sf::Clock megaBombeClock;
+	sf::Clock megaBombExplosionsClock;
+	bool megaBombeActive = false;
+	bool megaBombeRechargee = true;
+	int megaBombeCmpt = 0;
+
+	//décors
+	
+	int etoilesSpawn = 0;
+	int spawn1 = 35;
+	
+
+
 
 
 };

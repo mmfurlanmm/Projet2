@@ -138,7 +138,6 @@ void Niveaux::niveau2()
 	if (bossGo == true)
 	{
 		shoot2 = true;
-		//ennemiPop2 = 3000;
 		ennemi2.sprite.setPosition(350, 0);
 		ennemi2.pv = 30;
 		ennemi2.points = 3000;
@@ -435,7 +434,7 @@ void Niveaux::gestionVecteurEnnemisEtMissilesEnnemis()
 	for (unsigned int i = 0; i < ennemis.size(); i++)
 	{
 		ennemis[i].tirer();
-		if (ennemis[i].shoot == true && vectMissileEnnemi.size() < 1000)
+		if (ennemis[i].shoot == true && vectMissileEnnemi.size() < 500)
 		{
 
 			missileEnnemi.cercle.setPosition(Vector2f(ennemis[i].sprite.getPosition().x, ennemis[i].sprite.getPosition().y - ennemis[i].sprite.getTextureRect().height));
@@ -460,6 +459,6 @@ void Niveaux::gestionVecteurEnnemisEtMissilesEnnemis()
 		if (Keyboard::isKeyPressed(Keyboard::M))
 			vectMissileEnnemi.clear();
 	}
-	//cout << "bullets " << vectMissileEnnemi.size() << endl;
+	
 }
 

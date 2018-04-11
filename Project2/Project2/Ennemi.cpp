@@ -58,7 +58,7 @@ void Ennemi::ennemiHit()
 	if (hit == true)
 	{
 		sprite.setColor(Color(255, 0, 0, 190));
-		if (clock.getElapsedTime().asSeconds() > 0.03)
+		if (clockHit.getElapsedTime().asSeconds() > 0.03)
 		{
 			hit = false;
 		}
@@ -69,7 +69,7 @@ void Ennemi::ennemiHit()
 	else if (hit == false)
 	{
 		sprite.setColor(Color(255, 255, 255, 255));
-		clock.restart();
+		clockHit.restart();
 	}
 
 }

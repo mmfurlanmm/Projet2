@@ -38,7 +38,7 @@ public:
 	bool go = false;
 	bool bossGo = false;
 	bool bossPattern = false;
-	bool tirEnnemi = false;
+	//bool tirEnnemi = false;
 	bool missile2Actif = false;
 
 	sf::Clock clock1;
@@ -82,10 +82,6 @@ public:
 	//////////////////////////////////////// PROJECTILES ENNEMIS
 	MissileEnnemi missileEnnemi;
 	MissileEnnemi missileEnnemi2;
-	/*MissileEnnemi *ptr = &missileEnnemi;
-	MissileEnnemi *ptr2 =&missileEnnemi2;*/
-	
-	
 	std::vector<Ennemi> vectMissileEnnemi;
 	float angle = 0;
 	int vitesseMissile = 0;
@@ -229,13 +225,6 @@ public:
 			Ok = false;
 		return Ok;
 	}
-
-
-
-
-
-
-
 
 };
 
