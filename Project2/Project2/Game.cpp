@@ -43,28 +43,8 @@ void afficherVector(vector<Explosion> vecteur, RenderWindow &window)
 
 }
 
-void reinitialisationLancementDesEnnemis(bool shoot1, bool shoot12, bool shoot2, bool shoot3)
-{
-	shoot1 = false;
-	shoot12 = false;
-	shoot2 = false;
-	shoot3 = false;
 
-}
-void reinitialisationTirDesEnnemis(bool tirOK1, bool tirOK12, bool tirOK2, bool tirOK3)
-{
-	tirOK1 = false;
-	tirOK12 = false;
-	tirOK2 = false;
-	tirOK3 = false;
 
-}
-void reinitialisationDesParametresDuNiveaux(bool bossGo, bool go)
-{
-	bossGo = false;
-	go = false;
-	
-}
 
 
 Game::Game()
@@ -320,7 +300,7 @@ void Game::logiqueDuJeu()
 
 		if (niveaux.fini == true)
 		{
-			reinitialisationLancementDesEnnemis(niveaux.shoot1, niveaux.shoot2, niveaux.shoot3, niveaux.shoot12);
+			
 			jeu = SCORE;
 
 		}
@@ -445,7 +425,7 @@ void Game::logiqueDuJeu()
 
 		if (niveaux.joueur.pv < 0)
 		{
-			reinitialisationLancementDesEnnemis(niveaux.shoot1, niveaux.shoot2, niveaux.shoot3, niveaux.shoot12);
+			
 			niveaux.clock1.restart();
 			jeu = GAMEOVER;
 		}
@@ -484,8 +464,6 @@ void Game::logiqueDuJeu()
 			//LOGIQUE
 			//Désactivation des booléens permettant de "lancer" les vagues d'ennemis
 
-			reinitialisationLancementDesEnnemis(niveaux.shoot1, niveaux.shoot2, niveaux.shoot3, niveaux.shoot12);
-			reinitialisationTirDesEnnemis(niveaux.ennemi1.tirOk, niveaux.ennemi12.tirOk, niveaux.ennemi2.tirOk, niveaux.ennemi3.tirOk);
 			niveaux.ennemis.clear();
 			niveaux.vectMissileEnnemi.clear();
 			missiles.clear();
@@ -496,7 +474,8 @@ void Game::logiqueDuJeu()
 
 			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true)
 			{
-				reinitialisationDesParametresDuNiveaux(niveaux.bossGo, niveaux.go);
+				niveaux.bossGo = false;
+				niveaux.go = false;
 				niveaux.clock1.restart();
 				niveauEnCours = 1;
 				jeu = JEU;
@@ -583,14 +562,11 @@ void Game::logiqueDuJeu()
 			niveaux.ennemis.clear();
 			missiles.clear();
 			niveaux.vectMissileEnnemi.clear();
-			reinitialisationLancementDesEnnemis(niveaux.shoot1, niveaux.shoot2, niveaux.shoot3, niveaux.shoot12);
-			reinitialisationTirDesEnnemis(niveaux.ennemi1.tirOk, niveaux.ennemi12.tirOk, niveaux.ennemi2.tirOk, niveaux.ennemi3.tirOk);
 			
 			//
 			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true)
 			{
 				niveaux.clock1.restart();
-
 				niveaux.bossGo = false;
 				niveaux.go = false;
 				niveauEnCours++;
@@ -622,8 +598,6 @@ void Game::logiqueDuJeu()
 				goOn = true;
 			}
 
-			reinitialisationLancementDesEnnemis(niveaux.shoot1, niveaux.shoot2, niveaux.shoot3, niveaux.shoot12);
-			reinitialisationTirDesEnnemis(niveaux.ennemi1.tirOk, niveaux.ennemi12.tirOk, niveaux.ennemi2.tirOk, niveaux.ennemi3.tirOk);
 			niveaux.vectMissileEnnemi.clear();
 			niveaux.ennemis.clear();
 			missiles.clear();
