@@ -137,12 +137,12 @@ void Game::logiqueDuJeu()
 		
 		if (sf::Joystick::isConnected(0))
 		{
-			//cout << "is connected" << endl;
+			cout << "is connected" << endl;
 			
 		}
 
 
-		for (int i = 0; i< niveaux.ennemis.size(); i++)
+		/*for (int i = 0; i< niveaux.ennemis.size(); i++)
 			cout << "vitesse tir " << niveaux.ennemis[i].vitesseTir << endl;
 
 		//cout << "frame rate : " << 1.f / frameRate.asMilliseconds() * 1000 << endl;
@@ -249,7 +249,7 @@ void Game::logiqueDuJeu()
 		else if (Keyboard::isKeyPressed(Keyboard::LControl) && niveaux.joueur.move == true && tempsActivationCanon.getElapsedTime().asSeconds() > 0.4 ||
 			Joystick::isButtonPressed(0, 2) && niveaux.joueur.move == true && tempsActivationCanon.getElapsedTime().asSeconds() > 0.4)
 		{
-			if (cadenceCanon.getElapsedTime().asMilliseconds() >= 50)
+			if (cadenceCanon.getElapsedTime().asMilliseconds() >= 30)
 			{
 				niveaux.joueur.canonActif = true;
 				if (niveaux.joueur.valeurJaugeCanon > 0)
@@ -409,7 +409,7 @@ void Game::logiqueDuJeu()
 
 
 
-		//cout << "clock" << megaBombExplosionsClock.getElapsedTime().asSeconds() << endl;
+		cout << "pv" << niveaux.joueur.pv  << endl;
 
 
 		for (int i = 0; i < niveaux.ennemis.size(); i++)
@@ -427,13 +427,14 @@ void Game::logiqueDuJeu()
 				niveaux.joueur.collisionEnnemi(niveaux.ennemis[i]);
 				pointsVie.textString = "VIES : " + to_string(niveaux.joueur.pv);
 			}
-			for (int j = 0; j < niveaux.vectMissileEnnemi.size(); j++)
+			
+		}
+		for (int j = 0; j < niveaux.vectMissileEnnemi.size(); j++)
+		{
+			if (niveaux.vectMissileEnnemi[j].dégatsJoueur == true)
 			{
-				if (niveaux.vectMissileEnnemi[j].dégatsJoueur == true)
-				{
-					niveaux.joueur.collisionEnnemi(niveaux.vectMissileEnnemi[j]);
-					pointsVie.textString = "VIES : " + to_string(niveaux.joueur.pv);
-				}
+				niveaux.joueur.collisionEnnemi(niveaux.vectMissileEnnemi[j]);
+				pointsVie.textString = "VIES : " + to_string(niveaux.joueur.pv);
 			}
 		}
 		if (niveaux.joueur.tempsRestart == true)
@@ -448,6 +449,7 @@ void Game::logiqueDuJeu()
 		{
 			niveaux.joueur.joueurRepopInvincible(temps);
 		}
+		cout << "temps " << temps.getElapsedTime().asSeconds() << endl;
 
 
 		if (elapsed.asSeconds() > 2.5)
@@ -491,15 +493,10 @@ void Game::logiqueDuJeu()
 				rouge += 20;
 				vert += 2;
 
-				temps.restart();
+				
 			}
 			//LOGIQUE
-			//Désactivation des booléens permettant de "lancer" les vagues d'ennemis
-
 			
-			
-
-
 			//On lance le jeu en appuyant sur espace (un message l'indique à l'écran)
 
 
@@ -521,8 +518,9 @@ void Game::logiqueDuJeu()
 				niveaux.ennemis.clear();
 				niveaux.vectMissileEnnemi.clear();
 				missiles.clear();
+				temps.restart();
 				niveaux.clock1.restart();
-				niveauEnCours = 1;
+				niveauEnCours = 2;
 				jeu = JEU;
 			}
 
@@ -625,7 +623,7 @@ void Game::logiqueDuJeu()
 			window.clear();
 
 			window.draw(textePerdu.ecrireTexte());
-
+			niveauEnCours = 0;
 			scoreInt = 0;
 			score.textString = "0";
 			niveaux.joueur.pv = PVORIGINE;
@@ -649,7 +647,7 @@ void Game::logiqueDuJeu()
 			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true ||
 				Joystick::isButtonPressed(0, 7) && goOn == true)
 			{
-				niveaux.joueur.boom = false;
+				
 				goOn = false;
 				temps.restart();
 				tempsTitre.restart();
