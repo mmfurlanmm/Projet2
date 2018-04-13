@@ -12,7 +12,7 @@
 
 #define WINDOWX 700
 #define WINDOWY 800
-#define PVORIGINE 5
+#define PVORIGINE 1
 
 const sf::Vector2f POSITION_D_ORIGINE_JOUEUR(WINDOWX / 2, WINDOWY - 30);
 

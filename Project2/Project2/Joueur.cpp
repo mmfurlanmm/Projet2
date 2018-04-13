@@ -49,6 +49,8 @@ Vector2f Joueur::deplacement()
 
 	float px = 0;
 	float py = 0;
+	float x = sf::Joystick::getAxisPosition(0, sf::Joystick::X)/100;
+	float y = sf::Joystick::getAxisPosition(0, sf::Joystick::Y)/100;
 
 
 	if (clock.getElapsedTime().asMilliseconds() > 45)
@@ -59,40 +61,60 @@ Vector2f Joueur::deplacement()
 
 		clock.restart();
 	}
-	if (Keyboard().isKeyPressed(Keyboard::LAlt))
+
+	if (Keyboard::isKeyPressed(Keyboard::LAlt) || Joystick::isButtonPressed(0, 5))
 	{
 		vitesse = 3;
 	}
 	else
 		vitesse = 6;
 
-
-	if (Keyboard().isKeyPressed(Keyboard::Left) && move == true)
+	if (!Joystick::isConnected(0))
 	{
-		px = -vitesse;
-		sprite.setTextureRect(IntRect(i, 33, 16, 16));
+
+
+		if (Keyboard().isKeyPressed(Keyboard::Left) && move == true)
+		{
+			px = -vitesse;
+			sprite.setTextureRect(IntRect(i, 33, 16, 16));
+		}
+		else if (!Keyboard().isKeyPressed(Keyboard::Left))
+		{
+			sprite.setTextureRect(IntRect(i, 0, 16, 16));
+		}
+
+		if (Keyboard().isKeyPressed(Keyboard::Right) && move == true)
+		{
+			px = vitesse;
+			sprite.setTextureRect(IntRect(i, 17, 16, 16));
+		}
+
+		if (Keyboard().isKeyPressed(Keyboard::Up) && move == true)
+		{
+
+			py = -vitesse;
+		}
+
+		if (Keyboard().isKeyPressed(Keyboard::Down) && move == true)
+		{
+
+			py = vitesse;
+		}
 	}
-	else if (!Keyboard().isKeyPressed(Keyboard::Left))
+	else
 	{
-		sprite.setTextureRect(IntRect(i, 0, 16, 16));
-	}
+		if (move == true)
+		{
+			px = x*vitesse;
+			py = y*vitesse;
+			if(px<-1)
+				sprite.setTextureRect(IntRect(i, 33, 16, 16));
+			else if (px>1)
+				sprite.setTextureRect(IntRect(i, 17, 16, 16));
+			else
+				sprite.setTextureRect(IntRect(i, 0, 16, 16));
 
-	if (Keyboard().isKeyPressed(Keyboard::Right) && move == true)
-	{
-		px = vitesse;
-		sprite.setTextureRect(IntRect(i, 17, 16, 16));
-	}
-
-	if (Keyboard().isKeyPressed(Keyboard::Up) && move == true)
-	{
-
-		py = -vitesse;
-	}
-
-	if (Keyboard().isKeyPressed(Keyboard::Down) && move == true)
-	{
-
-		py = vitesse;
+		}
 	}
 	
 	return Vector2f(px, py);

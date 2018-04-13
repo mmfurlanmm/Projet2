@@ -38,18 +38,15 @@ void afficherVector(vector<Explosion> vecteur, RenderWindow &window)
 	for (int i = 0; i < vecteur.size(); i++)
 	{
 		window.draw(vecteur[i].explosion);
-		
+
 	}
 
 }
 
 
-
-
-
 Game::Game()
 {
-	
+
 }
 
 
@@ -70,22 +67,22 @@ void Game::logiqueDuJeu()
 	window.setPosition(Vector2i(350, 0));
 	window.setMouseCursorVisible(0);
 
-	window.setVerticalSyncEnabled(true);
-	//window.setFramerateLimit(300);
+	//window.setVerticalSyncEnabled(true);
+	window.setFramerateLimit(60);
 
-	
+
 	//décors
 	Etoiles etoile1(sf::Color::White, 4);
 	Etoiles etoile2(sf::Color(250, 250, 255, 150), 2.5);
 	vector<Etoiles>etoilesDecors;
 
-	
+
 
 	//explosion
 	Explosion explosionJoueur(7);
 	Explosion megaBombeExplosion(14);
 	megaBombeExplosion.explosion.setColor(Color(255, 255, 255, 150));
-	
+
 	vector<Explosion> explosions;
 	float dureeExplosion = 0.0;
 	bool boum = false;
@@ -137,16 +134,26 @@ void Game::logiqueDuJeu()
 
 		Time frameRate = frame.restart();
 
+		
+		if (sf::Joystick::isConnected(0))
+		{
+			//cout << "is connected" << endl;
+			
+		}
+
+
+		for (int i = 0; i< niveaux.ennemis.size(); i++)
+			cout << "vitesse tir " << niveaux.ennemis[i].vitesseTir << endl;
 
 		//cout << "frame rate : " << 1.f / frameRate.asMilliseconds() * 1000 << endl;
-		cout << "shoot1 " << niveaux.shoot1 << endl;
+		/*cout << "shoot1 " << niveaux.shoot1 << endl;
 		cout << "shoot12 " << niveaux.shoot12 << endl;
 		cout << "shoot2 " << niveaux.shoot2 << endl;
 		cout << "shoot3 " << niveaux.shoot3 << endl;
 		cout << "fini " << niveaux.fini << endl;
 		cout << "go " << niveaux.go << endl;
 		cout << "bossGo " << niveaux.bossGo << endl;
-		cout << "clock " << niveaux.clock1.getElapsedTime().asSeconds() << endl;
+		cout << "clock " << niveaux.clock1.getElapsedTime().asSeconds() << endl;*/
 
 
 
@@ -206,7 +213,7 @@ void Game::logiqueDuJeu()
 		explosionJoueur.explosion.setPosition(Vector2f(niveaux.joueur.sprite.getPosition().x + 1, niveaux.joueur.sprite.getPosition().y + 7));
 		explosionJoueur.trigger = niveaux.joueur.boom;
 		explosionJoueur.animation();
-		if (megaBombeRechargee == false && megaBombeCmpt<3)
+		if (megaBombeRechargee == false && megaBombeCmpt < 3)
 		{
 			if (megaBombExplosionsClock.getElapsedTime().asMilliseconds() > 3)
 			{
@@ -215,20 +222,23 @@ void Game::logiqueDuJeu()
 			}
 			megaBombExplosionsClock.restart();
 		}
-		if (megaBombeCmpt >=3)
+		if (megaBombeCmpt >= 3)
 			explosions.clear();
 		for (int i = 0; i < explosions.size(); i++)
 		{
-				
+
 			explosions[i].animation();
 		}
-		
+
 
 		//Tir/////////////////////////////////////////////////////////////////////
 
 
 		niveaux.joueur.jaugecanon();
-		if (Keyboard::isKeyPressed(Keyboard::LControl) && niveaux.joueur.tirOK == true && niveaux.joueur.move == true)
+
+
+		if (Keyboard::isKeyPressed(Keyboard::LControl) && niveaux.joueur.tirOK == true && niveaux.joueur.move == true ||
+			Joystick::isButtonPressed(0, 2) && niveaux.joueur.tirOK == true && niveaux.joueur.move == true)
 		{
 			missile.cercle.setPosition(Vector2f(niveaux.joueur.sprite.getPosition().x - missile.cercle.getRadius(), niveaux.joueur.sprite.getPosition().y - niveaux.joueur.sprite.getTextureRect().height));
 			missiles.push_back(missile);
@@ -236,7 +246,8 @@ void Game::logiqueDuJeu()
 			tempsActivationCanon.restart();
 
 		}
-		else if (Keyboard::isKeyPressed(Keyboard::LControl) && niveaux.joueur.move == true && tempsActivationCanon.getElapsedTime().asSeconds() > 0.4)
+		else if (Keyboard::isKeyPressed(Keyboard::LControl) && niveaux.joueur.move == true && tempsActivationCanon.getElapsedTime().asSeconds() > 0.4 ||
+			Joystick::isButtonPressed(0, 2) && niveaux.joueur.move == true && tempsActivationCanon.getElapsedTime().asSeconds() > 0.4)
 		{
 			if (cadenceCanon.getElapsedTime().asMilliseconds() >= 50)
 			{
@@ -249,14 +260,22 @@ void Game::logiqueDuJeu()
 				}
 			}
 		}
-
-		else if (!Keyboard::isKeyPressed(Keyboard::LControl))
+		if (!Joystick::isConnected(0))
 		{
-			niveaux.joueur.tirOK = true;
-			niveaux.joueur.canonActif = false;
+			if (!Keyboard::isKeyPressed(Keyboard::LControl))
+			{
+				niveaux.joueur.tirOK = true;
+				niveaux.joueur.canonActif = false;
+			}
 		}
-
-
+		else
+		{
+			if (!Joystick::isButtonPressed(0, 2))
+			{
+				niveaux.joueur.tirOK = true;
+				niveaux.joueur.canonActif = false;
+			}
+		}
 
 
 
@@ -266,13 +285,13 @@ void Game::logiqueDuJeu()
 			missiles[i].cercle.move(0.f, -22.f);
 
 
-			if (missiles[i].forme.getPosition().y < -10 || missiles[i].cercle.getPosition().y < -10)
+			if (missiles[i].cercle.getPosition().y < -10)
 			{
 				missiles.erase(missiles.begin() + i);
 			}
 		}
 
-		//Ennemis	/////////////////////////////////////////////////////////////////////
+
 
 		//Gestion des niveaux
 
@@ -300,7 +319,7 @@ void Game::logiqueDuJeu()
 
 		if (niveaux.fini == true)
 		{
-			
+
 			jeu = SCORE;
 
 		}
@@ -350,12 +369,13 @@ void Game::logiqueDuJeu()
 			}
 
 		}
-		if (Keyboard::isKeyPressed(Keyboard::LShift) && megaBombeRechargee == true && megaBombeActive == false)
+		if (Keyboard::isKeyPressed(Keyboard::LShift) && megaBombeRechargee == true && megaBombeActive == false ||
+			Joystick::isButtonPressed(0,0) && megaBombeRechargee == true && megaBombeActive == false)
 		{
 			megaBombeActive = true;
 			megaBombeRechargee = false;
 		}
-		
+
 
 		if (megaBombeActive == true)
 		{
@@ -368,17 +388,29 @@ void Game::logiqueDuJeu()
 
 			}
 		}
-		if (megaBombeClock.getElapsedTime().asMilliseconds() > 400 && !Keyboard::isKeyPressed(Keyboard::LShift))
+		if (!Joystick::isConnected(0))
 		{
-			megaBombeActive = false;
-			megaBombeRechargee = true;
-			megaBombeCmpt = 0;
+			if (megaBombeClock.getElapsedTime().asMilliseconds() > 400 && !Keyboard::isKeyPressed(Keyboard::LShift))
+			{
+				megaBombeActive = false;
+				megaBombeRechargee = true;
+				megaBombeCmpt = 0;
+			}
 		}
-		
-			
-		
+		else
+		{
+			if (megaBombeClock.getElapsedTime().asMilliseconds() > 400 && !Joystick::isButtonPressed(0, 0))
+			{
+				megaBombeActive = false;
+				megaBombeRechargee = true;
+				megaBombeCmpt = 0;
+			}
+		}
+
+
+
 		//cout << "clock" << megaBombExplosionsClock.getElapsedTime().asSeconds() << endl;
-		
+
 
 		for (int i = 0; i < niveaux.ennemis.size(); i++)
 		{
@@ -425,11 +457,11 @@ void Game::logiqueDuJeu()
 
 		if (niveaux.joueur.pv < 0)
 		{
-			
+
 			niveaux.clock1.restart();
 			jeu = GAMEOVER;
 		}
-
+		
 		//Etats du jeu et affichage ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		switch (jeu)
@@ -464,18 +496,31 @@ void Game::logiqueDuJeu()
 			//LOGIQUE
 			//Désactivation des booléens permettant de "lancer" les vagues d'ennemis
 
-			niveaux.ennemis.clear();
-			niveaux.vectMissileEnnemi.clear();
-			missiles.clear();
+			
+			
 
 
 			//On lance le jeu en appuyant sur espace (un message l'indique à l'écran)
 
 
-			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true)
+			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true ||
+				Joystick::isButtonPressed(0, 7) && goOn == true)
 			{
+				for (int i = 0; i < niveaux.ennemis.size(); i++)
+					niveaux.ennemis[i].vitesseTir = 0;
 				niveaux.bossGo = false;
 				niveaux.go = false;
+				niveaux.ennemi1.tirOk = false;
+				niveaux.ennemi12.tirOk = false;
+				niveaux.ennemi2.tirOk = false;
+				niveaux.ennemi3.tirOk = false;
+				niveaux.shoot1 = false;
+				niveaux.shoot12 = false;
+				niveaux.shoot2 = false;
+				niveaux.shoot3 = false;
+				niveaux.ennemis.clear();
+				niveaux.vectMissileEnnemi.clear();
+				missiles.clear();
 				niveaux.clock1.restart();
 				niveauEnCours = 1;
 				jeu = JEU;
@@ -533,7 +578,7 @@ void Game::logiqueDuJeu()
 				window.draw(explosionJoueur.explosion);
 			}
 			afficherVector(explosions, window);
-			
+
 			//Affichage des textes
 			window.draw(score.ecrireTexte());
 			window.draw(pointsVie.ecrireTexte());
@@ -562,9 +607,10 @@ void Game::logiqueDuJeu()
 			niveaux.ennemis.clear();
 			missiles.clear();
 			niveaux.vectMissileEnnemi.clear();
-			
+
 			//
-			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true)
+			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true ||
+				Joystick::isButtonPressed(0, 7) && goOn == true)
 			{
 				niveaux.clock1.restart();
 				niveaux.bossGo = false;
@@ -579,8 +625,6 @@ void Game::logiqueDuJeu()
 			window.clear();
 
 			window.draw(textePerdu.ecrireTexte());
-
-			niveauEnCours = 0;
 
 			scoreInt = 0;
 			score.textString = "0";
@@ -601,14 +645,15 @@ void Game::logiqueDuJeu()
 			niveaux.vectMissileEnnemi.clear();
 			niveaux.ennemis.clear();
 			missiles.clear();
-
-			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true)
+			
+			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true ||
+				Joystick::isButtonPressed(0, 7) && goOn == true)
 			{
-				niveauEnCours = 1;
-				niveaux.bossGo = false;
-				niveaux.go = false;
-				niveaux.clock1.restart();
-				jeu = JEU;
+				niveaux.joueur.boom = false;
+				goOn = false;
+				temps.restart();
+				tempsTitre.restart();
+				jeu = TITRE;
 			}
 
 			break;
