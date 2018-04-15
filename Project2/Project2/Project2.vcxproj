@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{7B16C91A-120C-4743-9083-69BE3785CB70}</ProjectGuid>
     <RootNamespace>Project2</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -34,7 +34,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -131,32 +131,39 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BDD.cpp" />
     <ClCompile Include="Bordure.cpp" />
     <ClCompile Include="Ennemi.cpp" />
     <ClCompile Include="Ennemi1.cpp" />
     <ClCompile Include="Ennemi2.cpp" />
     <ClCompile Include="Ennemi3.cpp" />
+    <ClCompile Include="enregistrementBDD.cpp" />
     <ClCompile Include="Entite.cpp" />
     <ClCompile Include="Etoiles.cpp" />
     <ClCompile Include="Explosion.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="HighScore.cpp" />
     <ClCompile Include="Joueur.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Missile.cpp" />
     <ClCompile Include="MissileEnnemi.cpp" />
     <ClCompile Include="Niveaux.cpp" />
+    <ClCompile Include="sqlite3.c" />
     <ClCompile Include="Texte.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BDD.h" />
     <ClInclude Include="Bordure.h" />
     <ClInclude Include="Ennemi.h" />
     <ClInclude Include="Ennemi1.h" />
     <ClInclude Include="Ennemi2.h" />
     <ClInclude Include="Ennemi3.h" />
+    <ClInclude Include="enregistrementBDD.h" />
     <ClInclude Include="Entite.h" />
     <ClInclude Include="Etoiles.h" />
     <ClInclude Include="Explosion.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="HighScore.h" />
     <ClInclude Include="Joueur.h" />
     <ClInclude Include="Missile.h" />
     <ClInclude Include="MissileEnnemi.h" />

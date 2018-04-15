@@ -5,7 +5,7 @@
 using namespace sf;
 using namespace std;
 
-enum { JEU, GAMEOVER, TITRE, SCORE };
+enum { JEU, GAMEOVER, TITRE, MISSIONACCOMPLIE, HISCORE };
 
 void afficherVector(vector<Entite> vecteur, RenderWindow &window)
 {
@@ -106,41 +106,67 @@ void Game::logiqueDuJeu()
 	Bordure bordureBas(Vector2f(0.f, WINDOWY + 5), Vector2f(WINDOWX, 1.f));
 
 	//Texte "Perdu & appuyez sur espace"
-	Texte textePerdu(180, Vector2f(WINDOWX / 2, 300), "PERDU !");
-	Texte texteAppuyezEspace(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur ESPACE pour rejouer");
+	Texte textePerdu(150, Vector2f(WINDOWX / 2, 100), "PERDU !");
+	Texte entrezVotreNom(60, Vector2f(WINDOWX / 2, 300), "Entrez votre nom :");
+	Texte texteAppuyezEspace(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur START pour valider");
+	string nomDuJoueur;
 
 	//Texte Score
 	Texte score(30, Vector2f(50.f, 5.f), "0");
 	string scoreString;
 	int scoreInt = 0;
+	int scoreBonus = 0;
+	int scoreEtBonus = 0;
 
 	//Texte PV
-	string pointsVieString = "VIES : " + to_string(niveaux.joueur.pv);
+	string pointsVieString = "X " + to_string(niveaux.joueur.pv);
 	Texte pointsVie(30, Vector2f(WINDOWX - 50, 5), pointsVieString);
 
 	//Texte titre
 	Texte ecranTitre1(180, Vector2f(WINDOWX / 2, 250), "GALACTIC");
 	Texte ecranTitre2(180, Vector2f(WINDOWX / 2, 360), "CLASH");
-	Texte ecranTitre3(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur ESPACE pour jouer");
+	Texte ecranTitre3(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur START pour jouer");
 
 	//Texte ecran score
-	Texte ecranScore(180, Vector2f(WINDOWX / 2, 250), "GAGNE !!");
-	Texte ecranScore2(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur ESPACE");
+	string ecranScoreString1;
+	string ecranScoreString2;
+	string ecranScoreString3;
+
+	Texte ecranScore1(110, Vector2f(WINDOWX / 2, 200), ecranScoreString1);
+	Texte ecranScore2(60, Vector2f(WINDOWX / 2, 400), ecranScoreString2);
+	Texte ecranScore3(60, Vector2f(WINDOWX / 2, 500), ecranScoreString3);
+	Texte ecranScore4(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur START pour continuer");
+
+
+
+	//BDD
+	bdd.openDatabase();
+	bdd.executeQuery("CREATE TABLE IF NOT EXISTS scorebdd (nom TEXT, score INT)");
+
+	vectHighScore = bdd.getHighScore();
+	for (int i = 0; i < vectHighScore->size(); i++)
+	{
+		std::cout << (*vectHighScore)[i]->nom << " " << (*vectHighScore)[i]->score << std::endl;
+	}
+
+	//High Score
+
+
+
 
 
 	//Boucle de jeu
 	while (window.isOpen())
 	{
-
 		Time frameRate = frame.restart();
 
-		
+
 		if (sf::Joystick::isConnected(0))
 		{
-			cout << "is connected" << endl;
-			
-		}
+			//cout << "is connected" << endl;
 
+		}
+		//cout << ecranScoreString << endl;
 
 		/*for (int i = 0; i< niveaux.ennemis.size(); i++)
 			cout << "vitesse tir " << niveaux.ennemis[i].vitesseTir << endl;
@@ -320,35 +346,23 @@ void Game::logiqueDuJeu()
 		if (niveaux.fini == true)
 		{
 
-			jeu = SCORE;
+			jeu = MISSIONACCOMPLIE;
 
 		}
 
-
-
 		//Collisions ennemis/missiles et affichage du score		/////////////////////////////////////////////////////////////////////
-
 
 		for (unsigned j = 0; j < niveaux.ennemis.size(); j++)
 		{
-
-
-
 			for (unsigned int i = 0; i < missiles.size(); i++)
 			{
 				if (missiles[i].cercle.getGlobalBounds().intersects(niveaux.ennemis[j].sprite.getGlobalBounds()) && niveaux.ennemis[j].pv > 0)
 				{
-
-
 					missiles[i].cercle.setRadius(0);
-
 					niveaux.ennemis[j].hit = true;
 					niveaux.ennemis[j].pv--;
-
 					break;
-
 				}
-
 			}
 			if (niveaux.ennemis[j].pv < 1 && niveaux.ennemis[j].incrScore == true)
 			{
@@ -357,20 +371,16 @@ void Game::logiqueDuJeu()
 				score.textString = scoreString;
 				niveaux.ennemis[j].incrScore = false;
 				niveaux.ennemis[j].hit = false;
-
-
 			}
 			if (niveaux.ennemis[j].pv < 1)
 			{
 				niveaux.ennemis[j].explosionEnnemi();
 				niveaux.ennemis[j].move = false;
 				niveaux.ennemis[j].dégatsJoueur = false;
-
 			}
-
 		}
 		if (Keyboard::isKeyPressed(Keyboard::LShift) && megaBombeRechargee == true && megaBombeActive == false ||
-			Joystick::isButtonPressed(0,0) && megaBombeRechargee == true && megaBombeActive == false)
+			Joystick::isButtonPressed(0, 0) && megaBombeRechargee == true && megaBombeActive == false)
 		{
 			megaBombeActive = true;
 			megaBombeRechargee = false;
@@ -406,11 +416,7 @@ void Game::logiqueDuJeu()
 				megaBombeCmpt = 0;
 			}
 		}
-
-
-
-		cout << "pv" << niveaux.joueur.pv  << endl;
-
+		//cout << "pv" << niveaux.joueur.pv  << endl;
 
 		for (int i = 0; i < niveaux.ennemis.size(); i++)
 		{
@@ -425,16 +431,16 @@ void Game::logiqueDuJeu()
 			if (niveaux.ennemis[i].dégatsJoueur == true)
 			{
 				niveaux.joueur.collisionEnnemi(niveaux.ennemis[i]);
-				pointsVie.textString = "VIES : " + to_string(niveaux.joueur.pv);
+				pointsVie.textString = "X " + to_string(niveaux.joueur.pv);
 			}
-			
+
 		}
 		for (int j = 0; j < niveaux.vectMissileEnnemi.size(); j++)
 		{
 			if (niveaux.vectMissileEnnemi[j].dégatsJoueur == true)
 			{
 				niveaux.joueur.collisionEnnemi(niveaux.vectMissileEnnemi[j]);
-				pointsVie.textString = "VIES : " + to_string(niveaux.joueur.pv);
+				pointsVie.textString = "X " + to_string(niveaux.joueur.pv);
 			}
 		}
 		if (niveaux.joueur.tempsRestart == true)
@@ -449,7 +455,7 @@ void Game::logiqueDuJeu()
 		{
 			niveaux.joueur.joueurRepopInvincible(temps);
 		}
-		cout << "temps " << temps.getElapsedTime().asSeconds() << endl;
+		//cout << "temps " << temps.getElapsedTime().asSeconds() << endl;
 
 
 		if (elapsed.asSeconds() > 2.5)
@@ -462,8 +468,10 @@ void Game::logiqueDuJeu()
 
 			niveaux.clock1.restart();
 			jeu = GAMEOVER;
+			
 		}
 		
+
 		//Etats du jeu et affichage ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		switch (jeu)
@@ -472,7 +480,19 @@ void Game::logiqueDuJeu()
 
 
 			window.clear();
+			
+
+			//REINITIALISATION DES VARIABLES DE JEU
+			niveauEnCours = 0;
+			scoreInt = 0;
+			score.textString = "0";
+
+
 			//AFFICHAGE
+
+
+
+
 			window.draw(ecranTitre1.ecrireTexte());
 			window.draw(ecranTitre2.ecrireTexte());
 			if (tempsTitre.getElapsedTime().asSeconds() > 3)
@@ -493,10 +513,10 @@ void Game::logiqueDuJeu()
 				rouge += 20;
 				vert += 2;
 
-				
+
 			}
 			//LOGIQUE
-			
+
 			//On lance le jeu en appuyant sur espace (un message l'indique à l'écran)
 
 
@@ -520,7 +540,7 @@ void Game::logiqueDuJeu()
 				missiles.clear();
 				temps.restart();
 				niveaux.clock1.restart();
-				niveauEnCours = 2;
+				niveauEnCours = 1;
 				jeu = JEU;
 			}
 
@@ -586,10 +606,39 @@ void Game::logiqueDuJeu()
 
 			break;
 
-		case SCORE:
+		case MISSIONACCOMPLIE:
 			window.clear();
+			ecranScoreString1 = "MISSION " + to_string(niveauEnCours) + " ACCOMPLIE";
+			ecranScore1.textString = ecranScoreString1;
+			switch (niveauEnCours)
+			{
+			case 1:
+				scoreBonus = 10000;
+				break;
+			case 2:
+				scoreBonus = 15000;
+				break;
+			case 3:
+				scoreBonus = 20000;
+				break;
+			case 4:
+				scoreBonus = 50000;
+				break;
+			}
+			ecranScoreString2 = "BONUS : " + to_string(scoreBonus);
+			ecranScore2.textString = ecranScoreString2;
+			scoreEtBonus = scoreInt + scoreBonus;
+			scoreString = to_string(scoreEtBonus);
+			ecranScoreString3 = "VOUS AVEZ " + scoreString + " POINTS";
+			ecranScore3.textString = ecranScoreString3;
 
-			window.draw(ecranScore.ecrireTexte());
+
+			window.draw(ecranScore1.ecrireTexte());
+			window.draw(ecranScore2.ecrireTexte());
+			window.draw(ecranScore3.ecrireTexte());
+			window.draw(ecranScore4.ecrireTexte());
+
+
 			niveaux.fini = false;//
 
 			niveaux.joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
@@ -598,7 +647,7 @@ void Game::logiqueDuJeu()
 			//Permet de bloquer l'écran "GAGNE" pendant une certaine durée
 			if (elapsed.asSeconds() > 1.5)
 			{
-				window.draw(ecranScore2.ecrireTexte());
+				window.draw(ecranScore3.ecrireTexte());
 				goOn = true;
 			}
 
@@ -610,6 +659,9 @@ void Game::logiqueDuJeu()
 			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true ||
 				Joystick::isButtonPressed(0, 7) && goOn == true)
 			{
+
+				scoreInt = scoreEtBonus;
+				score.textString = to_string(scoreInt);
 				niveaux.clock1.restart();
 				niveaux.bossGo = false;
 				niveaux.go = false;
@@ -623,12 +675,14 @@ void Game::logiqueDuJeu()
 			window.clear();
 
 			window.draw(textePerdu.ecrireTexte());
+			window.draw(entrezVotreNom.ecrireTexte());
+			
+			nomDuJoueur = highScore.entrerNom(window);
 			niveauEnCours = 0;
-			scoreInt = 0;
-			score.textString = "0";
 			niveaux.joueur.pv = PVORIGINE;
-			pointsVieString = "VIES : " + to_string(niveaux.joueur.pv);
+			pointsVieString = "X " + to_string(niveaux.joueur.pv);
 			pointsVie.textString = pointsVieString;
+
 
 			niveaux.joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
 			goOn = false;
@@ -643,11 +697,40 @@ void Game::logiqueDuJeu()
 			niveaux.vectMissileEnnemi.clear();
 			niveaux.ennemis.clear();
 			missiles.clear();
-			
+
 			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true ||
 				Joystick::isButtonPressed(0, 7) && goOn == true)
 			{
+
+				bdd.insertScore(nomDuJoueur, scoreInt);
+				window.clear();
+				///////////////////////////////////////////////////
+				vectHighScore = bdd.getHighScore();
+
+
+				///////////////////////////////////////////////////
+				goOn = false;
+				temps.restart();
+				tempsTitre.restart();
+				jeu = HISCORE;
+
+			}
+
+			break;
+
+		case HISCORE:
+			window.clear();
+			niveauEnCours = 0;
+			highScore.afficherHighScore(vectHighScore, window);
+			if (elapsed.asSeconds() > 1.5)
+			{
 				
+				goOn = true;
+			}
+
+			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true ||
+				Joystick::isButtonPressed(0, 7) && goOn == true)
+			{
 				goOn = false;
 				temps.restart();
 				tempsTitre.restart();
@@ -660,6 +743,8 @@ void Game::logiqueDuJeu()
 		window.display();
 	}
 
+
+	bdd.closeDatabase();
 }
 
 void Game::affichage()

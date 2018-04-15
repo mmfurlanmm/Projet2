@@ -18,6 +18,8 @@
 #include "Explosion.h"
 #include "Entite.h"
 #include "Niveaux.h"
+#include "BDD.h"
+#include "HighScore.h"
 
 //Gestion des évennements du jeu
 
@@ -68,6 +70,15 @@ public:
 	
 	int etoilesSpawn = 0;
 	int spawn1 = 35;
+
+	//BDD
+	BDD bdd;
+	std::vector<enregistrementBDD*>* vectHighScore;
+
+	//High Score
+	HighScore highScore;
+
+	
 	
 
 

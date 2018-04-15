@@ -1,0 +1,31 @@
+﻿  BDD.cpp
+  Bordure.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Bordure.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  Ennemi.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Ennemi.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  Ennemi1.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Ennemi.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  Ennemi2.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Ennemi.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  Ennemi3.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Ennemi.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  Entite.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Entite.h(3): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  Etoiles.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Etoiles.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  Explosion.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Explosion.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  Game.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Game.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  Joueur.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Joueur.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  Main.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Game.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  Missile.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Missile.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  MissileEnnemi.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Ennemi.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  Niveaux.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  Texte.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Texte.h(2): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory

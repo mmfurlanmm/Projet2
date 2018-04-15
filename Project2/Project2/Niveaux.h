@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <time.h>
-#include <stdlib.h>
+
 #include <string>
 #include "Entite.h"
 #include "Ennemi.h"
