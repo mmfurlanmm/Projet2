@@ -13,8 +13,8 @@ class Etoiles : public Entite
 public:
 	Etoiles(sf::Color couleur, float vitesse);
 	~Etoiles();
-	//sf::RectangleShape forme;
-	float vitesse;
+	
+	float vitesse; //vitesse de déplacement du fond étoilé
 
 };
 

@@ -14,11 +14,11 @@ public:
 	Bordure(sf::Vector2f position, sf::Vector2f taille);
 	~Bordure();
 
-	void contruire(sf::RenderWindow &window);
+	void contruire(sf::RenderWindow &window); //Fonction permettant de "construire" (donc de matérialiser) les bordures invisible de l'écran
 	
 
-	sf::RectangleShape forme;
-	sf::Vector2f taille;
+	sf::RectangleShape forme; //forme représentant la bordure
+	sf::Vector2f taille;//taille de la bordure
 	
 };
 

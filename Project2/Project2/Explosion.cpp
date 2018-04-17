@@ -35,7 +35,7 @@ void Explosion::animation()
 	//if (trigger == false)
 		//inc = 0;
 	
-	if (clock.getElapsedTime().asMilliseconds()>35)//35
+	if (clock.getElapsedTime().asMilliseconds()>35)
 	{
 		inc += 14;
 		if (inc > 80)

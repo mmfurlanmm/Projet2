@@ -137,14 +137,10 @@ void Niveaux::niveau2()
 	//////////////////////////////////////////////////////////////// ENNEMI QUI TIRE
 	if (bossGo == true)
 	{
-		shoot2 = true;
-		ennemi2.sprite.setPosition(350, 0);
-		ennemi2.pv = 30;
-		ennemi2.points = 3000;
-		ennemi2.sprite.setTexture(ennemi2.texture2);
-		ennemi2.sprite.setScale(6, 6);
-		ennemi2.pattern = Vector2f(0, 3);
-		ennemi2.vitesseTir = 30;
+		shootBoss = true;
+		ennemiBoss.sprite.setPosition(350, 0);
+		ennemiBoss.pattern = Vector2f(0, 3);
+		ennemiBoss.vitesseTir = 30;
 		missileEnnemi.cercle.setRadius(15);
 
 
@@ -152,8 +148,9 @@ void Niveaux::niveau2()
 
 		for (int i = 0; i < ennemis.size(); i++)
 		{
-			if (ennemis.size()>=1)
-			shoot2 = false;
+			if (ennemis.size() >= 1)
+				
+				shootBoss = false;
 
 			if (ennemis[i].sprite.getPosition().y >= 200)
 			{
@@ -173,11 +170,12 @@ void Niveaux::niveau2()
 			}
 
 
-			if (ennemis[i].inc > 36)
+			if (ennemis[i].pv <=0)
 			{
 
 				go = true;//Permet de passer à la suite du niveau
 				bossGo = false;
+				bossPattern = false;
 				clock1.restart();
 				ennemis[i].sprite.setPosition(0, 1000);
 			}
@@ -194,15 +192,9 @@ void Niveaux::niveau2()
 		ennemi1.sprite.setPosition(rand() % int(700 - ennemi1.sprite.getGlobalBounds().width), 0);
 		ennemi1.pattern = Vector2f(0, 20);
 		shoot2 = true;
-		//ennemiPop2 = 250;
-		ennemi2.pv = 7;
-		ennemi2.points = 500;
-		ennemi2.sprite.setTexture(ennemi2.texture);
-		ennemi2.sprite.setScale(4, 4);
 		ennemi2.sprite.setPosition(rand() % int(700 - ennemi2.sprite.getGlobalBounds().width), 0);
 		ennemi2.pattern = Vector2f(0, 5);
 		shoot3 = true;
-
 		ennemi3.sprite.setPosition(rand() % int(700 - ennemi3.sprite.getGlobalBounds().width), 0);
 		ennemi3.pattern = Vector2f(0, 8);
 
@@ -420,6 +412,11 @@ void Niveaux::gestionVecteurEnnemisEtMissilesEnnemis()
 	{
 		ennemis.push_back(ennemi3);
 		vitesseEnnemiPop3.restart();
+	}
+	if (shootBoss == true && vitesseBossPop.getElapsedTime().asMilliseconds() > ennemiPop(vitesseApparitionBoss))
+	{
+		ennemis.push_back(ennemiBoss);
+		vitesseBossPop.restart();
 	}
 
 	for (unsigned int i = 0; i < ennemis.size(); i++)

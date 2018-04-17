@@ -5,8 +5,8 @@
 using namespace sf;
 using namespace std;
 
-enum { JEU, GAMEOVER, TITRE, MISSIONACCOMPLIE, HISCORE };
-
+enum { JEU, GAMEOVER, TITRE, MISSIONACCOMPLIE, HISCORE }; //Enum contenant les différents états du jeu
+//Les fonctions suivantes permettent d'afficher facilement le contenu des différents vectors. Il s'agit de la même fonction surchargée afin d'accepter différents types de paramètres
 void afficherVector(vector<Entite> vecteur, RenderWindow &window)
 {
 	for (int i = 0; i < vecteur.size(); i++)
@@ -63,41 +63,42 @@ void Game::logiqueDuJeu()
 
 
 
-	sf::RenderWindow window(VideoMode(WINDOWX, WINDOWY), "GalacticClash");
-	window.setPosition(Vector2i(350, 0));
-	window.setMouseCursorVisible(0);
+	sf::RenderWindow window(VideoMode(WINDOWX, WINDOWY), "GalacticClash"); //Création de la fenêtre de jeu
+	window.setPosition(Vector2i(350, 0)); // Positionnement de la fenêtre du jeu
+	window.setMouseCursorVisible(0); // Le pointeur de la souris n'apparait pas dans la fenêtre de jeu
 
 	//window.setVerticalSyncEnabled(true);
-	window.setFramerateLimit(60);
+	window.setFramerateLimit(60); // Limitation à 60 FPS
 
 
 	//décors
-	Etoiles etoile1(sf::Color::White, 4);
-	Etoiles etoile2(sf::Color(250, 250, 255, 150), 2.5);
+	Etoiles etoile1(sf::Color::White, 4); // Etoiles pour le background
+	Etoiles etoile2(sf::Color(250, 250, 255, 150), 2.5); // 2ème type d'étoiles pour le background
 	vector<Etoiles>etoilesDecors;
 
 
 
 	//explosion
-	Explosion explosionJoueur(7);
-	Explosion megaBombeExplosion(14);
-	megaBombeExplosion.explosion.setColor(Color(255, 255, 255, 150));
+	Explosion explosionJoueur(7); // Explosion lorsque le joueur a PV = 0
+	Explosion megaBombeExplosion(14); // Explosion plus grande pour la méga bombe
+	megaBombeExplosion.explosion.setColor(Color(255, 255, 255, 150)); // les explosions de la méga bombe sont légèrement transparentes
 
-	vector<Explosion> explosions;
+	vector<Explosion> explosions; // vector contenant les explosions de la méga bombe
 	float dureeExplosion = 0.0;
 	bool boum = false;
+	int nbMegaBombe = 3; // nombre de méga bombes à la disposition du joueur
 
 	//ennemis
 
 	int dureeExplosionEnnemi = 0;
 
 	//missiles
-	Missile missile;
-	missile.cercle.setPointCount(4);
-	missile.cercle.setScale(0.9, 1.3);
-	Missile canon;
+	Missile missile; // projectile de base du joueur
+	missile.cercle.setPointCount(4); // pour créer un projectile en forme de losange
+	missile.cercle.setScale(0.9, 1.3); // gestion de la forme du projectile de base
+	Missile canon; // projectile spécial du joueur (tir en rafale)
 	canon.forme.setSize(Vector2f(0, 0));
-	vector<Entite> missiles;
+	vector<Entite> missiles; // vecteur contenant les projectiles du joueur
 
 	//bords de l'écran
 	Bordure bordureGauche(Vector2f(1.f, 0.f), Vector2f(1.f, WINDOWY));
@@ -105,29 +106,43 @@ void Game::logiqueDuJeu()
 	Bordure bordureHaut(Vector2f(0.f, 0.f), Vector2f(WINDOWX, 1.f));
 	Bordure bordureBas(Vector2f(0.f, WINDOWY + 5), Vector2f(WINDOWX, 1.f));
 
-	//Texte "Perdu & appuyez sur espace"
+	string espaceOuStart; // Permet d'afficher "START" si un joystick est connecté ou "ESPACE" si aucun joystick n'est détecté 
+	if (sf::Joystick::isConnected(0))
+		espaceOuStart = "START";
+	else
+		espaceOuStart = "ESPACE";
+
+	//Texte "Perdu & appuyez sur start/espace" sur l'écran GAMEOVER 
 	Texte textePerdu(150, Vector2f(WINDOWX / 2, 100), "PERDU !");
 	Texte entrezVotreNom(60, Vector2f(WINDOWX / 2, 300), "Entrez votre nom :");
-	Texte texteAppuyezEspace(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur START pour valider");
-	string nomDuJoueur;
+	Texte texteAppuyezEspace(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur " + espaceOuStart + " pour valider");
+	string nomDuJoueur; //
 
-	//Texte Score
+	// affichage du score sur l'écran de jeu
 	Texte score(30, Vector2f(50.f, 5.f), "0");
-	string scoreString;
-	int scoreInt = 0;
-	int scoreBonus = 0;
-	int scoreEtBonus = 0;
+	string scoreString; // string contenant le score
+	int scoreInt = 0; // entier contenant le score, augmente durant la partie
+	int scoreBonus = 0; // entier contenant le bonus donné à chaque niveau
+	int scoreEtBonus = 0; // total score + bonus
 
-	//Texte PV
+
+
+	// affichage des PV du joueur sur l'écran de jeu
 	string pointsVieString = "X " + to_string(niveaux.joueur.pv);
 	Texte pointsVie(30, Vector2f(WINDOWX - 50, 5), pointsVieString);
 
-	//Texte titre
+	// affichage du nombre de méga bombes sur l'écran de jeu
+	string strNbMegaBombe = "X " + to_string(nbMegaBombe);
+	Texte txtMegaBombe(30, Vector2f(WINDOWX - 50, 35), strNbMegaBombe);
+
+
+
+	//Textes de l'écran titre
 	Texte ecranTitre1(180, Vector2f(WINDOWX / 2, 250), "GALACTIC");
 	Texte ecranTitre2(180, Vector2f(WINDOWX / 2, 360), "CLASH");
-	Texte ecranTitre3(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur START pour jouer");
+	Texte ecranTitre3(40, Vector2f(WINDOWX / 2, 650), ("Appuyez sur " + espaceOuStart + " pour jouer"));
 
-	//Texte ecran score
+	//Textes de l'écran Score
 	string ecranScoreString1;
 	string ecranScoreString2;
 	string ecranScoreString3;
@@ -135,7 +150,7 @@ void Game::logiqueDuJeu()
 	Texte ecranScore1(110, Vector2f(WINDOWX / 2, 200), ecranScoreString1);
 	Texte ecranScore2(60, Vector2f(WINDOWX / 2, 400), ecranScoreString2);
 	Texte ecranScore3(60, Vector2f(WINDOWX / 2, 500), ecranScoreString3);
-	Texte ecranScore4(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur START pour continuer");
+	Texte ecranScore4(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur " + espaceOuStart + " pour continuer");
 
 	//Musique
 	Music musiqueIntro;
@@ -163,14 +178,14 @@ void Game::logiqueDuJeu()
 	laserSFX.setPitch(0.7);
 
 	sf::SoundBuffer buffer2;
-	if (!buffer2.loadFromFile("SFX/canon.wav"))
-		cout << "ERROR" << endl;
+	//if (!buffer2.loadFromFile("SFX/canon.wav"))
+		//cout << "ERROR" << endl;
 	Sound canonSFX;
 	canonSFX.setVolume(50);
 	canonSFX.setPitch(1.5);
 
 	canonSFX.setBuffer(buffer2);
-	
+
 	sf::SoundBuffer buffer3;
 	if (!buffer3.loadFromFile("SFX/explosion.wav"))
 		cout << "ERROR" << endl;
@@ -188,21 +203,10 @@ void Game::logiqueDuJeu()
 	bombeSFX.setBuffer(buffer5);
 	bool megabombeSFX = true;
 
-
-
-
-
 	//BDD
-	bdd.openDatabase();
+	bdd.openDatabase(); // ouverture de la BDD
 	bdd.executeQuery("CREATE TABLE IF NOT EXISTS scorebdd (nom TEXT, score INT)");
-	vectHighScore = bdd.getHighScore();
-
-
-	//High Score
-
-
-
-
+	vectHighScore = bdd.getHighScore(); // récupération des données dans la BDD
 
 	//Boucle de jeu
 	while (window.isOpen())
@@ -212,7 +216,7 @@ void Game::logiqueDuJeu()
 
 		if (sf::Joystick::isConnected(0))
 		{
-			//cout << "is connected" << endl;
+			cout << "is connected" << endl;
 
 		}
 		//cout << ecranScoreString << endl;
@@ -230,8 +234,6 @@ void Game::logiqueDuJeu()
 		cout << "bossGo " << niveaux.bossGo << endl;
 		cout << "clock " << niveaux.clock1.getElapsedTime().asSeconds() << endl;*/
 
-
-
 		Event event;
 		//Gestion de la saisie utilisateur
 		while (window.pollEvent(event))
@@ -240,7 +242,6 @@ void Game::logiqueDuJeu()
 			{
 				window.close();
 			}
-
 		}
 
 
@@ -300,15 +301,14 @@ void Game::logiqueDuJeu()
 			{
 				megaBombeExplosion.explosion.setPosition(Vector2f(rand() % int(WINDOWX), rand() % int(WINDOWY)));
 				explosions.push_back(megaBombeExplosion);
-				
 			}
-			if (megabombeSFX == true && jeu==JEU)
+			if (megabombeSFX == true && jeu == JEU)
 			{
 				bombeSFX.play();
 				megabombeSFX = false;
 			}
 			megaBombExplosionsClock.restart();
-			
+
 		}
 		if (megaBombeCmpt >= 3)
 		{
@@ -317,14 +317,12 @@ void Game::logiqueDuJeu()
 		}
 		for (int i = 0; i < explosions.size(); i++)
 		{
-
 			explosions[i].animation();
 		}
 
 
 		//Tir/////////////////////////////////////////////////////////////////////
-
-
+		
 		niveaux.joueur.jaugecanon();
 
 
@@ -333,8 +331,8 @@ void Game::logiqueDuJeu()
 		{
 			missile.cercle.setPosition(Vector2f(niveaux.joueur.sprite.getPosition().x - missile.cercle.getRadius(), niveaux.joueur.sprite.getPosition().y - niveaux.joueur.sprite.getTextureRect().height));
 			missiles.push_back(missile);
-			if(jeu==JEU)
-			laserSFX.play();
+			if (jeu == JEU)
+				laserSFX.play();
 			niveaux.joueur.tirOK = false;
 			tempsActivationCanon.restart();
 
@@ -350,7 +348,7 @@ void Game::logiqueDuJeu()
 					canon.cercle.setPosition(Vector2f(niveaux.joueur.sprite.getPosition().x - 15 + +rand() % 10, niveaux.joueur.sprite.getPosition().y - niveaux.joueur.sprite.getTextureRect().height * 3));
 					missiles.push_back(canon);
 					if (jeu == JEU)
-					canonSFX.play();
+						canonSFX.play();
 					cadenceCanon.restart();
 				}
 			}
@@ -371,8 +369,6 @@ void Game::logiqueDuJeu()
 				niveaux.joueur.canonActif = false;
 			}
 		}
-
-
 
 		for (unsigned int i = 0; i < missiles.size(); i++)
 		{
@@ -455,11 +451,14 @@ void Game::logiqueDuJeu()
 
 			}
 		}
-		if (Keyboard::isKeyPressed(Keyboard::LShift) && megaBombeRechargee == true && megaBombeActive == false ||
-			Joystick::isButtonPressed(0, 0) && megaBombeRechargee == true && megaBombeActive == false)
+		if (Keyboard::isKeyPressed(Keyboard::LShift) && megaBombeRechargee == true && megaBombeActive == false && nbMegaBombe>0 ||
+			Joystick::isButtonPressed(0, 0) && megaBombeRechargee == true && megaBombeActive == false && nbMegaBombe > 0)
 		{
 			megaBombeActive = true;
 			megaBombeRechargee = false;
+			nbMegaBombe--;
+			strNbMegaBombe = "X " + to_string(nbMegaBombe);
+			txtMegaBombe.textString = strNbMegaBombe;
 		}
 
 
@@ -541,14 +540,11 @@ void Game::logiqueDuJeu()
 
 		if (niveaux.joueur.pv < 0)
 		{
-
 			niveaux.clock1.restart();
 			jeu = GAMEOVER;
-
 		}
 
-		cout << "fini " << niveaux.fini << endl;
-		cout << "musique " << musiqueNiveau1.getStatus() << endl;
+		
 		//Etats du jeu et affichage ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		switch (jeu)
@@ -604,7 +600,8 @@ void Game::logiqueDuJeu()
 			//LOGIQUE
 
 			//On lance le jeu en appuyant sur espace (un message l'indique à l'écran)
-
+			cout << goOn << endl;
+			cout << tempsTitre.getElapsedTime().asSeconds() << endl;
 
 			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true ||
 				Joystick::isButtonPressed(0, 7) && goOn == true)
@@ -711,6 +708,8 @@ void Game::logiqueDuJeu()
 			//Affichage des textes
 			window.draw(score.ecrireTexte());
 			window.draw(pointsVie.ecrireTexte());
+			window.draw(txtMegaBombe.ecrireTexte());
+
 			window.draw(niveaux.joueur.formeJaugeCanon);
 			window.draw(niveaux.joueur.contourJaugeCanon);
 
@@ -790,12 +789,12 @@ void Game::logiqueDuJeu()
 
 		case GAMEOVER:
 			window.clear();
-			
-				musiqueNiveau1.stop();
-				musiqueNiveau2.stop();
-				musiqueNiveau3.stop();
-				
-			
+
+			musiqueNiveau1.stop();
+			musiqueNiveau2.stop();
+			musiqueNiveau3.stop();
+
+
 
 			window.draw(textePerdu.ecrireTexte());
 			window.draw(entrezVotreNom.ecrireTexte());

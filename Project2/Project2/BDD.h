@@ -11,14 +11,14 @@ public:
 	BDD();
 	~BDD();
 
-	void openDatabase();
-	void closeDatabase();
-	bool executeQuery(std::string query);
-	bool insertScore(std::string nom, int score);
-	std::vector<enregistrementBDD*>* getHighScore();
-	//std::vector<enregistrementBDD*>* highScore;
+	void openDatabase(); //Fonction d'ouverture de la base de données
+	void closeDatabase(); //Fonction de fermeture de la base de données
+	bool executeQuery(std::string query); 
+	bool insertScore(std::string nom, int score); //Fonction permettant d'écrire dans la BDD
+	std::vector<enregistrementBDD*>* getHighScore(); // Récupération des 6 meilleurs scores
+	
 
-	std::string dbfile;
-	sqlite3 * db;
+	std::string dbfile; //Chemin d'accès de la BDD
+	sqlite3 * db; //Pointeur vers la BDD
 };
 

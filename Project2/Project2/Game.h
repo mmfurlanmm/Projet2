@@ -41,6 +41,7 @@ public:
 	float bleu = 20;
 
 	bool goOn = false;//goOn = false empêche le joueur de passer à un autre état du jeu
+	bool pause = false;//
 
 
 
@@ -48,15 +49,15 @@ public:
 	int niveauEnCours = 0;
 	//Gestion du temps
 	sf::Clock temps; //horloge principale du jeu
-	sf::Clock tempsTitre;
+	sf::Clock tempsTitre;//horloge utilisée pendant l'écran titre
 
 	sf::Clock frame; // pour le calcul du frame rate
 
-					 //joueur
+	//joueur
 	
 	sf::Vector2f positionPrecedente; // pour la gestion des collisions
-									 //armes du joueur
-	sf::Clock cadenceCanon;
+	//armes du joueur
+	sf::Clock cadenceCanon; // clock pour gérer la vitesse du canon
 	sf::Clock tempsActivationCanon;
 	sf::Clock tempsExplosion;
 

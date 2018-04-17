@@ -19,7 +19,7 @@ void HighScore::afficherHighScore(std::vector<enregistrementBDD*>* highScore, sf
 	string strligne1 = "1.      " + (*highScore)[0]->nom + "      " + to_string((*highScore)[0]->score);
 	Texte ligne1(60, Vector2f(WINDOWX / 2, 100), strligne1);
 	ligne1.text.setFillColor(Color(255, 0, 0));
-	
+
 
 	string strligne2 = "2.      " + (*highScore)[1]->nom + "      " + to_string((*highScore)[1]->score);
 	Texte ligne2(60, Vector2f(WINDOWX / 2, 200), strligne2);
@@ -64,13 +64,14 @@ string HighScore::entrerNom(sf::RenderWindow & window)
 	nom.push_back(deuxiemeLettre[j]);
 	nom.push_back(troisiemeLettre[k]);
 
-	
+
 
 
 	float x = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
 	float y = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
 	//ON CHANGE DE LETTRE AVEC GAUCHE ET DROITE
-	if (x > 1 && goX == true)
+
+	if (x > 1 && goX == true || Keyboard::isKeyPressed(Keyboard::Right) && goX == true)
 	{
 		lettre++;
 		repereX += 100;
@@ -80,21 +81,30 @@ string HighScore::entrerNom(sf::RenderWindow & window)
 		if (repereX > 450)
 			repereX = 250;
 	}
-	else if (x < -1 && goX == true)
+	else if (x < -1 && goX == true || Keyboard::isKeyPressed(Keyboard::Left) && goX == true)
 	{
 		lettre--;
 		repereX -= 100;
 		goX = false;
 		if (lettre < 0)
 			lettre = 2;
-		if (repereX <250)
+		if (repereX < 250)
 			repereX = 450;
 	}
-	else if (x<1 && x>-1)
-		goX = true;
+	if (Joystick::isConnected(0))
+	{
+		if (x<1 && x>-1)
+			goX = true;
+	}
+	else
+	{
+		if (!Keyboard::isKeyPressed(Keyboard::Right) && !Keyboard::isKeyPressed(Keyboard::Left))
+			goX = true;
+	}
+	std::cout << goX << endl;
 
 
-	if (y < -1 && goY == true)
+	if (y < -1 && goY == true || Keyboard::isKeyPressed(Keyboard::Up) && goY == true)
 	{
 		if (lettre == 0)
 			i++;
@@ -111,7 +121,7 @@ string HighScore::entrerNom(sf::RenderWindow & window)
 		if (k > 26)
 			k = 0;
 	}
-	else if (y > 1 && goY == true)
+	else if (y > 1 && goY == true || Keyboard::isKeyPressed(Keyboard::Down) && goY == true)
 	{
 		if (lettre == 0)
 			i--;
@@ -127,9 +137,18 @@ string HighScore::entrerNom(sf::RenderWindow & window)
 		if (k < 0)
 			k = 26;
 	}
-	else if (y<1 && y>-1)
-		goY = true;
-	
+	if (Joystick::isConnected(0))
+	{
+		if (y<1 && y>-1)
+			goY = true;
+	}
+	else
+	{
+		if (!Keyboard::isKeyPressed(Keyboard::Up) && !Keyboard::isKeyPressed(Keyboard::Down))
+			goY = true;
+
+	}
+
 	string strPremiereLettre;
 	strPremiereLettre.push_back(premiereLettre[i]);
 	string strDeuxiemeLettre;
@@ -150,5 +169,5 @@ string HighScore::entrerNom(sf::RenderWindow & window)
 	return nom;
 
 	//string nom = premiereLettre[i] + deuxiemeLettre[i] + troisiemeLettre[i];
-	cout << nom << endl;
+	//cout << nom << endl;
 }
