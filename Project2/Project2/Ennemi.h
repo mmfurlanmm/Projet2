@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <stdlib.h>
 #include <iostream>
 #include <vector>
@@ -38,6 +39,8 @@ public:
 	
 	bool shoot = false; //lorsque shoot = true, l'ennemi tire
 	bool tirOk = false; // ce bool est utilisé afin d'activer le tir depuis une autre classe
+
+	bool SFX = true;
 
 	
 

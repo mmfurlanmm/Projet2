@@ -137,17 +137,66 @@ void Game::logiqueDuJeu()
 	Texte ecranScore3(60, Vector2f(WINDOWX / 2, 500), ecranScoreString3);
 	Texte ecranScore4(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur START pour continuer");
 
+	//Musique
+	Music musiqueIntro;
+	Music musiqueNiveau1;
+	Music musiqueNiveau2;
+	Music musiqueNiveau3;
+
+	if (!musiqueIntro.openFromFile("musique/intro.ogg"))
+		cout << "ERROR" << endl;
+	if (!musiqueNiveau1.openFromFile("musique/niveau1.ogg"))
+		cout << "ERROR" << endl;
+	if (!musiqueNiveau2.openFromFile("musique/niveau2.ogg"))
+		cout << "ERROR" << endl;
+	if (!musiqueNiveau3.openFromFile("musique/niveau3.ogg"))
+		cout << "ERROR" << endl;
+	bool playMusic = true;
+
+	//SFX
+	sf::SoundBuffer buffer1;
+	if (!buffer1.loadFromFile("SFX/laser.wav"))
+		cout << "ERROR" << endl;
+	Sound laserSFX;
+	laserSFX.setBuffer(buffer1);
+	laserSFX.setVolume(30);
+	laserSFX.setPitch(0.7);
+
+	sf::SoundBuffer buffer2;
+	if (!buffer2.loadFromFile("SFX/canon.wav"))
+		cout << "ERROR" << endl;
+	Sound canonSFX;
+	canonSFX.setVolume(50);
+	canonSFX.setPitch(1.5);
+
+	canonSFX.setBuffer(buffer2);
+	
+	sf::SoundBuffer buffer3;
+	if (!buffer3.loadFromFile("SFX/explosion.wav"))
+		cout << "ERROR" << endl;
+	Sound explosionSFX;
+	explosionSFX.setBuffer(buffer3);
+	sf::SoundBuffer buffer4;
+	if (!buffer4.loadFromFile("SFX/defeat.wav"))
+		cout << "ERROR" << endl;
+	Sound defeatSFX;
+	defeatSFX.setBuffer(buffer4);
+	sf::SoundBuffer buffer5;
+	if (!buffer5.loadFromFile("SFX/bombe.wav"))
+		cout << "ERROR" << endl;
+	Sound bombeSFX;
+	bombeSFX.setBuffer(buffer5);
+	bool megabombeSFX = true;
+
+
+
 
 
 	//BDD
 	bdd.openDatabase();
 	bdd.executeQuery("CREATE TABLE IF NOT EXISTS scorebdd (nom TEXT, score INT)");
-
 	vectHighScore = bdd.getHighScore();
-	for (int i = 0; i < vectHighScore->size(); i++)
-	{
-		std::cout << (*vectHighScore)[i]->nom << " " << (*vectHighScore)[i]->score << std::endl;
-	}
+
 
 	//High Score
 
@@ -239,17 +288,33 @@ void Game::logiqueDuJeu()
 		explosionJoueur.explosion.setPosition(Vector2f(niveaux.joueur.sprite.getPosition().x + 1, niveaux.joueur.sprite.getPosition().y + 7));
 		explosionJoueur.trigger = niveaux.joueur.boom;
 		explosionJoueur.animation();
+		if (niveaux.joueur.SFX == true)
+		{
+			defeatSFX.play();
+			explosionSFX.play();
+			niveaux.joueur.SFX = false;
+		}
 		if (megaBombeRechargee == false && megaBombeCmpt < 3)
 		{
 			if (megaBombExplosionsClock.getElapsedTime().asMilliseconds() > 3)
 			{
 				megaBombeExplosion.explosion.setPosition(Vector2f(rand() % int(WINDOWX), rand() % int(WINDOWY)));
 				explosions.push_back(megaBombeExplosion);
+				
+			}
+			if (megabombeSFX == true && jeu==JEU)
+			{
+				bombeSFX.play();
+				megabombeSFX = false;
 			}
 			megaBombExplosionsClock.restart();
+			
 		}
 		if (megaBombeCmpt >= 3)
+		{
 			explosions.clear();
+			megabombeSFX = true;
+		}
 		for (int i = 0; i < explosions.size(); i++)
 		{
 
@@ -268,6 +333,8 @@ void Game::logiqueDuJeu()
 		{
 			missile.cercle.setPosition(Vector2f(niveaux.joueur.sprite.getPosition().x - missile.cercle.getRadius(), niveaux.joueur.sprite.getPosition().y - niveaux.joueur.sprite.getTextureRect().height));
 			missiles.push_back(missile);
+			if(jeu==JEU)
+			laserSFX.play();
 			niveaux.joueur.tirOK = false;
 			tempsActivationCanon.restart();
 
@@ -282,6 +349,8 @@ void Game::logiqueDuJeu()
 				{
 					canon.cercle.setPosition(Vector2f(niveaux.joueur.sprite.getPosition().x - 15 + +rand() % 10, niveaux.joueur.sprite.getPosition().y - niveaux.joueur.sprite.getTextureRect().height * 3));
 					missiles.push_back(canon);
+					if (jeu == JEU)
+					canonSFX.play();
 					cadenceCanon.restart();
 				}
 			}
@@ -377,6 +446,13 @@ void Game::logiqueDuJeu()
 				niveaux.ennemis[j].explosionEnnemi();
 				niveaux.ennemis[j].move = false;
 				niveaux.ennemis[j].dégatsJoueur = false;
+
+				if (niveaux.ennemis[j].SFX == true)
+				{
+					explosionSFX.play();
+					niveaux.ennemis[j].SFX = false;
+				}
+
 			}
 		}
 		if (Keyboard::isKeyPressed(Keyboard::LShift) && megaBombeRechargee == true && megaBombeActive == false ||
@@ -468,19 +544,29 @@ void Game::logiqueDuJeu()
 
 			niveaux.clock1.restart();
 			jeu = GAMEOVER;
-			
-		}
-		
 
+		}
+
+		cout << "fini " << niveaux.fini << endl;
+		cout << "musique " << musiqueNiveau1.getStatus() << endl;
 		//Etats du jeu et affichage ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		switch (jeu)
 		{
 		case TITRE:
 
-
+			//musiqueIntro.play();
 			window.clear();
-			
+			if (playMusic == true)
+			{
+				musiqueNiveau1.stop();
+				musiqueNiveau2.stop();
+				musiqueNiveau3.stop();
+
+				musiqueIntro.play();
+				musiqueIntro.setVolume(50);
+				playMusic = false;
+			}
 
 			//REINITIALISATION DES VARIABLES DE JEU
 			niveauEnCours = 0;
@@ -523,6 +609,8 @@ void Game::logiqueDuJeu()
 			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true ||
 				Joystick::isButtonPressed(0, 7) && goOn == true)
 			{
+				musiqueIntro.stop();
+				playMusic = true;
 				for (int i = 0; i < niveaux.ennemis.size(); i++)
 					niveaux.ennemis[i].vitesseTir = 0;
 				niveaux.bossGo = false;
@@ -555,12 +643,35 @@ void Game::logiqueDuJeu()
 			{
 			case 1:
 				window.clear(Color(0, 10, 20));
+				if (playMusic == true)
+				{
+					musiqueNiveau1.play();
+					musiqueNiveau1.setVolume(30);
+					musiqueNiveau1.setLoop(true);
+					playMusic = false;
+				}
+
 				break;
 			case 2:
 				window.clear(Color(30, 0, 50));
+				if (playMusic == true)
+				{
+					musiqueNiveau2.play();
+					musiqueNiveau2.setVolume(30);
+					musiqueNiveau2.setLoop(true);
+					playMusic = false;
+				}
+
 				break;
 			case 3:
 				window.clear(Color(25, 25, 50));
+				if (playMusic == true)
+				{
+					musiqueNiveau3.play();
+					musiqueNiveau3.setVolume(30);
+					musiqueNiveau3.setLoop(true);
+					playMusic = false;
+				}
 				break;
 			default:
 				window.clear(Color(0, 20, 30));
@@ -614,6 +725,7 @@ void Game::logiqueDuJeu()
 			{
 			case 1:
 				scoreBonus = 10000;
+
 				break;
 			case 2:
 				scoreBonus = 15000;
@@ -660,6 +772,11 @@ void Game::logiqueDuJeu()
 				Joystick::isButtonPressed(0, 7) && goOn == true)
 			{
 
+				musiqueNiveau1.stop();
+				musiqueNiveau2.stop();
+				musiqueNiveau3.stop();
+
+				playMusic = true;
 				scoreInt = scoreEtBonus;
 				score.textString = to_string(scoreInt);
 				niveaux.clock1.restart();
@@ -673,10 +790,16 @@ void Game::logiqueDuJeu()
 
 		case GAMEOVER:
 			window.clear();
+			
+				musiqueNiveau1.stop();
+				musiqueNiveau2.stop();
+				musiqueNiveau3.stop();
+				
+			
 
 			window.draw(textePerdu.ecrireTexte());
 			window.draw(entrezVotreNom.ecrireTexte());
-			
+
 			nomDuJoueur = highScore.entrerNom(window);
 			niveauEnCours = 0;
 			niveaux.joueur.pv = PVORIGINE;
@@ -724,13 +847,14 @@ void Game::logiqueDuJeu()
 			highScore.afficherHighScore(vectHighScore, window);
 			if (elapsed.asSeconds() > 1.5)
 			{
-				
+
 				goOn = true;
 			}
 
 			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true ||
 				Joystick::isButtonPressed(0, 7) && goOn == true)
 			{
+				playMusic = true;
 				goOn = false;
 				temps.restart();
 				tempsTitre.restart();

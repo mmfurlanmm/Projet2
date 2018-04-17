@@ -56,6 +56,7 @@ public:
 	bool tirOK = true;
 	bool canonActif = false;
 	bool slow = false;
+	bool SFX = false;
 	int i = 0;
 
 	float valeurJaugeCanon = 100;

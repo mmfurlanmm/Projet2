@@ -133,7 +133,7 @@ void Joueur::collisionEnnemi(Ennemi ennemi)
 		move = false;
 		sprite.setColor(Color(0, 0, 0, 0));
 		boom = true;
-
+		SFX = true;
 		invincible = true;
 		pv--;
 

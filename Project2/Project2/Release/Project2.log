@@ -1,7 +1,78 @@
-﻿  HighScore.cpp
+﻿  Game.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(101): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(118): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(135): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(151): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+Game.cpp(12): warning C4018: '<' : incompatibilité signed/unsigned
+Game.cpp(21): warning C4018: '<' : incompatibilité signed/unsigned
+Game.cpp(28): warning C4018: '<' : incompatibilité signed/unsigned
+Game.cpp(38): warning C4018: '<' : incompatibilité signed/unsigned
+Game.cpp(59): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
+Game.cpp(97): warning C4305: 'argument' : troncation de 'double' à 'float'
+Game.cpp(163): warning C4305: 'argument' : troncation de 'double' à 'float'
+Game.cpp(253): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+Game.cpp(254): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+Game.cpp(301): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+Game.cpp(318): warning C4018: '<' : incompatibilité signed/unsigned
+Game.cpp(497): warning C4018: '<' : incompatibilité signed/unsigned
+Game.cpp(514): warning C4018: '<' : incompatibilité signed/unsigned
+Game.cpp(590): warning C4244: 'argument' : conversion de 'float' en 'sf::Uint8', perte possible de données
+Game.cpp(591): warning C4244: 'argument' : conversion de 'float' en 'sf::Uint8', perte possible de données
+Game.cpp(614): warning C4018: '<' : incompatibilité signed/unsigned
+  Main.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(101): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(118): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(135): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(151): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  Niveaux.cpp
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(101): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(118): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(135): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(151): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+Niveaux.cpp(23): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(25): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+Niveaux.cpp(45): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(47): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+Niveaux.cpp(48): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+Niveaux.cpp(57): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(58): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(59): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(62): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(80): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(82): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+Niveaux.cpp(93): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(103): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(105): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(107): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(109): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(111): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(113): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(115): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(116): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(117): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(119): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(120): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(121): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(153): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(194): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+Niveaux.cpp(202): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+Niveaux.cpp(206): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+Niveaux.cpp(250): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(252): warning C4244: 'initialisation' : conversion de 'double' en 'float', perte possible de données
+Niveaux.cpp(257): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(275): warning C4305: '+=' : troncation de 'double' à 'float'
+Niveaux.cpp(283): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(295): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+Niveaux.cpp(301): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(305): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+Niveaux.cpp(310): warning C4244: 'argument' : conversion de 'float' en 'int', perte possible de données
+Niveaux.cpp(320): warning C4018: '<' : incompatibilité signed/unsigned
+Niveaux.cpp(329): warning C4305: '-=' : troncation de 'double' à 'float'
+Niveaux.cpp(338): warning C4305: 'argument' : troncation de 'double' à 'float'
+Niveaux.cpp(370): warning C4018: '<' : incompatibilité signed/unsigned
   Génération de code en cours
-  2 of 2670 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  3 of 2673 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Fin de la génération du code
   Project2.vcxproj -> C:\Users\mmfur\Desktop\Projet 2\Projet2\Project2\Release\Project2.exe

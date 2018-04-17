@@ -6,8 +6,8 @@ using namespace std;
 
 MissileEnnemi::MissileEnnemi()
 {
-	cercle.setRadius(10);
-	cercle.setPointCount(10);
+	cercle.setRadius(15);
+	//cercle.setPointCount(10);
 	cercle.setOutlineThickness(-4);
 
 	

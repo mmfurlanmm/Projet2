@@ -32,6 +32,7 @@ void Ennemi::explosionEnnemi()
 		system("pause");
 	}
 	
+	
 	sprite.setTexture(explosion);
 
 	sprite.setTextureRect(IntRect(inc, 0, 14, 14));
@@ -47,7 +48,7 @@ void Ennemi::explosionEnnemi()
 		sprite.setPosition(0, 1000);
 		
 	}
-
+	
 
 
 }

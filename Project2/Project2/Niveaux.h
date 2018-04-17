@@ -39,7 +39,7 @@ public:
 	bool bossGo = false;
 	bool bossPattern = false;
 	//bool tirEnnemi = false;
-	bool missile2Actif = false;
+	bool missile2Actif = true;
 
 	sf::Clock clock1;
 	

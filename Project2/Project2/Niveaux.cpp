@@ -129,10 +129,10 @@ void Niveaux::niveau2()
 		}
 	}
 	//Pattern de tir en spirale
-	missile2Actif = true;
-	missileEnnemi.pattern = spirale(4, 3);
-	missileEnnemi2.pattern = reverseSpirale(3, 2);
-	missileEnnemi.cercle.setRadius(10);
+	//missile2Actif = true;
+	missileEnnemi.pattern = spirale(4, 5);
+	missileEnnemi2.pattern = reverseSpirale(4, 4);
+	//missileEnnemi.cercle.setRadius(10);
 
 	//////////////////////////////////////////////////////////////// ENNEMI QUI TIRE
 	if (bossGo == true)
@@ -144,7 +144,7 @@ void Niveaux::niveau2()
 		ennemi2.sprite.setTexture(ennemi2.texture2);
 		ennemi2.sprite.setScale(6, 6);
 		ennemi2.pattern = Vector2f(0, 3);
-		ennemi2.vitesseTir = 20;
+		ennemi2.vitesseTir = 30;
 		missileEnnemi.cercle.setRadius(15);
 
 
@@ -152,6 +152,7 @@ void Niveaux::niveau2()
 
 		for (int i = 0; i < ennemis.size(); i++)
 		{
+			if (ennemis.size()>=1)
 			shoot2 = false;
 
 			if (ennemis[i].sprite.getPosition().y >= 200)
