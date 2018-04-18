@@ -178,8 +178,8 @@ void Game::logiqueDuJeu()
 	laserSFX.setPitch(0.7);
 
 	sf::SoundBuffer buffer2;
-	//if (!buffer2.loadFromFile("SFX/canon.wav"))
-		//cout << "ERROR" << endl;
+	if (!buffer2.loadFromFile("SFX/canon.wav"))
+		cout << "ERROR" << endl;
 	Sound canonSFX;
 	canonSFX.setVolume(50);
 	canonSFX.setPitch(1.5);
@@ -572,9 +572,6 @@ void Game::logiqueDuJeu()
 
 			//AFFICHAGE
 
-
-
-
 			window.draw(ecranTitre1.ecrireTexte());
 			window.draw(ecranTitre2.ecrireTexte());
 			if (tempsTitre.getElapsedTime().asSeconds() > 3)
@@ -611,6 +608,8 @@ void Game::logiqueDuJeu()
 				for (int i = 0; i < niveaux.ennemis.size(); i++)
 					niveaux.ennemis[i].vitesseTir = 0;
 				niveaux.bossGo = false;
+				niveaux.bossPattern = false;
+				niveaux.missile2Actif = true;
 				niveaux.go = false;
 				niveaux.ennemi1.tirOk = false;
 				niveaux.ennemi12.tirOk = false;
@@ -804,6 +803,9 @@ void Game::logiqueDuJeu()
 			niveaux.joueur.pv = PVORIGINE;
 			pointsVieString = "X " + to_string(niveaux.joueur.pv);
 			pointsVie.textString = pointsVieString;
+			nbMegaBombe = 3;
+			strNbMegaBombe = "X " + to_string(nbMegaBombe);
+			txtMegaBombe.textString = strNbMegaBombe;
 
 
 			niveaux.joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);

@@ -261,10 +261,10 @@ void Niveaux::niveau3()
 		lancementEnnemis1(7, 8, 20, 0, 0, 7, 5);
 		lancementEnnemis1(9, 10, 20, WINDOWX, 0, -7, 5);
 		int al = rand() % (450 - 250 + 1) + 250;
-		if (clock1.getElapsedTime().asSeconds() >= 16.2 && clock1.getElapsedTime().asSeconds() <= 17.5)
+		if (clock1.getElapsedTime().asSeconds() >= 16.2 && clock1.getElapsedTime().asSeconds() <= 17.3)
 		{
 			app++;
-			vit += 0.08;
+			vit += 0.1;
 		}
 		lancementEnnemis1(12, 18, app, al, 0, teteChercheuse(joueur, al, vit).x, teteChercheuse(joueur, al, vit).y);
 
@@ -295,7 +295,7 @@ void Niveaux::niveau3()
 				missile2Actif = false;
 
 				missileEnnemi.pattern = teteChercheuse(joueur, ennemis[i], 15, (rand() % (4) - 2));
-				ennemis[i].vitesseTir = 500;
+				ennemis[i].vitesseTir = 200;
 
 			}
 		}

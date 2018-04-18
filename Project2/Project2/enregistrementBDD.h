@@ -8,6 +8,6 @@ public:
 	enregistrementBDD();
 	~enregistrementBDD();
 	std::string nom; //Nom à récupérer
-	int score //Score à récupérer
+	int score; //Score à récupérer
 };
 
