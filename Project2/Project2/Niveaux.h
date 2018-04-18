@@ -27,6 +27,8 @@ public:
 	void niveau1();
 	void niveau2();
 	void niveau3();
+	void niveau4();
+
 
 	void niveauTest();
 	//fonction permettant de placer les ennemis et les projectiles ennemis dans un vecteur
@@ -38,8 +40,12 @@ public:
 	bool shoot2 = false;
 	bool shoot3 = false;
 	bool shootBoss = false;
+	bool shootBossFinal = false;
+
+	
 
 	bool fini = false;//Lorsqu'il est TRUE, le niveau est terminé. Sa valeur est testée à la ligne 424 de la classe Game.cpp et permet de passer à l'écran "MISSIONACCOMPLIE"
+	bool finDuJeu = false;
 	bool go = false; //Il arrive qu'un ennemi "bloque" l'action tant que ses PV>0. Ce booléen permet de relancer l'action une fois les PV=0
 	bool bossGo = false; // Utilisé pour lancer l'action du boss
 	bool bossPattern = false; //quand il est TRUE, permet de lancer le pattern droite/gauche du boss 
@@ -56,7 +62,7 @@ public:
 	unsigned int vitesseApparition12;
 	unsigned int vitesseApparition2;
 	unsigned int vitesseApparition3;
-	unsigned int vitesseApparitionBoss = 1;
+	unsigned int vitesseApparitionBoss = 10;
 
 	//Fonction utilisant la vitesseApparition, permet de convertir la vitesseApparition pour faciliter la gestion par l'utilisateur
 	int ennemiPop(unsigned int vitesse)
@@ -68,7 +74,8 @@ public:
 	}
 
 	//sf::Clock pattern;
-
+	int app = 30;
+	float vit = 12;
 
 	///////////////////////////////////////// ENNEMIS
 	//Les différents ennemis et leurs conteneurs
@@ -77,6 +84,9 @@ public:
 	Ennemi2 ennemi2;
 	Ennemi3 ennemi3;
 	EnnemiBoss ennemiBoss;
+	EnnemiBoss ennemiBossFinal;
+
+	
 	std::vector<Ennemi> ennemis;
 	std::vector<Ennemi> ennemis2;
 
@@ -170,6 +180,15 @@ public:
 			shoot3 = false;
 		}
 
+	}
+
+	void rotationEnnemis()
+	{
+		for (int i = 0; i < ennemis.size(); i++)
+		{
+			float angle = atan2(-ennemis[i].pattern.x, ennemis[i].pattern.y) * 180 / 3.141;
+			ennemis[i].sprite.setRotation(angle);
+		}
 	}
 
 	///////////////////////////////////// TIR DES ENNEMIS

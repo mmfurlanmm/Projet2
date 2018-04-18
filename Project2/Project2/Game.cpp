@@ -5,7 +5,7 @@
 using namespace sf;
 using namespace std;
 
-enum { JEU, GAMEOVER, TITRE, MISSIONACCOMPLIE, HISCORE }; //Enum contenant les différents états du jeu
+enum { JEU, GAMEOVER, TITRE, MISSIONACCOMPLIE, HISCORE, FIN }; //Enum contenant les différents états du jeu
 //Les fonctions suivantes permettent d'afficher facilement le contenu des différents vectors. Il s'agit de la même fonction surchargée afin d'accepter différents types de paramètres
 void afficherVector(vector<Entite> vecteur, RenderWindow &window)
 {
@@ -115,7 +115,7 @@ void Game::logiqueDuJeu()
 	//Texte "Perdu & appuyez sur start/espace" sur l'écran GAMEOVER 
 	Texte textePerdu(150, Vector2f(WINDOWX / 2, 100), "PERDU !");
 	Texte entrezVotreNom(60, Vector2f(WINDOWX / 2, 300), "Entrez votre nom :");
-	Texte texteAppuyezEspace(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur " + espaceOuStart + " pour valider");
+	Texte texteAppuyezEspace(50, Vector2f(WINDOWX / 2, 650), "Appuyez sur " + espaceOuStart + " pour valider");
 	string nomDuJoueur; //
 
 	// affichage du score sur l'écran de jeu
@@ -140,7 +140,7 @@ void Game::logiqueDuJeu()
 	//Textes de l'écran titre
 	Texte ecranTitre1(180, Vector2f(WINDOWX / 2, 250), "GALACTIC");
 	Texte ecranTitre2(180, Vector2f(WINDOWX / 2, 360), "CLASH");
-	Texte ecranTitre3(40, Vector2f(WINDOWX / 2, 650), ("Appuyez sur " + espaceOuStart + " pour jouer"));
+	Texte ecranTitre3(50, Vector2f(WINDOWX / 2, 650), ("Appuyez sur " + espaceOuStart + " pour jouer"));
 
 	//Textes de l'écran Score
 	string ecranScoreString1;
@@ -150,13 +150,29 @@ void Game::logiqueDuJeu()
 	Texte ecranScore1(110, Vector2f(WINDOWX / 2, 200), ecranScoreString1);
 	Texte ecranScore2(60, Vector2f(WINDOWX / 2, 400), ecranScoreString2);
 	Texte ecranScore3(60, Vector2f(WINDOWX / 2, 500), ecranScoreString3);
-	Texte ecranScore4(40, Vector2f(WINDOWX / 2, 650), "Appuyez sur " + espaceOuStart + " pour continuer");
+	Texte ecranScore4(50, Vector2f(WINDOWX / 2, 650), "Appuyez sur " + espaceOuStart + " pour continuer");
+
+	//Texte HiScore
+	Texte txtHiScore(40, Vector2f(WINDOWX / 2, 700), "Appuyez sur " + espaceOuStart + " pour rejouer");
+
+	//Texte Fin
+	Texte txtFin1(110, Vector2f(WINDOWX / 2, 200), "FELICITATIONS !!");
+	Texte txtFin2(60, Vector2f(WINDOWX / 2, 400), "Vous avez tué un chat !");
+	Texte txtFin3(60, Vector2f(WINDOWX / 2, 200), "Merci d'avoir joué à");
+	Texte txtFin4(110, Vector2f(WINDOWX / 2, 400), "GALACTIC CLASH");
+	Texte txtFin5(60, Vector2f(WINDOWX / 2, 200), "Musique par");
+	Texte txtFin6(110, Vector2f(WINDOWX / 2, 400), "ANAMANAGUCHI");
+
 
 	//Musique
 	Music musiqueIntro;
 	Music musiqueNiveau1;
 	Music musiqueNiveau2;
 	Music musiqueNiveau3;
+	Music musiqueNiveau4;
+	Music musiqueFin;
+
+
 
 	if (!musiqueIntro.openFromFile("musique/intro.ogg"))
 		cout << "ERROR" << endl;
@@ -165,6 +181,10 @@ void Game::logiqueDuJeu()
 	if (!musiqueNiveau2.openFromFile("musique/niveau2.ogg"))
 		cout << "ERROR" << endl;
 	if (!musiqueNiveau3.openFromFile("musique/niveau3.ogg"))
+		cout << "ERROR" << endl;
+	if (!musiqueNiveau4.openFromFile("musique/niveau4.ogg"))
+		cout << "ERROR" << endl;
+	if (!musiqueFin.openFromFile("musique/fin.ogg"))
 		cout << "ERROR" << endl;
 	bool playMusic = true;
 
@@ -182,7 +202,7 @@ void Game::logiqueDuJeu()
 		cout << "ERROR" << endl;
 	Sound canonSFX;
 	canonSFX.setVolume(50);
-	canonSFX.setPitch(1.5);
+	canonSFX.setPitch(1.2);
 
 	canonSFX.setBuffer(buffer2);
 
@@ -221,7 +241,7 @@ void Game::logiqueDuJeu()
 		}
 		//cout << ecranScoreString << endl;
 
-		/*for (int i = 0; i< niveaux.ennemis.size(); i++)
+		for (int i = 0; i< niveaux.ennemis.size(); i++)
 			cout << "vitesse tir " << niveaux.ennemis[i].vitesseTir << endl;
 
 		//cout << "frame rate : " << 1.f / frameRate.asMilliseconds() * 1000 << endl;
@@ -401,6 +421,10 @@ void Game::logiqueDuJeu()
 			niveaux.niveau3();
 
 			break;
+		case 4:
+			niveaux.niveau4();
+
+			break;
 		case 99:
 			niveaux.niveauTest();
 
@@ -414,6 +438,8 @@ void Game::logiqueDuJeu()
 			jeu = MISSIONACCOMPLIE;
 
 		}
+		if (niveaux.finDuJeu == true)
+			jeu = FIN;
 
 		//Collisions ennemis/missiles et affichage du score		/////////////////////////////////////////////////////////////////////
 
@@ -558,6 +584,8 @@ void Game::logiqueDuJeu()
 				musiqueNiveau1.stop();
 				musiqueNiveau2.stop();
 				musiqueNiveau3.stop();
+				musiqueNiveau4.stop();
+				musiqueFin.stop();
 
 				musiqueIntro.play();
 				musiqueIntro.setVolume(50);
@@ -605,8 +633,16 @@ void Game::logiqueDuJeu()
 			{
 				musiqueIntro.stop();
 				playMusic = true;
+				//reinitialisation de toutes les variables des niveaux
 				for (int i = 0; i < niveaux.ennemis.size(); i++)
 					niveaux.ennemis[i].vitesseTir = 0;
+				highScore.i = 0;
+				highScore.j = 0;
+				highScore.k = 0;
+				highScore.lettre = 0;
+				highScore.repereX = 250;
+				niveaux.app = 30;
+				niveaux.vit = 12;
 				niveaux.bossGo = false;
 				niveaux.bossPattern = false;
 				niveaux.missile2Actif = true;
@@ -619,6 +655,8 @@ void Game::logiqueDuJeu()
 				niveaux.shoot12 = false;
 				niveaux.shoot2 = false;
 				niveaux.shoot3 = false;
+				niveaux.shootBoss = false;
+				niveaux.shootBossFinal = false;
 				niveaux.ennemis.clear();
 				niveaux.vectMissileEnnemi.clear();
 				missiles.clear();
@@ -666,6 +704,16 @@ void Game::logiqueDuJeu()
 					musiqueNiveau3.play();
 					musiqueNiveau3.setVolume(30);
 					musiqueNiveau3.setLoop(true);
+					playMusic = false;
+				}
+				break;
+			case 4:
+				window.clear(Color(25, 0, 0));
+				if (playMusic == true)
+				{
+					musiqueNiveau4.play();
+					musiqueNiveau4.setVolume(30);
+					musiqueNiveau4.setLoop(true);
 					playMusic = false;
 				}
 				break;
@@ -717,6 +765,9 @@ void Game::logiqueDuJeu()
 
 		case MISSIONACCOMPLIE:
 			window.clear();
+			if(niveauEnCours==4)
+				ecranScoreString1 = "WAHOOOOOO !!!";
+			else
 			ecranScoreString1 = "MISSION " + to_string(niveauEnCours) + " ACCOMPLIE";
 			ecranScore1.textString = ecranScoreString1;
 			switch (niveauEnCours)
@@ -773,6 +824,7 @@ void Game::logiqueDuJeu()
 				musiqueNiveau1.stop();
 				musiqueNiveau2.stop();
 				musiqueNiveau3.stop();
+				musiqueNiveau4.stop();
 
 				playMusic = true;
 				scoreInt = scoreEtBonus;
@@ -780,8 +832,28 @@ void Game::logiqueDuJeu()
 				niveaux.clock1.restart();
 				niveaux.bossGo = false;
 				niveaux.go = false;
-				niveauEnCours++;
-				jeu = JEU;
+				niveaux.shoot1 = false;
+				niveaux.shoot12 = false;
+				niveaux.shoot2 = false;
+				niveaux.shoot3 = false;
+				niveaux.shootBoss = false;
+				niveaux.shootBossFinal = false;
+				niveaux.joueur.valeurJaugeCanon = 100;
+				niveaux.ennemis.clear();
+				goOn = false;
+				
+				if (niveauEnCours == 4)
+				{
+					temps.restart();
+					jeu = FIN;
+					musiqueFin.play();
+					musiqueFin.setVolume(40);
+				}
+				else
+				{
+					niveauEnCours++;
+					jeu = JEU;
+				}
 			}
 
 			break;
@@ -792,6 +864,7 @@ void Game::logiqueDuJeu()
 			musiqueNiveau1.stop();
 			musiqueNiveau2.stop();
 			musiqueNiveau3.stop();
+			musiqueNiveau4.stop();
 
 
 
@@ -846,6 +919,7 @@ void Game::logiqueDuJeu()
 			window.clear();
 			niveauEnCours = 0;
 			highScore.afficherHighScore(vectHighScore, window);
+			window.draw(txtHiScore.ecrireTexte());
 			if (elapsed.asSeconds() > 1.5)
 			{
 
@@ -864,7 +938,77 @@ void Game::logiqueDuJeu()
 
 			break;
 
+		case FIN:
+			window.clear();
+			
+			if (temps.getElapsedTime().asSeconds() < 5)
+			{
+				window.draw(txtFin1.ecrireTexte());
+				if (temps.getElapsedTime().asSeconds() > 2)
+					window.draw(txtFin2.ecrireTexte());
+			}
+			if (temps.getElapsedTime().asSeconds() > 5.5 && temps.getElapsedTime().asSeconds() < 8.5)
+			{
+				window.draw(txtFin3.ecrireTexte());
+				window.draw(txtFin4.ecrireTexte());
+			}
+			if (temps.getElapsedTime().asSeconds() > 9 && temps.getElapsedTime().asSeconds() < 12)
+			{
+				window.draw(txtFin5.ecrireTexte());
+				window.draw(txtFin6.ecrireTexte());
+			}
+			
+
+			
+			niveauEnCours = 0;
+			niveaux.joueur.pv = PVORIGINE;
+			pointsVieString = "X " + to_string(niveaux.joueur.pv);
+			pointsVie.textString = pointsVieString;
+			nbMegaBombe = 3;
+			strNbMegaBombe = "X " + to_string(nbMegaBombe);
+			txtMegaBombe.textString = strNbMegaBombe;
+
+
+			niveaux.joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
+			
+
+			//Permet de bloquer l'écran "PERDU" pendant une certaine durée
+			if (elapsed.asSeconds() > 13)
+			{
+				nomDuJoueur = highScore.entrerNom(window);
+				window.draw(entrezVotreNom.ecrireTexte());
+				window.draw(texteAppuyezEspace.ecrireTexte());
+				goOn = true;
+			}
+
+			niveaux.vectMissileEnnemi.clear();
+			niveaux.ennemis.clear();
+			missiles.clear();
+
+			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true ||
+				Joystick::isButtonPressed(0, 7) && goOn == true)
+			{
+
+				bdd.insertScore(nomDuJoueur, scoreInt);
+				window.clear();
+				///////////////////////////////////////////////////
+				vectHighScore = bdd.getHighScore();
+
+
+				///////////////////////////////////////////////////
+				goOn = false;
+				temps.restart();
+				tempsTitre.restart();
+				jeu = HISCORE;
+
+			}
+
+			break;
+
 		}
+
+		
+
 		window.display();
 	}
 

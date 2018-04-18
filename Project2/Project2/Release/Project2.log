@@ -1,27 +1,7 @@
-﻿  Game.cpp
-c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(114): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(131): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(148): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-c:\users\mmfur\desktop\projet 2\projet2\project2\project2\Niveaux.h(164): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-Game.cpp(12): warning C4018: '<' : incompatibilité signed/unsigned
-Game.cpp(21): warning C4018: '<' : incompatibilité signed/unsigned
-Game.cpp(28): warning C4018: '<' : incompatibilité signed/unsigned
-Game.cpp(38): warning C4018: '<' : incompatibilité signed/unsigned
-Game.cpp(59): warning C4244: 'argument' : conversion de 'time_t' en 'unsigned int', perte possible de données
-Game.cpp(98): warning C4305: 'argument' : troncation de 'double' à 'float'
-Game.cpp(178): warning C4305: 'argument' : troncation de 'double' à 'float'
-Game.cpp(254): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-Game.cpp(255): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-Game.cpp(302): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-Game.cpp(318): warning C4018: '<' : incompatibilité signed/unsigned
-Game.cpp(496): warning C4018: '<' : incompatibilité signed/unsigned
-Game.cpp(513): warning C4018: '<' : incompatibilité signed/unsigned
-Game.cpp(583): warning C4244: 'argument' : conversion de 'float' en 'sf::Uint8', perte possible de données
-Game.cpp(584): warning C4244: 'argument' : conversion de 'float' en 'sf::Uint8', perte possible de données
-Game.cpp(608): warning C4018: '<' : incompatibilité signed/unsigned
-  Génération de code en cours
-  2 of 2675 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+﻿  Génération de code en cours
+  0 of 2861 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    20 functions had inline decision re-evaluated but remain unchanged
   Fin de la génération du code
-  Project2.vcxproj -> C:\Users\mmfur\Desktop\Projet 2\Projet2\Project2\Release\Project2.exe
+  Project2.vcxproj -> D:\projet C++\Projet2\Project2\Release\Project2.exe
+  Project2.vcxproj -> D:\projet C++\Projet2\Project2\Release\Project2.pdb (Full PDB)

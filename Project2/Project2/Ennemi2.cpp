@@ -19,8 +19,8 @@ Ennemi2::Ennemi2() :Ennemi()
 	sprite.setScale(4, 4);
 	sprite.setOrigin(sprite.getTextureRect().width / 2, sprite.getTextureRect().height);
 //	pattern = Vector2f(0.f, 3.f);
-	pv = 7;
-	points = 700;
+	pv = 15;
+	points = 1000;
 	
 	
 	

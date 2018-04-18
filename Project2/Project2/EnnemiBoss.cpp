@@ -11,6 +11,11 @@ EnnemiBoss::EnnemiBoss()
 		cout << "erreur" << endl;
 		system("pause");
 	}
+	if (!texture2.loadFromFile("Images/cat.png"))
+	{
+		cout << "erreur" << endl;
+		system("pause");
+	}
 
 	sprite.setTexture(texture);
 	sprite.setTextureRect(IntRect(0, 0, 16, 16));
