@@ -1,0 +1,47 @@
+\hypertarget{class_b_d_d}{}\section{B\+DD Class Reference}
+\label{class_b_d_d}\index{B\+DD@{B\+DD}}
+
+
+Classe gérant la création de la \mbox{\hyperlink{class_b_d_d}{B\+DD}}.  
+
+
+
+
+{\ttfamily \#include $<$B\+D\+D.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_b_d_d_ac496884b98cc0a57192b7b507f5dc38c}\label{class_b_d_d_ac496884b98cc0a57192b7b507f5dc38c}} 
+void {\bfseries open\+Database} ()
+\item 
+\mbox{\Hypertarget{class_b_d_d_a147be90295ed937f3d450f0c3aeeb3ee}\label{class_b_d_d_a147be90295ed937f3d450f0c3aeeb3ee}} 
+void \mbox{\hyperlink{class_b_d_d_a147be90295ed937f3d450f0c3aeeb3ee}{close\+Database}} ()
+\begin{DoxyCompactList}\small\item\em Fonction d\textquotesingle{}ouverture de la base de données. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_b_d_d_a739300647fc688e854aec5dc2aaa606b}\label{class_b_d_d_a739300647fc688e854aec5dc2aaa606b}} 
+bool \mbox{\hyperlink{class_b_d_d_a739300647fc688e854aec5dc2aaa606b}{execute\+Query}} (std\+::string query)
+\begin{DoxyCompactList}\small\item\em Fonction de fermeture de la base de données. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_b_d_d_a8031fec345574ff44abe2491b75b0073}\label{class_b_d_d_a8031fec345574ff44abe2491b75b0073}} 
+bool {\bfseries insert\+Score} (std\+::string nom, int score)
+\item 
+\mbox{\Hypertarget{class_b_d_d_a9c14215b42c02cfdfb6774a28f7517a1}\label{class_b_d_d_a9c14215b42c02cfdfb6774a28f7517a1}} 
+std\+::vector$<$ \mbox{\hyperlink{classenregistrement_b_d_d}{enregistrement\+B\+DD}} $\ast$ $>$ $\ast$ \mbox{\hyperlink{class_b_d_d_a9c14215b42c02cfdfb6774a28f7517a1}{get\+High\+Score}} ()
+\begin{DoxyCompactList}\small\item\em Fonction permettant d\textquotesingle{}écrire dans la \mbox{\hyperlink{class_b_d_d}{B\+DD}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_b_d_d_addcb41f87c2c17d3cde49aea698158db}\label{class_b_d_d_addcb41f87c2c17d3cde49aea698158db}} 
+std\+::string \mbox{\hyperlink{class_b_d_d_addcb41f87c2c17d3cde49aea698158db}{dbfile}}
+\begin{DoxyCompactList}\small\item\em Récupération des 6 meilleurs scores. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_b_d_d_a86db71551298c29c84cfbbe45e16b368}\label{class_b_d_d_a86db71551298c29c84cfbbe45e16b368}} 
+sqlite3 $\ast$ \mbox{\hyperlink{class_b_d_d_a86db71551298c29c84cfbbe45e16b368}{db}}
+\begin{DoxyCompactList}\small\item\em Chemin d\textquotesingle{}accès de la \mbox{\hyperlink{class_b_d_d}{B\+DD}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe gérant la création de la \mbox{\hyperlink{class_b_d_d}{B\+DD}}. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+prog/B\+D\+D.\+h\item 
+prog/B\+D\+D.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,101 @@
+\hypertarget{class_joueur}{}\section{Joueur Class Reference}
+\label{class_joueur}\index{Joueur@{Joueur}}
+
+
+Classe de création du joueur.  
+
+
+
+
+{\ttfamily \#include $<$Joueur.\+h$>$}
+
+Inheritance diagram for Joueur\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_joueur}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_joueur_affaf3cbb532de17e8e2308dd94041ca5}\label{class_joueur_affaf3cbb532de17e8e2308dd94041ca5}} 
+sf\+::\+Vector2f {\bfseries deplacement} ()
+\item 
+\mbox{\Hypertarget{class_joueur_a30328b5202617be22da3a53d00a6feb4}\label{class_joueur_a30328b5202617be22da3a53d00a6feb4}} 
+void {\bfseries collision\+Ennemi} (\mbox{\hyperlink{class_ennemi}{Ennemi}} ennemi)
+\item 
+\mbox{\Hypertarget{class_joueur_aafe639c272e0840a2fdab8f98883495f}\label{class_joueur_aafe639c272e0840a2fdab8f98883495f}} 
+void \mbox{\hyperlink{class_joueur_aafe639c272e0840a2fdab8f98883495f}{collision\+Bordure}} (\mbox{\hyperlink{class_bordure}{Bordure}} bordure)
+\begin{DoxyCompactList}\small\item\em Fonction gérant la collision avec les ennemis. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_a283dfffc2c544e5e1ec7bf8ba5f9eb86}\label{class_joueur_a283dfffc2c544e5e1ec7bf8ba5f9eb86}} 
+void \mbox{\hyperlink{class_joueur_a283dfffc2c544e5e1ec7bf8ba5f9eb86}{joueur\+Repop\+Invincible}} (sf\+::\+Clock \mbox{\hyperlink{class_joueur_a44430a894e00f3e94c72af4e29cf862c}{clock}})
+\begin{DoxyCompactList}\small\item\em Fonction gérant la collision avec les bords de l\textquotesingle{}écran. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_a11311581a6d1c82dc8b6cc0944c45d66}\label{class_joueur_a11311581a6d1c82dc8b6cc0944c45d66}} 
+void \mbox{\hyperlink{class_joueur_a11311581a6d1c82dc8b6cc0944c45d66}{joueur\+Normal\+Apres\+Invincible}} ()
+\begin{DoxyCompactList}\small\item\em Fonction permettant de faire réapparaitre le joueur à sa position initiale lorsqu\textquotesingle{}il est touché et de le rendre invincible pendant quelques secondes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_aa898012c7e1be28dab380b66cfe80619}\label{class_joueur_aa898012c7e1be28dab380b66cfe80619}} 
+void \mbox{\hyperlink{class_joueur_aa898012c7e1be28dab380b66cfe80619}{jaugecanon}} ()
+\begin{DoxyCompactList}\small\item\em Le joueur redevient normal et vulnérable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_joueur_ab48403f63a4482a004f3ad4968868d2a}\label{class_joueur_ab48403f63a4482a004f3ad4968868d2a}} 
+sf\+::\+Vector2f \mbox{\hyperlink{class_joueur_ab48403f63a4482a004f3ad4968868d2a}{joueur\+Position\+Precedente}}
+\begin{DoxyCompactList}\small\item\em gestion de la jauge diminuant lors de l\textquotesingle{}utilisation du canon \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_abd5a7ad29404d19fdd7654ba246c7613}\label{class_joueur_abd5a7ad29404d19fdd7654ba246c7613}} 
+sf\+::\+Texture \mbox{\hyperlink{class_joueur_abd5a7ad29404d19fdd7654ba246c7613}{texture}}
+\begin{DoxyCompactList}\small\item\em position utilisée lors des collisions avec les bords de l\textquotesingle{}écran \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_a4a82216c7470860f2f3f8475ce6177ae}\label{class_joueur_a4a82216c7470860f2f3f8475ce6177ae}} 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_joueur_a4a82216c7470860f2f3f8475ce6177ae}{hit\+Box\+Joueur}}
+\begin{DoxyCompactList}\small\item\em texture du joueur \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_aca8838903a5f779e69c7989a76bbe26a}\label{class_joueur_aca8838903a5f779e69c7989a76bbe26a}} 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_joueur_aca8838903a5f779e69c7989a76bbe26a}{forme\+Jauge\+Canon}}
+\begin{DoxyCompactList}\small\item\em forme représentant la hitbox du joueur \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_a7935eefd61dbbf420116236a7ba068fd}\label{class_joueur_a7935eefd61dbbf420116236a7ba068fd}} 
+sf\+::\+Rectangle\+Shape \mbox{\hyperlink{class_joueur_a7935eefd61dbbf420116236a7ba068fd}{contour\+Jauge\+Canon}}
+\begin{DoxyCompactList}\small\item\em forme représentant la jauge du canon \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_a77d0ff40f510bbc57879ea2c415e3a50}\label{class_joueur_a77d0ff40f510bbc57879ea2c415e3a50}} 
+float \mbox{\hyperlink{class_joueur_a77d0ff40f510bbc57879ea2c415e3a50}{vitesse}}
+\begin{DoxyCompactList}\small\item\em bordure de la jauge du canon \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_a3c2aedb65e63a8e62ed6a4bda3b4cf27}\label{class_joueur_a3c2aedb65e63a8e62ed6a4bda3b4cf27}} 
+int \mbox{\hyperlink{class_joueur_a3c2aedb65e63a8e62ed6a4bda3b4cf27}{pv}}
+\begin{DoxyCompactList}\small\item\em vitesse du joueur \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_a7616d37e17b6894b61cb0090bafcc739}\label{class_joueur_a7616d37e17b6894b61cb0090bafcc739}} 
+bool \mbox{\hyperlink{class_joueur_a7616d37e17b6894b61cb0090bafcc739}{invincible}}
+\begin{DoxyCompactList}\small\item\em points de vie du joueur \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_ac373cdd21b69d52a960c7430125e41a3}\label{class_joueur_ac373cdd21b69d52a960c7430125e41a3}} 
+bool \mbox{\hyperlink{class_joueur_ac373cdd21b69d52a960c7430125e41a3}{move}}
+\begin{DoxyCompactList}\small\item\em état invincible ou non \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_a8c1f6a4f816388bd77e3a1002b102684}\label{class_joueur_a8c1f6a4f816388bd77e3a1002b102684}} 
+bool \mbox{\hyperlink{class_joueur_a8c1f6a4f816388bd77e3a1002b102684}{temps\+Restart}}
+\begin{DoxyCompactList}\small\item\em le joueur peut bouger ou non \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_a705a4994902943b4bf0b37b37db1a95c}\label{class_joueur_a705a4994902943b4bf0b37b37db1a95c}} 
+bool {\bfseries boom}
+\item 
+\mbox{\Hypertarget{class_joueur_a8d0d4ed7dfb0a9cc20d3f0f328a7a852}\label{class_joueur_a8d0d4ed7dfb0a9cc20d3f0f328a7a852}} 
+bool {\bfseries tir\+OK} = true
+\item 
+\mbox{\Hypertarget{class_joueur_a12525a5ca0c607ccf3403e5f8c3a1bda}\label{class_joueur_a12525a5ca0c607ccf3403e5f8c3a1bda}} 
+bool \mbox{\hyperlink{class_joueur_a12525a5ca0c607ccf3403e5f8c3a1bda}{canon\+Actif}} = false
+\begin{DoxyCompactList}\small\item\em le joueur peut tirer ou non \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_aedef76a29c76026dbb6b01a0884e05dc}\label{class_joueur_aedef76a29c76026dbb6b01a0884e05dc}} 
+bool \mbox{\hyperlink{class_joueur_aedef76a29c76026dbb6b01a0884e05dc}{S\+FX}} = false
+\begin{DoxyCompactList}\small\item\em permet de vérifier si la touche d\textquotesingle{}activation du canon est enfoncée ou pas \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_ae253373e58b6eb673ac4ae093bc3b366}\label{class_joueur_ae253373e58b6eb673ac4ae093bc3b366}} 
+int \mbox{\hyperlink{class_joueur_ae253373e58b6eb673ac4ae093bc3b366}{i}} = 0
+\begin{DoxyCompactList}\small\item\em activation des effets sonores \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_afc5f403f130bb3426dffca6a24d79538}\label{class_joueur_afc5f403f130bb3426dffca6a24d79538}} 
+float \mbox{\hyperlink{class_joueur_afc5f403f130bb3426dffca6a24d79538}{valeur\+Jauge\+Canon}} = 100
+\begin{DoxyCompactList}\small\item\em incrémenteur utilisé pour l\textquotesingle{}animation du joueur \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_joueur_a44430a894e00f3e94c72af4e29cf862c}\label{class_joueur_a44430a894e00f3e94c72af4e29cf862c}} 
+sf\+::\+Clock \mbox{\hyperlink{class_joueur_a44430a894e00f3e94c72af4e29cf862c}{clock}}
+\begin{DoxyCompactList}\small\item\em valeur de la jauge du canon \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe de création du joueur. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+prog/Joueur.\+h\item 
+prog/Joueur.\+cpp\end{DoxyCompactItemize}

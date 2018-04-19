@@ -1,0 +1,98 @@
+\hypertarget{class_ennemi}{}\section{Ennemi Class Reference}
+\label{class_ennemi}\index{Ennemi@{Ennemi}}
+
+
+Classe de création des vaisseaux ennemis.  
+
+
+
+
+{\ttfamily \#include $<$Ennemi.\+h$>$}
+
+Inheritance diagram for Ennemi\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_ennemi}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_ennemi_a59b9815cc107dfed3eed6d33e7134d03}\label{class_ennemi_a59b9815cc107dfed3eed6d33e7134d03}} 
+void {\bfseries deplacement} ()
+\item 
+\mbox{\Hypertarget{class_ennemi_ae7639e1f4294da03f07d07fc55c882bb}\label{class_ennemi_ae7639e1f4294da03f07d07fc55c882bb}} 
+void \mbox{\hyperlink{class_ennemi_ae7639e1f4294da03f07d07fc55c882bb}{explosion\+Ennemi}} ()
+\begin{DoxyCompactList}\small\item\em méthode gérant le déplacement des ennemis \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_ennemi_a522aca698f9b5042ddfdfe1b9ed35a0a}\label{class_ennemi_a522aca698f9b5042ddfdfe1b9ed35a0a}} 
+void \mbox{\hyperlink{class_ennemi_a522aca698f9b5042ddfdfe1b9ed35a0a}{ennemi\+Hit}} ()
+\begin{DoxyCompactList}\small\item\em Lorsqu\textquotesingle{}un ennemi n\textquotesingle{}a plus de PV, il explose. Cette méthode permet de modifier le sprite de l\textquotesingle{}ennemi pour le transformer en explosion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_ennemi_a2dba94391ffa427ead3aa2688394342c}\label{class_ennemi_a2dba94391ffa427ead3aa2688394342c}} 
+void \mbox{\hyperlink{class_ennemi_a2dba94391ffa427ead3aa2688394342c}{tirer}} ()
+\begin{DoxyCompactList}\small\item\em Lorsqu\textquotesingle{}un ennemi est touché mais a toujours PV$>$0, il clignote brièvement en rouge. Cette méthode modifie la couleur du sprite de l\textquotesingle{}ennemi avec la fonction S\+F\+ML .set\+Color() \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_ennemi_ace453eadb96585c7dc37f7ee4dd04273}\label{class_ennemi_ace453eadb96585c7dc37f7ee4dd04273}} 
+sf\+::\+Texture {\bfseries explosion}
+\item 
+\mbox{\Hypertarget{class_ennemi_acf8fb95ff9780d8b2e244de3999727d5}\label{class_ennemi_acf8fb95ff9780d8b2e244de3999727d5}} 
+sf\+::\+Texture \mbox{\hyperlink{class_ennemi_acf8fb95ff9780d8b2e244de3999727d5}{texture}}
+\begin{DoxyCompactList}\small\item\em Texture de l\textquotesingle{}explosion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_ennemi_a2953d1b46b7fad6b2ff40ff511bc3ee3}\label{class_ennemi_a2953d1b46b7fad6b2ff40ff511bc3ee3}} 
+sf\+::\+Vector2f \mbox{\hyperlink{class_ennemi_a2953d1b46b7fad6b2ff40ff511bc3ee3}{pattern}}
+\begin{DoxyCompactList}\small\item\em Texture normale de l\textquotesingle{}ennemi. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_ennemi_a01bd46b3dcfe57606047fd625aa0723c}\label{class_ennemi_a01bd46b3dcfe57606047fd625aa0723c}} 
+int \mbox{\hyperlink{class_ennemi_a01bd46b3dcfe57606047fd625aa0723c}{pv}}
+\begin{DoxyCompactList}\small\item\em Vecteur de flottants contenant le mouvemlent de l\textquotesingle{}ennemi. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_ennemi_a0d0cb59854e13d4e7b35385299d49f01}\label{class_ennemi_a0d0cb59854e13d4e7b35385299d49f01}} 
+int \mbox{\hyperlink{class_ennemi_a0d0cb59854e13d4e7b35385299d49f01}{points}}
+\begin{DoxyCompactList}\small\item\em Nombre de points de vie de l\textquotesingle{}ennemi. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_ennemi_acbf0a832ef05cb5710ebb3770b9b4712}\label{class_ennemi_acbf0a832ef05cb5710ebb3770b9b4712}} 
+bool \mbox{\hyperlink{class_ennemi_acbf0a832ef05cb5710ebb3770b9b4712}{boom}} = false
+\begin{DoxyCompactList}\small\item\em Points rapportés au joueur lorsque l\textquotesingle{}ennemi est détruit. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_ennemi_aa4ef3ea57356bb41feb3b45438e4f1ce}\label{class_ennemi_aa4ef3ea57356bb41feb3b45438e4f1ce}} 
+bool {\bfseries incr\+Score} = true
+\item 
+\mbox{\Hypertarget{class_ennemi_a907151bfeaabc72f7cb6cfb6d9e14bb3}\label{class_ennemi_a907151bfeaabc72f7cb6cfb6d9e14bb3}} 
+bool {\bfseries dégats\+Joueur} = true
+\item 
+\mbox{\Hypertarget{class_ennemi_a55e5947385d10b7ef1f94417fffb63e9}\label{class_ennemi_a55e5947385d10b7ef1f94417fffb63e9}} 
+bool \mbox{\hyperlink{class_ennemi_a55e5947385d10b7ef1f94417fffb63e9}{move}} = true
+\begin{DoxyCompactList}\small\item\em Lorsque ce booléen est T\+R\+UE, l\textquotesingle{}ennemi inflige des dégats au joueur lorsqu\textquotesingle{}il y a collision. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_ennemi_ae3d34c3d9b246593f781347adacc1f3a}\label{class_ennemi_ae3d34c3d9b246593f781347adacc1f3a}} 
+bool \mbox{\hyperlink{class_ennemi_ae3d34c3d9b246593f781347adacc1f3a}{hit}} = false
+\begin{DoxyCompactList}\small\item\em ce booléen est utilisé afin de bloquer le mouvement de l\textquotesingle{}ennemi lorsque ses PV=0 afin que le sprite de son explosion ne se déplace pas \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_ennemi_ad9c73f7fec8685d9d558d2c518b8e099}\label{class_ennemi_ad9c73f7fec8685d9d558d2c518b8e099}} 
+bool {\bfseries shoot} = false
+\item 
+\mbox{\Hypertarget{class_ennemi_ac83f632da93cda2d5fc90752af0a0abc}\label{class_ennemi_ac83f632da93cda2d5fc90752af0a0abc}} 
+bool \mbox{\hyperlink{class_ennemi_ac83f632da93cda2d5fc90752af0a0abc}{tir\+Ok}} = false
+\begin{DoxyCompactList}\small\item\em lorsque shoot = true, l\textquotesingle{}ennemi tire \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_ennemi_ac26fe5ce582430a726ab29997258643e}\label{class_ennemi_ac26fe5ce582430a726ab29997258643e}} 
+bool \mbox{\hyperlink{class_ennemi_ac26fe5ce582430a726ab29997258643e}{S\+FX}} = true
+\begin{DoxyCompactList}\small\item\em ce booléen est utilisé afin d\textquotesingle{}activer le tir depuis une autre classe \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_ennemi_a8b6d22ecf4d65cff6cd9735d7497ace1}\label{class_ennemi_a8b6d22ecf4d65cff6cd9735d7497ace1}} 
+float {\bfseries inc} = 0
+\item 
+\mbox{\Hypertarget{class_ennemi_a6a4f426faa99e8f5e74b6a4c45eea9e8}\label{class_ennemi_a6a4f426faa99e8f5e74b6a4c45eea9e8}} 
+sf\+::\+Clock \mbox{\hyperlink{class_ennemi_a6a4f426faa99e8f5e74b6a4c45eea9e8}{clock\+Hit}}
+\begin{DoxyCompactList}\small\item\em variable d\textquotesingle{}incrémentation utilisée dans l\textquotesingle{}animation de l\textquotesingle{}explosion, permet de passer d\textquotesingle{}une frame d\textquotesingle{}animation à une autre grâce à une incrémantation de 14px \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_ennemi_a6bbe605d71452836b42e94ef8cf9fe45}\label{class_ennemi_a6bbe605d71452836b42e94ef8cf9fe45}} 
+sf\+::\+Clock \mbox{\hyperlink{class_ennemi_a6bbe605d71452836b42e94ef8cf9fe45}{clock\+Explosion}}
+\begin{DoxyCompactList}\small\item\em Permet de gérer la durée de la fonction ennemi\+Hit. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_ennemi_a02b4351e7babcecf911f1554b593be79}\label{class_ennemi_a02b4351e7babcecf911f1554b593be79}} 
+sf\+::\+Clock \mbox{\hyperlink{class_ennemi_a02b4351e7babcecf911f1554b593be79}{missile\+Clock}}
+\begin{DoxyCompactList}\small\item\em Clock gérant l\textquotesingle{}animation de l\textquotesingle{}explosion. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_ennemi_a3fbc750432c43e977808d3b4a96f7f75}\label{class_ennemi_a3fbc750432c43e977808d3b4a96f7f75}} 
+int {\bfseries vitesse\+Tir}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe de création des vaisseaux ennemis. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+prog/Ennemi.\+h\item 
+prog/Ennemi.\+cpp\end{DoxyCompactItemize}

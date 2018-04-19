@@ -1,0 +1,279 @@
+\hypertarget{class_niveaux}{}\section{Niveaux Class Reference}
+\label{class_niveaux}\index{Niveaux@{Niveaux}}
+
+
+Classe de création des niveaux faisant office d\textquotesingle{}éditeur de niveaux.  
+
+
+
+
+{\ttfamily \#include $<$Niveaux.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_niveaux_a9cc426bdc08db384dfa02c69bb6c6f96}\label{class_niveaux_a9cc426bdc08db384dfa02c69bb6c6f96}} 
+void \mbox{\hyperlink{class_niveaux_a9cc426bdc08db384dfa02c69bb6c6f96}{niveau1}} ()
+\begin{DoxyCompactList}\small\item\em C\textquotesingle{}est ici que sont créés les différents niveaux. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a02e17b5525c5738e0b7317f3f4d04ad1}\label{class_niveaux_a02e17b5525c5738e0b7317f3f4d04ad1}} 
+void \mbox{\hyperlink{class_niveaux_a02e17b5525c5738e0b7317f3f4d04ad1}{niveau2}} ()
+\begin{DoxyCompactList}\small\item\em Méthode contenant toutes les données du niveau 1. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_ab2b835ee8f509329ca8f5d83108fb2a8}\label{class_niveaux_ab2b835ee8f509329ca8f5d83108fb2a8}} 
+void \mbox{\hyperlink{class_niveaux_ab2b835ee8f509329ca8f5d83108fb2a8}{niveau3}} ()
+\begin{DoxyCompactList}\small\item\em Méthode contenant toutes les données du niveau 2. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a25b5210552a2500852e36cf79058537e}\label{class_niveaux_a25b5210552a2500852e36cf79058537e}} 
+void \mbox{\hyperlink{class_niveaux_a25b5210552a2500852e36cf79058537e}{niveau4}} ()
+\begin{DoxyCompactList}\small\item\em Méthode contenant toutes les données du niveau 3. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a28e3ac0fd958550e38bd9784f91b4064}\label{class_niveaux_a28e3ac0fd958550e38bd9784f91b4064}} 
+void \mbox{\hyperlink{class_niveaux_a28e3ac0fd958550e38bd9784f91b4064}{niveau\+Test}} ()
+\begin{DoxyCompactList}\small\item\em Méthode contenant toutes les données du niveau 4. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a4c70e2ed5a72255b274a4a8f8d032f7a}\label{class_niveaux_a4c70e2ed5a72255b274a4a8f8d032f7a}} 
+void {\bfseries gestion\+Vecteur\+Ennemis\+Et\+Missiles\+Ennemis} ()
+\item 
+int \mbox{\hyperlink{class_niveaux_af01fdf0f42d54fea61f299a5875b16d3}{ennemi\+Pop}} (unsigned int vitesse)
+\begin{DoxyCompactList}\small\item\em vitesse d\textquotesingle{}apparition des ennemis de type boss \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_niveaux_abd64ac2e8891cfb204ebd5e433ff94b6}{aleatoire}} ()
+\begin{DoxyCompactList}\small\item\em Vector contenant les différents ennemis. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_niveaux_af01fef3a80ba9ff2083a06fc2e6b0abd}{lancement\+Ennemis1}} (float debut, float fin, int vitesse\+Apparition, int x, int y, float vitesseX, float vitesseY)
+\begin{DoxyCompactList}\small\item\em Création d\textquotesingle{}un objet \mbox{\hyperlink{class_joueur}{Joueur}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a106d71ceea76ee60ca90c47963442b9b}\label{class_niveaux_a106d71ceea76ee60ca90c47963442b9b}} 
+void {\bfseries lancement\+Ennemis12} (float debut, float fin, int vitesse\+Apparition, int x, int y, float vitesseX, float vitesseY)
+\item 
+\mbox{\Hypertarget{class_niveaux_acd52f679ab3d0e504a8c5168275efcd2}\label{class_niveaux_acd52f679ab3d0e504a8c5168275efcd2}} 
+void {\bfseries lancement\+Ennemis2} (float debut, float fin, int vitesse\+Apparition, int x, int y, float vitesseX, float vitesseY)
+\item 
+\mbox{\Hypertarget{class_niveaux_a06828646654b91d9feab64227753bfb4}\label{class_niveaux_a06828646654b91d9feab64227753bfb4}} 
+void {\bfseries lancement\+Ennemis3} (float debut, float fin, int vitesse\+Apparition, int x, int y, float vitesseX, float vitesseY)
+\item 
+\mbox{\Hypertarget{class_niveaux_af23d1e7d05ffd22dd6c283af89b74d2a}\label{class_niveaux_af23d1e7d05ffd22dd6c283af89b74d2a}} 
+void \mbox{\hyperlink{class_niveaux_af23d1e7d05ffd22dd6c283af89b74d2a}{rotation\+Ennemis}} ()
+\begin{DoxyCompactList}\small\item\em Cette fonction permet de gérer l\textquotesingle{}orientation de l\textquotesingle{}ennemi dans le sens de son déplacement. \end{DoxyCompactList}\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_niveaux_a4a42871f41dc2124a8bf272bc877381e}{tete\+Chercheuse}} (\mbox{\hyperlink{class_joueur}{Joueur}} \mbox{\hyperlink{class_niveaux_a5b99cb21e16562ea3e65f89fa6e35372}{joueur}}, \mbox{\hyperlink{class_ennemi}{Ennemi}} ennemi, float vitesse, float x\+Rand)
+\item 
+\mbox{\Hypertarget{class_niveaux_a92efdde72dceef45f8bf6b1e3f393a58}\label{class_niveaux_a92efdde72dceef45f8bf6b1e3f393a58}} 
+sf\+::\+Vector2f \mbox{\hyperlink{class_niveaux_a92efdde72dceef45f8bf6b1e3f393a58}{tete\+Chercheuse}} (\mbox{\hyperlink{class_joueur}{Joueur}} \mbox{\hyperlink{class_niveaux_a5b99cb21e16562ea3e65f89fa6e35372}{joueur}}, int pos, float vitesse)
+\begin{DoxyCompactList}\small\item\em Version surchargée avec un argument en moins afin de l\textquotesingle{}utiliser pour déplacer un ennemi vers la position du joueur. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a1390969eae72324ee7f707ecbf64b3fc}\label{class_niveaux_a1390969eae72324ee7f707ecbf64b3fc}} 
+sf\+::\+Vector2f \mbox{\hyperlink{class_niveaux_a1390969eae72324ee7f707ecbf64b3fc}{spirale}} (float vitesse\+Rotation, float vitesse\+Deplacement)
+\begin{DoxyCompactList}\small\item\em Pattern de tir en forme de spirale. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_aac23502d5ea1d6bd7b645b321b5271e2}\label{class_niveaux_aac23502d5ea1d6bd7b645b321b5271e2}} 
+sf\+::\+Vector2f \mbox{\hyperlink{class_niveaux_aac23502d5ea1d6bd7b645b321b5271e2}{reverse\+Spirale}} (float vitesse\+Rotation, float vitesse\+Deplacement)
+\begin{DoxyCompactList}\small\item\em Pattern en spirale inversée \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a307a834f4fa05bf1c727b2153881d66b}\label{class_niveaux_a307a834f4fa05bf1c727b2153881d66b}} 
+bool \mbox{\hyperlink{class_niveaux_a307a834f4fa05bf1c727b2153881d66b}{tirY}} (\mbox{\hyperlink{class_ennemi}{Ennemi}} ennemi, int debut, int fin)
+\begin{DoxyCompactList}\small\item\em L\textquotesingle{}ennemi se met à tirer à la position \char`\"{}début\char`\"{} et cesse à la position \char`\"{}fin\char`\"{} (en onrdonnée) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a0bebae4c6f6b1cb3b772b9e2f79d0d00}\label{class_niveaux_a0bebae4c6f6b1cb3b772b9e2f79d0d00}} 
+bool \mbox{\hyperlink{class_niveaux_a0bebae4c6f6b1cb3b772b9e2f79d0d00}{tirX}} (\mbox{\hyperlink{class_ennemi}{Ennemi}} ennemi, int debut, int fin)
+\begin{DoxyCompactList}\small\item\em L\textquotesingle{}ennemi se met à tirer à la position \char`\"{}début\char`\"{} et cesse à la position \char`\"{}fin\char`\"{} (en abscisse) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_niveaux_ae819d9af466367e01744cd5d848b5482}{shoot1}} = false
+\begin{DoxyCompactList}\small\item\em fonction permettant de placer les ennemis et les projectiles ennemis dans un vecteur \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_ab296ae58a3c1785e695850096aff095d}\label{class_niveaux_ab296ae58a3c1785e695850096aff095d}} 
+bool \mbox{\hyperlink{class_niveaux_ab296ae58a3c1785e695850096aff095d}{shoot12}} = false
+\begin{DoxyCompactList}\small\item\em Lancement des objets ennemi1. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_accc6a92a050730ee2ee28b50da765946}\label{class_niveaux_accc6a92a050730ee2ee28b50da765946}} 
+bool \mbox{\hyperlink{class_niveaux_accc6a92a050730ee2ee28b50da765946}{shoot2}} = false
+\begin{DoxyCompactList}\small\item\em Lancement des objets ennemi12. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a7244489a9a5e378202d8c9dcacb3b81a}\label{class_niveaux_a7244489a9a5e378202d8c9dcacb3b81a}} 
+bool \mbox{\hyperlink{class_niveaux_a7244489a9a5e378202d8c9dcacb3b81a}{shoot3}} = false
+\begin{DoxyCompactList}\small\item\em Lancement des objets ennemi2. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_ad96e2b7a2aa6b317e238f0569d4a34ba}\label{class_niveaux_ad96e2b7a2aa6b317e238f0569d4a34ba}} 
+bool \mbox{\hyperlink{class_niveaux_ad96e2b7a2aa6b317e238f0569d4a34ba}{shoot\+Boss}} = false
+\begin{DoxyCompactList}\small\item\em Lancement des objets ennemi3. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_ae17183082440ab27c83bc6aa670f645e}\label{class_niveaux_ae17183082440ab27c83bc6aa670f645e}} 
+bool \mbox{\hyperlink{class_niveaux_ae17183082440ab27c83bc6aa670f645e}{shoot\+Boss\+Final}} = false
+\begin{DoxyCompactList}\small\item\em Lancement du boss 1. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a1330f8179bc2a3ecb8d4e0bf9ca76aaa}\label{class_niveaux_a1330f8179bc2a3ecb8d4e0bf9ca76aaa}} 
+bool \mbox{\hyperlink{class_niveaux_a1330f8179bc2a3ecb8d4e0bf9ca76aaa}{fini}} = false
+\begin{DoxyCompactList}\small\item\em Lancement du boss final. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a66ac0f6a0dae223d1fd9dbe52e80a537}\label{class_niveaux_a66ac0f6a0dae223d1fd9dbe52e80a537}} 
+bool \mbox{\hyperlink{class_niveaux_a66ac0f6a0dae223d1fd9dbe52e80a537}{fin\+Du\+Jeu}} = false
+\begin{DoxyCompactList}\small\item\em Lorsqu\textquotesingle{}il est T\+R\+UE, le niveau est terminé. Sa valeur est testée à la ligne 424 de la classe Game.\+cpp et permet de passer à l\textquotesingle{}écran \char`\"{}\+M\+I\+S\+S\+I\+O\+N\+A\+C\+C\+O\+M\+P\+L\+I\+E\char`\"{}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a3ebda11eb8c60b0627a4cacc682cf325}\label{class_niveaux_a3ebda11eb8c60b0627a4cacc682cf325}} 
+bool \mbox{\hyperlink{class_niveaux_a3ebda11eb8c60b0627a4cacc682cf325}{go}} = false
+\begin{DoxyCompactList}\small\item\em Lorsqu\textquotesingle{}il est T\+R\+EU, permet de passer au écran de fin du jeu. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_af6c482aa96abde442494ad353a456f90}\label{class_niveaux_af6c482aa96abde442494ad353a456f90}} 
+bool \mbox{\hyperlink{class_niveaux_af6c482aa96abde442494ad353a456f90}{boss\+Go}} = false
+\begin{DoxyCompactList}\small\item\em Il arrive qu\textquotesingle{}un ennemi \char`\"{}bloque\char`\"{} l\textquotesingle{}action tant que ses PV$>$0. Ce booléen permet de relancer l\textquotesingle{}action une fois les PV=0. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a310e91860a7fb1047742b4654c231fe0}\label{class_niveaux_a310e91860a7fb1047742b4654c231fe0}} 
+bool \mbox{\hyperlink{class_niveaux_a310e91860a7fb1047742b4654c231fe0}{boss\+Pattern}} = false
+\begin{DoxyCompactList}\small\item\em Utilisé pour lancer l\textquotesingle{}action du boss. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_ae987b39fd8bc72779775cc2daa13be72}\label{class_niveaux_ae987b39fd8bc72779775cc2daa13be72}} 
+bool \mbox{\hyperlink{class_niveaux_ae987b39fd8bc72779775cc2daa13be72}{missile2\+Actif}} = true
+\begin{DoxyCompactList}\small\item\em quand il est T\+R\+UE, permet de lancer le pattern droite/gauche du boss \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a753971022f595dd0c3ebb470b9aa9eba}\label{class_niveaux_a753971022f595dd0c3ebb470b9aa9eba}} 
+sf\+::\+Clock \mbox{\hyperlink{class_niveaux_a753971022f595dd0c3ebb470b9aa9eba}{clock1}}
+\begin{DoxyCompactList}\small\item\em Permet d\textquotesingle{}activer le deuxième vector de projectiles ennemis. \end{DoxyCompactList}\item 
+sf\+::\+Clock \mbox{\hyperlink{class_niveaux_a4a93683a35a90181218f8858a883a93a}{vitesse\+Ennemi\+Pop1}}
+\begin{DoxyCompactList}\small\item\em Ces clocks permettent de gérer la vitesse à laquelle les ennemis/boss sont placé dans le vecteur d\textquotesingle{}ennemis. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_acea936f3ad9dd6cbb17818ca75d43bdf}\label{class_niveaux_acea936f3ad9dd6cbb17818ca75d43bdf}} 
+sf\+::\+Clock \mbox{\hyperlink{class_niveaux_acea936f3ad9dd6cbb17818ca75d43bdf}{vitesse\+Ennemi\+Pop2}}
+\begin{DoxyCompactList}\small\item\em vitesse de mise en vecteur des ennemis de type 1 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a01d964627863fce4c63396a53a3803d5}\label{class_niveaux_a01d964627863fce4c63396a53a3803d5}} 
+sf\+::\+Clock \mbox{\hyperlink{class_niveaux_a01d964627863fce4c63396a53a3803d5}{vitesse\+Ennemi\+Pop3}}
+\begin{DoxyCompactList}\small\item\em vitesse de mise en vecteur des ennemis de type 2 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a9735f68c6435670e148f131a1a293082}\label{class_niveaux_a9735f68c6435670e148f131a1a293082}} 
+sf\+::\+Clock \mbox{\hyperlink{class_niveaux_a9735f68c6435670e148f131a1a293082}{vitesse\+Boss\+Pop}}
+\begin{DoxyCompactList}\small\item\em vitesse de mise en vecteur des ennemis de type 3 \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_niveaux_aaa933f742de563656272d55922248d25}{vitesse\+Apparition1}}
+\begin{DoxyCompactList}\small\item\em Utilisées dans les fonctions \char`\"{}lancement\+Ennemis\char`\"{}, permettent de gérer à quelle vitesse les ennemis apparaissent. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a9f51f17b5734f335bd82f3e6a641d4b0}\label{class_niveaux_a9f51f17b5734f335bd82f3e6a641d4b0}} 
+unsigned int \mbox{\hyperlink{class_niveaux_a9f51f17b5734f335bd82f3e6a641d4b0}{vitesse\+Apparition12}}
+\begin{DoxyCompactList}\small\item\em vitesse d\textquotesingle{}apparition des ennemis de type 1 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a5c3a73252693b4ebcec5d34ca9c548fa}\label{class_niveaux_a5c3a73252693b4ebcec5d34ca9c548fa}} 
+unsigned int \mbox{\hyperlink{class_niveaux_a5c3a73252693b4ebcec5d34ca9c548fa}{vitesse\+Apparition2}}
+\begin{DoxyCompactList}\small\item\em vitesse d\textquotesingle{}apparition des ennemis de type 12 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a677d8748e518d63bc5eabc72ea1534e4}\label{class_niveaux_a677d8748e518d63bc5eabc72ea1534e4}} 
+unsigned int \mbox{\hyperlink{class_niveaux_a677d8748e518d63bc5eabc72ea1534e4}{vitesse\+Apparition3}}
+\begin{DoxyCompactList}\small\item\em vitesse d\textquotesingle{}apparition des ennemis de type 2 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a1c4457048368416deb18ee2e60e72d2d}\label{class_niveaux_a1c4457048368416deb18ee2e60e72d2d}} 
+unsigned int \mbox{\hyperlink{class_niveaux_a1c4457048368416deb18ee2e60e72d2d}{vitesse\+Apparition\+Boss}} = 10
+\begin{DoxyCompactList}\small\item\em vitesse d\textquotesingle{}apparition des ennemis de type 3 \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a9f8a87aaddd8d4d0f74a276603fee4e6}\label{class_niveaux_a9f8a87aaddd8d4d0f74a276603fee4e6}} 
+int {\bfseries app} = 30
+\item 
+\mbox{\Hypertarget{class_niveaux_a5434fbbbeaec027cad99bd5fbc0c61b7}\label{class_niveaux_a5434fbbbeaec027cad99bd5fbc0c61b7}} 
+float \mbox{\hyperlink{class_niveaux_a5434fbbbeaec027cad99bd5fbc0c61b7}{vit}} = 12
+\begin{DoxyCompactList}\small\item\em Utilisée uniquement dans le niveau 3 pour gérer le nombre d\textquotesingle{}ennemi d\textquotesingle{}une vague d\textquotesingle{}ennemis. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_ennemi1}{Ennemi1}} \mbox{\hyperlink{class_niveaux_ac8e66f8f91918ea9042cc5b6ae99f79f}{ennemi1}}
+\begin{DoxyCompactList}\small\item\em Utilisée uniquement dans le niveau 3 pour gérer la vitesse d\textquotesingle{}apparition d\textquotesingle{}une vague d\textquotesingle{}ennemis. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a6039ce685c6a188a36223e9f151ef438}\label{class_niveaux_a6039ce685c6a188a36223e9f151ef438}} 
+\mbox{\hyperlink{class_ennemi1}{Ennemi1}} \mbox{\hyperlink{class_niveaux_a6039ce685c6a188a36223e9f151ef438}{ennemi12}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_ennemi}{Ennemi}} de type 1. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_ae84ebb52117124dfe659f509076d4160}\label{class_niveaux_ae84ebb52117124dfe659f509076d4160}} 
+\mbox{\hyperlink{class_ennemi2}{Ennemi2}} \mbox{\hyperlink{class_niveaux_ae84ebb52117124dfe659f509076d4160}{ennemi2}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_ennemi}{Ennemi}} de type 12. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a9adac325205adefd1501442f04829c7d}\label{class_niveaux_a9adac325205adefd1501442f04829c7d}} 
+\mbox{\hyperlink{class_ennemi3}{Ennemi3}} \mbox{\hyperlink{class_niveaux_a9adac325205adefd1501442f04829c7d}{ennemi3}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_ennemi}{Ennemi}} de type 2. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_aaa9a444f519d3b6257981d56c1b1267b}\label{class_niveaux_aaa9a444f519d3b6257981d56c1b1267b}} 
+\mbox{\hyperlink{class_ennemi_boss}{Ennemi\+Boss}} \mbox{\hyperlink{class_niveaux_aaa9a444f519d3b6257981d56c1b1267b}{ennemi\+Boss}}
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_ennemi}{Ennemi}} de type 3. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_afa208fdc622d37fc159924c5adf6b673}\label{class_niveaux_afa208fdc622d37fc159924c5adf6b673}} 
+\mbox{\hyperlink{class_ennemi_boss}{Ennemi\+Boss}} \mbox{\hyperlink{class_niveaux_afa208fdc622d37fc159924c5adf6b673}{ennemi\+Boss\+Final}}
+\begin{DoxyCompactList}\small\item\em Mini\+Boss du niveau 2. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a0325043d76141629469469297fe00fca}\label{class_niveaux_a0325043d76141629469469297fe00fca}} 
+std\+::vector$<$ \mbox{\hyperlink{class_ennemi}{Ennemi}} $>$ \mbox{\hyperlink{class_niveaux_a0325043d76141629469469297fe00fca}{ennemis}}
+\begin{DoxyCompactList}\small\item\em Boss final. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_missile_ennemi}{Missile\+Ennemi}} \mbox{\hyperlink{class_niveaux_a47b36d93f889bd74a68a61ef1ac2c83d}{missile\+Ennemi}}
+\item 
+\mbox{\Hypertarget{class_niveaux_a5b1e8bdf82aef2f91f662d11d97b541f}\label{class_niveaux_a5b1e8bdf82aef2f91f662d11d97b541f}} 
+\mbox{\hyperlink{class_missile_ennemi}{Missile\+Ennemi}} \mbox{\hyperlink{class_niveaux_a5b1e8bdf82aef2f91f662d11d97b541f}{missile\+Ennemi2}}
+\begin{DoxyCompactList}\small\item\em Projectile ennemi 1. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a11282a4434cac30a2189bcf5b005919d}\label{class_niveaux_a11282a4434cac30a2189bcf5b005919d}} 
+std\+::vector$<$ \mbox{\hyperlink{class_ennemi}{Ennemi}} $>$ \mbox{\hyperlink{class_niveaux_a11282a4434cac30a2189bcf5b005919d}{vect\+Missile\+Ennemi}}
+\begin{DoxyCompactList}\small\item\em Projectile ennemi 2. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a6eada6e6f1fa1d2bc70c5d9d4f830437}\label{class_niveaux_a6eada6e6f1fa1d2bc70c5d9d4f830437}} 
+float \mbox{\hyperlink{class_niveaux_a6eada6e6f1fa1d2bc70c5d9d4f830437}{angle}} = 0
+\begin{DoxyCompactList}\small\item\em Vector contenant les projectiles ennemis. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a99ed8ace369a3148d441f79efcd25011}\label{class_niveaux_a99ed8ace369a3148d441f79efcd25011}} 
+float \mbox{\hyperlink{class_niveaux_a99ed8ace369a3148d441f79efcd25011}{angle2}} = 0
+\begin{DoxyCompactList}\small\item\em Permet de faire varier l\textquotesingle{}angle de tir des ennemis, utilisé dans la fonction tir\+En\+Spirale. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a12805d80b46378ccfa7198cbb567f8c7}\label{class_niveaux_a12805d80b46378ccfa7198cbb567f8c7}} 
+int \mbox{\hyperlink{class_niveaux_a12805d80b46378ccfa7198cbb567f8c7}{vitesse\+Missile}} = 0
+\begin{DoxyCompactList}\small\item\em Idem qu\textquotesingle{}angle mais pour les missile\+Ennemi2. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_ac8ba126c2d2ac1db1dc9ecd0e0fc0466}\label{class_niveaux_ac8ba126c2d2ac1db1dc9ecd0e0fc0466}} 
+int \mbox{\hyperlink{class_niveaux_ac8ba126c2d2ac1db1dc9ecd0e0fc0466}{vitesse\+Missile2}} = 0
+\begin{DoxyCompactList}\small\item\em Vitesse des projectiles ennemis. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_niveaux_a5b99cb21e16562ea3e65f89fa6e35372}\label{class_niveaux_a5b99cb21e16562ea3e65f89fa6e35372}} 
+\mbox{\hyperlink{class_joueur}{Joueur}} \mbox{\hyperlink{class_niveaux_a5b99cb21e16562ea3e65f89fa6e35372}{joueur}}
+\begin{DoxyCompactList}\small\item\em Idem que vitesse\+Missile mais pour les missile\+Ennemi2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classe de création des niveaux faisant office d\textquotesingle{}éditeur de niveaux. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_niveaux_abd64ac2e8891cfb204ebd5e433ff94b6}\label{class_niveaux_abd64ac2e8891cfb204ebd5e433ff94b6}} 
+\index{Niveaux@{Niveaux}!aleatoire@{aleatoire}}
+\index{aleatoire@{aleatoire}!Niveaux@{Niveaux}}
+\subsubsection{\texorpdfstring{aleatoire()}{aleatoire()}}
+{\footnotesize\ttfamily int Niveaux\+::aleatoire (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Vector contenant les différents ennemis. 
+
+P\+O\+S\+I\+T\+I\+ON Fonction générant une valeur aléatoire entre 0 et la largeur de l\textquotesingle{}écran \mbox{\Hypertarget{class_niveaux_af01fdf0f42d54fea61f299a5875b16d3}\label{class_niveaux_af01fdf0f42d54fea61f299a5875b16d3}} 
+\index{Niveaux@{Niveaux}!ennemi\+Pop@{ennemi\+Pop}}
+\index{ennemi\+Pop@{ennemi\+Pop}!Niveaux@{Niveaux}}
+\subsubsection{\texorpdfstring{ennemi\+Pop()}{ennemiPop()}}
+{\footnotesize\ttfamily int Niveaux\+::ennemi\+Pop (\begin{DoxyParamCaption}\item[{unsigned int}]{vitesse }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+vitesse d\textquotesingle{}apparition des ennemis de type boss 
+
+Fonction utilisant la vitesse\+Apparition, permet de convertir la vitesse\+Apparition pour faciliter la gestion par l\textquotesingle{}utilisateur \mbox{\Hypertarget{class_niveaux_af01fef3a80ba9ff2083a06fc2e6b0abd}\label{class_niveaux_af01fef3a80ba9ff2083a06fc2e6b0abd}} 
+\index{Niveaux@{Niveaux}!lancement\+Ennemis1@{lancement\+Ennemis1}}
+\index{lancement\+Ennemis1@{lancement\+Ennemis1}!Niveaux@{Niveaux}}
+\subsubsection{\texorpdfstring{lancement\+Ennemis1()}{lancementEnnemis1()}}
+{\footnotesize\ttfamily void Niveaux\+::lancement\+Ennemis1 (\begin{DoxyParamCaption}\item[{float}]{debut,  }\item[{float}]{fin,  }\item[{int}]{vitesse\+Apparition,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{float}]{vitesseX,  }\item[{float}]{vitesseY }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Création d\textquotesingle{}un objet \mbox{\hyperlink{class_joueur}{Joueur}}. 
+
+L\+A\+N\+C\+E\+M\+E\+NT D\+ES E\+N\+N\+E\+M\+IS Ces fonctions permettent de nettement faciliter la manière de lancer les ennemis, voir leur paramètres \mbox{\Hypertarget{class_niveaux_a4a42871f41dc2124a8bf272bc877381e}\label{class_niveaux_a4a42871f41dc2124a8bf272bc877381e}} 
+\index{Niveaux@{Niveaux}!tete\+Chercheuse@{tete\+Chercheuse}}
+\index{tete\+Chercheuse@{tete\+Chercheuse}!Niveaux@{Niveaux}}
+\subsubsection{\texorpdfstring{tete\+Chercheuse()}{teteChercheuse()}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Niveaux\+::tete\+Chercheuse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_joueur}{Joueur}}}]{joueur,  }\item[{\mbox{\hyperlink{class_ennemi}{Ennemi}}}]{ennemi,  }\item[{float}]{vitesse,  }\item[{float}]{x\+Rand }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+T\+IR D\+ES E\+N\+N\+E\+M\+IS Pattern tête chercheuse, déplace un projectile ennemi depuis la position de l\textquotesingle{}ennemi vers la position du joueur (récupérée au moment où le projectile est tiré) 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_niveaux_ac8e66f8f91918ea9042cc5b6ae99f79f}\label{class_niveaux_ac8e66f8f91918ea9042cc5b6ae99f79f}} 
+\index{Niveaux@{Niveaux}!ennemi1@{ennemi1}}
+\index{ennemi1@{ennemi1}!Niveaux@{Niveaux}}
+\subsubsection{\texorpdfstring{ennemi1}{ennemi1}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_ennemi1}{Ennemi1}} Niveaux\+::ennemi1}
+
+
+
+Utilisée uniquement dans le niveau 3 pour gérer la vitesse d\textquotesingle{}apparition d\textquotesingle{}une vague d\textquotesingle{}ennemis. 
+
+E\+N\+N\+E\+M\+IS Les différents ennemis et leur conteneur \mbox{\Hypertarget{class_niveaux_a47b36d93f889bd74a68a61ef1ac2c83d}\label{class_niveaux_a47b36d93f889bd74a68a61ef1ac2c83d}} 
+\index{Niveaux@{Niveaux}!missile\+Ennemi@{missile\+Ennemi}}
+\index{missile\+Ennemi@{missile\+Ennemi}!Niveaux@{Niveaux}}
+\subsubsection{\texorpdfstring{missile\+Ennemi}{missileEnnemi}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_missile_ennemi}{Missile\+Ennemi}} Niveaux\+::missile\+Ennemi}
+
+P\+R\+O\+J\+E\+C\+T\+I\+L\+ES E\+N\+N\+E\+M\+IS Les projectiles ennemis et leur conteneur \mbox{\Hypertarget{class_niveaux_ae819d9af466367e01744cd5d848b5482}\label{class_niveaux_ae819d9af466367e01744cd5d848b5482}} 
+\index{Niveaux@{Niveaux}!shoot1@{shoot1}}
+\index{shoot1@{shoot1}!Niveaux@{Niveaux}}
+\subsubsection{\texorpdfstring{shoot1}{shoot1}}
+{\footnotesize\ttfamily bool Niveaux\+::shoot1 = false}
+
+
+
+fonction permettant de placer les ennemis et les projectiles ennemis dans un vecteur 
+
+Ces booléens lancent une vague d\textquotesingle{}ennemi quand ils sont T\+R\+UE \mbox{\Hypertarget{class_niveaux_aaa933f742de563656272d55922248d25}\label{class_niveaux_aaa933f742de563656272d55922248d25}} 
+\index{Niveaux@{Niveaux}!vitesse\+Apparition1@{vitesse\+Apparition1}}
+\index{vitesse\+Apparition1@{vitesse\+Apparition1}!Niveaux@{Niveaux}}
+\subsubsection{\texorpdfstring{vitesse\+Apparition1}{vitesseApparition1}}
+{\footnotesize\ttfamily unsigned int Niveaux\+::vitesse\+Apparition1}
+
+
+
+Utilisées dans les fonctions \char`\"{}lancement\+Ennemis\char`\"{}, permettent de gérer à quelle vitesse les ennemis apparaissent. 
+
+vitesse de mise en vecteur des ennemis de type boss \mbox{\Hypertarget{class_niveaux_a4a93683a35a90181218f8858a883a93a}\label{class_niveaux_a4a93683a35a90181218f8858a883a93a}} 
+\index{Niveaux@{Niveaux}!vitesse\+Ennemi\+Pop1@{vitesse\+Ennemi\+Pop1}}
+\index{vitesse\+Ennemi\+Pop1@{vitesse\+Ennemi\+Pop1}!Niveaux@{Niveaux}}
+\subsubsection{\texorpdfstring{vitesse\+Ennemi\+Pop1}{vitesseEnnemiPop1}}
+{\footnotesize\ttfamily sf\+::\+Clock Niveaux\+::vitesse\+Ennemi\+Pop1}
+
+
+
+Ces clocks permettent de gérer la vitesse à laquelle les ennemis/boss sont placé dans le vecteur d\textquotesingle{}ennemis. 
+
+Clock principale des niveaux 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+prog/Niveaux.\+h\item 
+prog/Niveaux.\+cpp\end{DoxyCompactItemize}

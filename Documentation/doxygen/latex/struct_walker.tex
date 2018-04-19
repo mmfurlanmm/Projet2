@@ -1,0 +1,46 @@
+\hypertarget{struct_walker}{}\section{Walker Struct Reference}
+\label{struct_walker}\index{Walker@{Walker}}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct_walker_ac6e8e756b5da8f187b9cf6b94560f352}\label{struct_walker_ac6e8e756b5da8f187b9cf6b94560f352}} 
+\mbox{\hyperlink{struct_parse}{Parse}} $\ast$ {\bfseries p\+Parse}
+\item 
+\mbox{\Hypertarget{struct_walker_a46cbdf0ccdcf736096a2f168218d28fe}\label{struct_walker_a46cbdf0ccdcf736096a2f168218d28fe}} 
+int($\ast$ {\bfseries x\+Expr\+Callback} )(\mbox{\hyperlink{struct_walker}{Walker}} $\ast$, \mbox{\hyperlink{struct_expr}{Expr}} $\ast$)
+\item 
+\mbox{\Hypertarget{struct_walker_a76a2f8850bf1db17955fe85d65831cb0}\label{struct_walker_a76a2f8850bf1db17955fe85d65831cb0}} 
+int($\ast$ {\bfseries x\+Select\+Callback} )(\mbox{\hyperlink{struct_walker}{Walker}} $\ast$, \mbox{\hyperlink{struct_select}{Select}} $\ast$)
+\item 
+\mbox{\Hypertarget{struct_walker_ad35c57031847321ab3db9b7c0946b5e7}\label{struct_walker_ad35c57031847321ab3db9b7c0946b5e7}} 
+void($\ast$ {\bfseries x\+Select\+Callback2} )(\mbox{\hyperlink{struct_walker}{Walker}} $\ast$, \mbox{\hyperlink{struct_select}{Select}} $\ast$)
+\item 
+\mbox{\Hypertarget{struct_walker_a1183df46d2b0ecac73e76336067cf207}\label{struct_walker_a1183df46d2b0ecac73e76336067cf207}} 
+int {\bfseries walker\+Depth}
+\item 
+\mbox{\Hypertarget{struct_walker_a462e077f572efcae6a708f0640561807}\label{struct_walker_a462e077f572efcae6a708f0640561807}} 
+u8 {\bfseries e\+Code}
+\item 
+\mbox{\Hypertarget{struct_walker_a65c0338d0a3a63ee73e8db8c8b3d5a49}\label{struct_walker_a65c0338d0a3a63ee73e8db8c8b3d5a49}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\mbox{\hyperlink{struct_name_context}{NameContext}} $\ast$ {\bfseries pNC}\\
+\>int {\bfseries n}\\
+\>int {\bfseries iCur}\\
+\>\mbox{\hyperlink{struct_src_list}{SrcList}} $\ast$ {\bfseries pSrcList}\\
+\>struct \mbox{\hyperlink{struct_src_count}{SrcCount}} $\ast$ {\bfseries pSrcCount}\\
+\>struct CCurHint $\ast$ {\bfseries pCCurHint}\\
+\>int $\ast$ {\bfseries aiCol}\\
+\>struct \mbox{\hyperlink{struct_idx_cover}{IdxCover}} $\ast$ {\bfseries pIdxCover}\\
+\>struct \mbox{\hyperlink{struct_idx_expr_trans}{IdxExprTrans}} $\ast$ {\bfseries pIdxTrans}\\
+\>\mbox{\hyperlink{struct_expr_list}{ExprList}} $\ast$ {\bfseries pGroupBy}\\
+\>\mbox{\hyperlink{struct_select}{Select}} $\ast$ {\bfseries pSelect}\\
+\} {\bfseries u}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/projet C++/\+Projet2/\+Project2/\+Project2/sqlite3.\+c\end{DoxyCompactItemize}

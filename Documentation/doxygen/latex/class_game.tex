@@ -1,0 +1,173 @@
+\hypertarget{class_game}{}\section{Game Class Reference}
+\label{class_game}\index{Game@{Game}}
+
+
+Cette classe gère la logique des évennements du jeu et l\textquotesingle{}affichage.  
+
+
+
+
+{\ttfamily \#include $<$Game.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_game_a3780dd03ab98d082bae2a86733c364fe}{logique\+Du\+Jeu}} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_game_ac5aa2df49b05977a8993a05f547171d4}\label{class_game_ac5aa2df49b05977a8993a05f547171d4}} 
+\mbox{\hyperlink{class_niveaux}{Niveaux}} \mbox{\hyperlink{class_game_ac5aa2df49b05977a8993a05f547171d4}{niveaux}}
+\begin{DoxyCompactList}\small\item\em Fonction principale gérant toute la logique et l\textquotesingle{}affichage. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_game_a75266462970ce3f9897f99d5d52adf6e}{rouge}} = 20
+\begin{DoxyCompactList}\small\item\em Appel à la classe \mbox{\hyperlink{class_niveaux}{Niveaux}} quipossède toutes les méthodes pour créer plus facilement des niveaux. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_a71a87b7fb8885bc0f34c477a370bb502}\label{class_game_a71a87b7fb8885bc0f34c477a370bb502}} 
+float \mbox{\hyperlink{class_game_a71a87b7fb8885bc0f34c477a370bb502}{vert}} = 20
+\begin{DoxyCompactList}\small\item\em variable utilisée pour modifier la couleur rouge de l\textquotesingle{}arrière plan \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_a0e8d717d871802cf43d88bfcf063dc8d}\label{class_game_a0e8d717d871802cf43d88bfcf063dc8d}} 
+float \mbox{\hyperlink{class_game_a0e8d717d871802cf43d88bfcf063dc8d}{bleu}} = 20
+\begin{DoxyCompactList}\small\item\em variable utilisée pour modifier la couleur verte de l\textquotesingle{}arrière plan \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_a7be5c4d5161e4f8c060d84890543832d}\label{class_game_a7be5c4d5161e4f8c060d84890543832d}} 
+bool \mbox{\hyperlink{class_game_a7be5c4d5161e4f8c060d84890543832d}{go\+On}} = false
+\begin{DoxyCompactList}\small\item\em variable utilisée pour modifier la couleur bleue de l\textquotesingle{}arrière plan \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_a2cd2b5e465e5820e90ef108258ac982c}\label{class_game_a2cd2b5e465e5820e90ef108258ac982c}} 
+bool \mbox{\hyperlink{class_game_a2cd2b5e465e5820e90ef108258ac982c}{pause}} = false
+\begin{DoxyCompactList}\small\item\em go\+On = false empêche le joueur de passer à un autre état du jeu \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_ad5ca493c9de125e428395fb7ef066170}\label{class_game_ad5ca493c9de125e428395fb7ef066170}} 
+int {\bfseries niveau\+En\+Cours} = 0
+\item 
+\mbox{\Hypertarget{class_game_ab3691a278f20a82fd92b3dc490e892ea}\label{class_game_ab3691a278f20a82fd92b3dc490e892ea}} 
+sf\+::\+Clock \mbox{\hyperlink{class_game_ab3691a278f20a82fd92b3dc490e892ea}{temps}}
+\begin{DoxyCompactList}\small\item\em Variable permettant de délectionner le niveaux. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_a3bcd561d881779233a4975a4bcad8b8b}\label{class_game_a3bcd561d881779233a4975a4bcad8b8b}} 
+sf\+::\+Clock \mbox{\hyperlink{class_game_a3bcd561d881779233a4975a4bcad8b8b}{temps\+Titre}}
+\begin{DoxyCompactList}\small\item\em horloge principale du jeu \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_a7c0c44c3c1e97931bb31b10daf76ef92}\label{class_game_a7c0c44c3c1e97931bb31b10daf76ef92}} 
+sf\+::\+Clock \mbox{\hyperlink{class_game_a7c0c44c3c1e97931bb31b10daf76ef92}{frame}}
+\begin{DoxyCompactList}\small\item\em horloge utilisée pendant l\textquotesingle{}écran titre \end{DoxyCompactList}\item 
+sf\+::\+Vector2f \mbox{\hyperlink{class_game_a36bd909275412072a7596cabcb686340}{position\+Precedente}}
+\begin{DoxyCompactList}\small\item\em pour le calcul du frame rate \end{DoxyCompactList}\item 
+sf\+::\+Clock \mbox{\hyperlink{class_game_a573e866c506a1b59880a202e00585dad}{cadence\+Canon}}
+\begin{DoxyCompactList}\small\item\em armes du joueur \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_a5ca0d0c721b9afc9628cb1b0851a433b}\label{class_game_a5ca0d0c721b9afc9628cb1b0851a433b}} 
+sf\+::\+Clock \mbox{\hyperlink{class_game_a5ca0d0c721b9afc9628cb1b0851a433b}{temps\+Activation\+Canon}}
+\begin{DoxyCompactList}\small\item\em clock pour gérer la vitesse du canon \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_ac03125de12d79747c6203a3f8477fb08}\label{class_game_ac03125de12d79747c6203a3f8477fb08}} 
+sf\+::\+Clock {\bfseries temps\+Explosion}
+\item 
+\mbox{\Hypertarget{class_game_abc1bd559b078e757de83c3dda88be0cb}\label{class_game_abc1bd559b078e757de83c3dda88be0cb}} 
+sf\+::\+Clock {\bfseries mega\+Bombe\+Clock}
+\item 
+\mbox{\Hypertarget{class_game_a16ec34352c4fd36d2ae043a9f8579444}\label{class_game_a16ec34352c4fd36d2ae043a9f8579444}} 
+sf\+::\+Clock {\bfseries mega\+Bomb\+Explosions\+Clock}
+\item 
+\mbox{\Hypertarget{class_game_a02a522234eb7738a97481ca6ee38709d}\label{class_game_a02a522234eb7738a97481ca6ee38709d}} 
+bool {\bfseries mega\+Bombe\+Active} = false
+\item 
+\mbox{\Hypertarget{class_game_a1cf6a9099b3484db426c37d3eaf8cff5}\label{class_game_a1cf6a9099b3484db426c37d3eaf8cff5}} 
+bool {\bfseries mega\+Bombe\+Rechargee} = true
+\item 
+\mbox{\Hypertarget{class_game_a73afacb6ec62a41a5b597d2cb80e0795}\label{class_game_a73afacb6ec62a41a5b597d2cb80e0795}} 
+int {\bfseries mega\+Bombe\+Cmpt} = 0
+\item 
+\mbox{\Hypertarget{class_game_a6b45468eb745657ef44bce3994942ac9}\label{class_game_a6b45468eb745657ef44bce3994942ac9}} 
+int {\bfseries etoiles\+Spawn} = 0
+\item 
+\mbox{\Hypertarget{class_game_a75fb6a4b8d95bf36823de6425fce200e}\label{class_game_a75fb6a4b8d95bf36823de6425fce200e}} 
+int \mbox{\hyperlink{class_game_a75fb6a4b8d95bf36823de6425fce200e}{spawn1}} = 35
+\begin{DoxyCompactList}\small\item\em Ces deux variables sont utilisées pour gérer la vitesse d\textquotesingle{}apparition des étoiles composant le fond étoilé \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_a1137c20b50312c15e0fe50cd7196b33d}\label{class_game_a1137c20b50312c15e0fe50cd7196b33d}} 
+\mbox{\hyperlink{class_b_d_d}{B\+DD}} \mbox{\hyperlink{class_game_a1137c20b50312c15e0fe50cd7196b33d}{bdd}}
+\begin{DoxyCompactList}\small\item\em Idem que etoile\+Spawn. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_game_a4f0fea811bd55a5b722b7792b0935b3e}\label{class_game_a4f0fea811bd55a5b722b7792b0935b3e}} 
+std\+::vector$<$ \mbox{\hyperlink{classenregistrement_b_d_d}{enregistrement\+B\+DD}} $\ast$ $>$ $\ast$ {\bfseries vect\+High\+Score}
+\item 
+\mbox{\Hypertarget{class_game_a0227f7006c44481c8c6d524a7122e3c6}\label{class_game_a0227f7006c44481c8c6d524a7122e3c6}} 
+\mbox{\hyperlink{class_high_score}{High\+Score}} \mbox{\hyperlink{class_game_a0227f7006c44481c8c6d524a7122e3c6}{high\+Score}}
+\begin{DoxyCompactList}\small\item\em Vecteur d\textquotesingle{}objet \mbox{\hyperlink{classenregistrement_b_d_d}{enregistrement\+B\+DD}} permettant de récupérer les valeurs dans la \mbox{\hyperlink{class_b_d_d}{B\+DD}}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Cette classe gère la logique des évennements du jeu et l\textquotesingle{}affichage. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_game_a3780dd03ab98d082bae2a86733c364fe}\label{class_game_a3780dd03ab98d082bae2a86733c364fe}} 
+\index{Game@{Game}!logique\+Du\+Jeu@{logique\+Du\+Jeu}}
+\index{logique\+Du\+Jeu@{logique\+Du\+Jeu}!Game@{Game}}
+\subsubsection{\texorpdfstring{logique\+Du\+Jeu()}{logiqueDuJeu()}}
+{\footnotesize\ttfamily void Game\+::logique\+Du\+Jeu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Par défaut, la variable de gestion d\textquotesingle{}évènement est à \char`\"{}\+T\+I\+T\+R\+E\char`\"{}
+
+Création de la fenêtre de jeu
+
+Positionnement de la fenêtre du jeu
+
+Le pointeur de la souris n\textquotesingle{}apparait pas dans la fenêtre de jeu
+
+Limitation à 60 F\+PS
+
+\mbox{\hyperlink{class_etoiles}{Etoiles}} pour le background
+
+2ème type d\textquotesingle{}étoiles pour le background
+
+\mbox{\hyperlink{class_explosion}{Explosion}} lorsque le joueur a PV = 0
+
+\mbox{\hyperlink{class_explosion}{Explosion}} plus grande pour la méga bombe
+
+les explosions de la méga bombe sont légèrement transparentes
+
+vector contenant les explosions de la méga bombe
+
+nombre de méga bombes à la disposition du joueur
+
+projectile de base du joueur
+
+pour créer un projectile en forme de losange
+
+gestion de la forme du projectile de base
+
+projectile spécial du joueur (tir en rafale)
+
+vecteur contenant les projectiles du joueur
+
+Permet d\textquotesingle{}afficher \char`\"{}\+S\+T\+A\+R\+T\char`\"{} si un joystick est connecté ou \char`\"{}\+E\+S\+P\+A\+C\+E\char`\"{} si aucun joystick n\textquotesingle{}est détecté 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_game_a573e866c506a1b59880a202e00585dad}\label{class_game_a573e866c506a1b59880a202e00585dad}} 
+\index{Game@{Game}!cadence\+Canon@{cadence\+Canon}}
+\index{cadence\+Canon@{cadence\+Canon}!Game@{Game}}
+\subsubsection{\texorpdfstring{cadence\+Canon}{cadenceCanon}}
+{\footnotesize\ttfamily sf\+::\+Clock Game\+::cadence\+Canon}
+
+
+
+armes du joueur 
+
+pour la gestion des collisions \mbox{\Hypertarget{class_game_a36bd909275412072a7596cabcb686340}\label{class_game_a36bd909275412072a7596cabcb686340}} 
+\index{Game@{Game}!position\+Precedente@{position\+Precedente}}
+\index{position\+Precedente@{position\+Precedente}!Game@{Game}}
+\subsubsection{\texorpdfstring{position\+Precedente}{positionPrecedente}}
+{\footnotesize\ttfamily sf\+::\+Vector2f Game\+::position\+Precedente}
+
+
+
+pour le calcul du frame rate 
+
+joueur \mbox{\Hypertarget{class_game_a75266462970ce3f9897f99d5d52adf6e}\label{class_game_a75266462970ce3f9897f99d5d52adf6e}} 
+\index{Game@{Game}!rouge@{rouge}}
+\index{rouge@{rouge}!Game@{Game}}
+\subsubsection{\texorpdfstring{rouge}{rouge}}
+{\footnotesize\ttfamily float Game\+::rouge = 20}
+
+
+
+Appel à la classe \mbox{\hyperlink{class_niveaux}{Niveaux}} quipossède toutes les méthodes pour créer plus facilement des niveaux. 
+
+Variables diverses 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+prog/Game.\+h\item 
+prog/Game.\+cpp\end{DoxyCompactItemize}

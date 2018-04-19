@@ -1,0 +1,53 @@
+\hypertarget{class_high_score}{}\section{High\+Score Class Reference}
+\label{class_high_score}\index{High\+Score@{High\+Score}}
+
+
+Création de la table de score.  
+
+
+
+
+{\ttfamily \#include $<$High\+Score.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_high_score_a5442d36d2ca3a2472dd599b1d6670827}\label{class_high_score_a5442d36d2ca3a2472dd599b1d6670827}} 
+void {\bfseries afficher\+High\+Score} (std\+::vector$<$ \mbox{\hyperlink{classenregistrement_b_d_d}{enregistrement\+B\+DD}} $\ast$$>$ $\ast$high\+Score, sf\+::\+Render\+Window \&window)
+\item 
+\mbox{\Hypertarget{class_high_score_ab3ed3de2b917ab6684e9275bf900b60c}\label{class_high_score_ab3ed3de2b917ab6684e9275bf900b60c}} 
+std\+::string \mbox{\hyperlink{class_high_score_ab3ed3de2b917ab6684e9275bf900b60c}{entrer\+Nom}} (sf\+::\+Render\+Window \&window)
+\begin{DoxyCompactList}\small\item\em utilise les valeurs récupées dans le vecteur d\textquotesingle{}\mbox{\hyperlink{classenregistrement_b_d_d}{enregistrement\+B\+DD}} et les affiche sous forme d\textquotesingle{}un tableau des scores \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_high_score_a0118dbb00b6b7450a1b2bbe3547aa051}\label{class_high_score_a0118dbb00b6b7450a1b2bbe3547aa051}} 
+int \mbox{\hyperlink{class_high_score_a0118dbb00b6b7450a1b2bbe3547aa051}{i}}
+\begin{DoxyCompactList}\small\item\em fonction permettant d\textquotesingle{}entrer ses initiales à la manettes ou avec les flèches du clavier (3 caractères max) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_high_score_ae256384c0fcae6ecc96688920a82b319}\label{class_high_score_ae256384c0fcae6ecc96688920a82b319}} 
+int {\bfseries j}
+\item 
+\mbox{\Hypertarget{class_high_score_a2220c6c478a686c09dbf8b46d4012fd1}\label{class_high_score_a2220c6c478a686c09dbf8b46d4012fd1}} 
+int {\bfseries k}
+\item 
+\mbox{\Hypertarget{class_high_score_aad696e506d87c44b52744eb6ed0395ba}\label{class_high_score_aad696e506d87c44b52744eb6ed0395ba}} 
+int {\bfseries lettre} = 0
+\item 
+\mbox{\Hypertarget{class_high_score_af5e5f6880ea99cf59954bf31a8f96fe3}\label{class_high_score_af5e5f6880ea99cf59954bf31a8f96fe3}} 
+float \mbox{\hyperlink{class_high_score_af5e5f6880ea99cf59954bf31a8f96fe3}{repereX}} = 250
+\begin{DoxyCompactList}\small\item\em incrémenteurs permettant de parcourir les string contenant les lettres composant le nom du joueur \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_high_score_a0ea8a20e7647b7594c04b878de290f8c}\label{class_high_score_a0ea8a20e7647b7594c04b878de290f8c}} 
+bool \mbox{\hyperlink{class_high_score_a0ea8a20e7647b7594c04b878de290f8c}{goX}} = false
+\begin{DoxyCompactList}\small\item\em le repère est un caractère \char`\"{} \+\_\+ \char`\"{} qui se déplace sous les 3 lettres composant le nom du joueur afin d\textquotesingle{}indiquer la lettre en cours de modification \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_high_score_a75df20b932c04a82771c74fe71bb9f09}\label{class_high_score_a75df20b932c04a82771c74fe71bb9f09}} 
+bool \mbox{\hyperlink{class_high_score_a75df20b932c04a82771c74fe71bb9f09}{goY}} = false
+\begin{DoxyCompactList}\small\item\em booléen permettant d\textquotesingle{}empécher un défilement trop rapide sous les 3 lettres du nom \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Création de la table de score. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+prog/High\+Score.\+h\item 
+prog/High\+Score.\+cpp\end{DoxyCompactItemize}
