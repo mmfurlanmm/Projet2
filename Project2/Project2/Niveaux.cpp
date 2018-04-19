@@ -70,7 +70,7 @@ void Niveaux::niveau1()
 	
 
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////NIVEAU 2////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void Niveaux::niveau2()
 {
@@ -169,7 +169,7 @@ void Niveaux::niveau2()
 			{
 
 				go = true;//Permet de passer à la suite du niveau
-				bossGo = false;
+				bossGo = false; 
 				bossPattern = false;
 				clock1.restart();
 
@@ -225,7 +225,7 @@ void Niveaux::niveau2()
 //float timeBossFloat = 0;
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////NIVEAU 3////////////////////////////////////////////////////////////////////////////////////////
 void Niveaux::niveau3()
 {
 
@@ -337,7 +337,8 @@ void Niveaux::niveau3()
 
 
 }
-//int vit = 1;
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////NIVEAU 4////////////////////////////////////////////////////////////////////////////////////////
 void Niveaux::niveau4()
 {
 	gestionVecteurEnnemisEtMissilesEnnemis();
@@ -390,7 +391,7 @@ void Niveaux::niveau4()
 	{
 		go = false;
 		fini = true;
-		//finDuJeu = true;
+		
 	}
 
 	
@@ -400,49 +401,12 @@ void Niveaux::niveau4()
 void Niveaux::niveauTest()
 {
 
-
-	int al = aleatoire();
-	lancementEnnemis1(0, 150, 6, al, 0, teteChercheuse(joueur, al, 10).x, teteChercheuse(joueur, al, 10).y);
-
-	int al2 = aleatoire();
-
-	missile2Actif = true;
-	missileEnnemi2.pattern = spirale(4, 1);
-	missileEnnemi.pattern = reverseSpirale(5, 1);
-
-
-	for (int i = 0; i < ennemis.size(); i++)
-	{
-
-
-		if (ennemis[i].sprite.getPosition().y > 400)
-			ennemis[i].pattern.y = 0;
-		else if (ennemis[i].sprite.getPosition().y < 100)
-			ennemis[i].pattern.y = 5;
-		ennemis[i].vitesseTir = 2;
-
-
-
-	}
-	lancementEnnemis1(0, 1, 10, 350, 10, 0, 5);
-	ennemi1.tirOk = true;
-
-
-
-
-
-
-
-	gestionVecteurEnnemisEtMissilesEnnemis();
-
-
-
 }
 
 void Niveaux::gestionVecteurEnnemisEtMissilesEnnemis()
 {
 
-
+	// Placement dans un vecteur des ennemis 1 et 12
 	if (vitesseEnnemiPop1.getElapsedTime().asMilliseconds() > ennemiPop(vitesseApparition1))
 	{
 		if (shoot1 == true)
@@ -454,17 +418,19 @@ void Niveaux::gestionVecteurEnnemisEtMissilesEnnemis()
 	}
 
 
-
+	// Placement dans un vecteur des ennemis 2
 	if (shoot2 == true && vitesseEnnemiPop2.getElapsedTime().asMilliseconds() > ennemiPop(vitesseApparition2))
 	{
 		ennemis.push_back(ennemi2);
 		vitesseEnnemiPop2.restart();
 	}
+	// Placement dans un vecteur des ennemis 3
 	if (shoot3 == true && vitesseEnnemiPop3.getElapsedTime().asMilliseconds() > ennemiPop(vitesseApparition3))
 	{
 		ennemis.push_back(ennemi3);
 		vitesseEnnemiPop3.restart();
 	}
+	// Placement dans un vecteur des ennemis Boss
 	if (vitesseBossPop.getElapsedTime().asMilliseconds() > ennemiPop(vitesseApparitionBoss))
 	{
 		if (shootBoss == true)
@@ -473,7 +439,7 @@ void Niveaux::gestionVecteurEnnemisEtMissilesEnnemis()
 			ennemis.push_back(ennemiBossFinal);
 		vitesseBossPop.restart();
 	}
-
+	// Efface des ennemis du vecteur s'ils sortent de l'écran
 	for (unsigned int i = 0; i < ennemis.size(); i++)
 	{
 		ennemis[i].deplacement();
@@ -484,6 +450,8 @@ void Niveaux::gestionVecteurEnnemisEtMissilesEnnemis()
 			ennemis.erase(ennemis.begin() + i);
 		}
 	}
+
+	// Placement dans leur vecteur des projectiles ennemis
 	for (unsigned int i = 0; i < ennemis.size(); i++)
 	{
 		ennemis[i].tirer();
@@ -499,6 +467,8 @@ void Niveaux::gestionVecteurEnnemisEtMissilesEnnemis()
 		}
 
 	}
+
+	// Efface des projectiles ennemis du vecteur s'ils sortent de l'écran
 	for (unsigned int i = 0; i < vectMissileEnnemi.size(); i++)
 	{
 		vectMissileEnnemi[i].cercle.move(vectMissileEnnemi[i].pattern.x, vectMissileEnnemi[i].pattern.y);

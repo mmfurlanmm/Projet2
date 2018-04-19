@@ -101,7 +101,7 @@ string HighScore::entrerNom(sf::RenderWindow & window)
 		if (!Keyboard::isKeyPressed(Keyboard::Right) && !Keyboard::isKeyPressed(Keyboard::Left))
 			goX = true;
 	}
-	std::cout << goX << endl;
+	
 
 
 	if (y < -1 && goY == true || Keyboard::isKeyPressed(Keyboard::Up) && goY == true)
@@ -168,6 +168,5 @@ string HighScore::entrerNom(sf::RenderWindow & window)
 
 	return nom;
 
-	//string nom = premiereLettre[i] + deuxiemeLettre[i] + troisiemeLettre[i];
-	//cout << nom << endl;
+	
 }

@@ -8,20 +8,20 @@
 #include <string>
 #include "Joueur.h"
 
-class Explosion
+class Explosion /// Gestion des explosions du joueur et de la méga bombe
 {
 public:
-	Explosion(int scale); //constructeur avec en paramètre l'échelle de l'explosion (taille)
+	Explosion(int scale); ///constructeur avec en paramètre l'échelle de l'explosion (taille)
 	~Explosion();
-	void animation(); //fonction gérant l'animation de l'explosion
-	int inc = 0; // variable d'incrémentation, utilisée pour l'animation
-	sf::Clock clock; // Clock utilisée pour l'animation de l'explosion
-	//sf::Clock dureeExplosion;
+	void animation(); ///fonction gérant l'animation de l'explosion
+	int inc = 0; /// variable d'incrémentation, utilisée pour l'animation
+	sf::Clock clock; /// Clock utilisée pour l'animation de l'explosion
 	
-	//bool boom;
-	bool trigger; // 
 	
-	sf::Texture textureExplosion; //texture de l'explosion
-	sf::Sprite explosion; // sprite de l'explosion
+	
+	bool trigger; /// 
+	
+	sf::Texture textureExplosion; ///texture de l'explosion
+	sf::Sprite explosion; /// sprite de l'explosion
 };
 

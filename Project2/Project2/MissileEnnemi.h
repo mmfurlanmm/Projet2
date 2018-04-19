@@ -10,7 +10,7 @@
 
 
 class MissileEnnemi :
-	public Ennemi
+	public Ennemi /// Classe de création des projectiles des ennemis
 {
 public:
 	MissileEnnemi();

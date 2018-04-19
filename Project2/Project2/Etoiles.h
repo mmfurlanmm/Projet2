@@ -8,13 +8,13 @@
 #include <string>
 #include "Entite.h"
 
-class Etoiles : public Entite
+class Etoiles : public Entite /// Permet la création des étoiles pour le background
 {
 public:
 	Etoiles(sf::Color couleur, float vitesse);
 	~Etoiles();
 	
-	float vitesse; //vitesse de déplacement du fond étoilé
+	float vitesse; ///vitesse de déplacement des formes composant le fond étoilé
 
 };
 

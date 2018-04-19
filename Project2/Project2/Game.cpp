@@ -6,7 +6,7 @@ using namespace sf;
 using namespace std;
 
 enum { JEU, GAMEOVER, TITRE, MISSIONACCOMPLIE, HISCORE, FIN }; //Enum contenant les différents états du jeu
-//Les fonctions suivantes permettent d'afficher facilement le contenu des différents vectors. Il s'agit de la même fonction surchargée afin d'accepter différents types de paramètres
+///Les fonctions suivantes permettent d'afficher facilement le contenu des différents vectors. Il s'agit de la même fonction surchargée afin d'accepter différents types de paramètres
 void afficherVector(vector<Entite> vecteur, RenderWindow &window)
 {
 	for (int i = 0; i < vecteur.size(); i++)
@@ -58,47 +58,47 @@ void Game::logiqueDuJeu()
 {
 	srand(time(NULL));
 
-	int jeu = TITRE; //Par défaut, la variable de gestion d'évènement est à "TITRE"
+	int jeu = TITRE; ///Par défaut, la variable de gestion d'évènement est à "TITRE"
 	niveaux.joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
 
 
 
-	sf::RenderWindow window(VideoMode(WINDOWX, WINDOWY), "GalacticClash"); //Création de la fenêtre de jeu
-	window.setPosition(Vector2i(350, 0)); // Positionnement de la fenêtre du jeu
-	window.setMouseCursorVisible(0); // Le pointeur de la souris n'apparait pas dans la fenêtre de jeu
+	sf::RenderWindow window(VideoMode(WINDOWX, WINDOWY), "GalacticClash"); ///Création de la fenêtre de jeu
+	window.setPosition(Vector2i(350, 0)); /// Positionnement de la fenêtre du jeu
+	window.setMouseCursorVisible(0); /// Le pointeur de la souris n'apparait pas dans la fenêtre de jeu
 
 	//window.setVerticalSyncEnabled(true);
-	window.setFramerateLimit(60); // Limitation à 60 FPS
+	window.setFramerateLimit(60); /// Limitation à 60 FPS
 
 
 	//décors
-	Etoiles etoile1(sf::Color::White, 4); // Etoiles pour le background
-	Etoiles etoile2(sf::Color(250, 250, 255, 150), 2.5); // 2ème type d'étoiles pour le background
+	Etoiles etoile1(sf::Color::White, 4); /// Etoiles pour le background
+	Etoiles etoile2(sf::Color(250, 250, 255, 150), 2.5); /// 2ème type d'étoiles pour le background
 	vector<Etoiles>etoilesDecors;
 
 
 
 	//explosion
-	Explosion explosionJoueur(7); // Explosion lorsque le joueur a PV = 0
-	Explosion megaBombeExplosion(14); // Explosion plus grande pour la méga bombe
-	megaBombeExplosion.explosion.setColor(Color(255, 255, 255, 150)); // les explosions de la méga bombe sont légèrement transparentes
+	Explosion explosionJoueur(7); /// Explosion lorsque le joueur a PV = 0
+	Explosion megaBombeExplosion(14); ///Explosion plus grande pour la méga bombe
+	megaBombeExplosion.explosion.setColor(Color(255, 255, 255, 150)); /// les explosions de la méga bombe sont légèrement transparentes
 
-	vector<Explosion> explosions; // vector contenant les explosions de la méga bombe
+	vector<Explosion> explosions; /// vector contenant les explosions de la méga bombe
 	float dureeExplosion = 0.0;
 	bool boum = false;
-	int nbMegaBombe = 3; // nombre de méga bombes à la disposition du joueur
+	int nbMegaBombe = 3; /// nombre de méga bombes à la disposition du joueur
 
 	//ennemis
 
 	int dureeExplosionEnnemi = 0;
 
 	//missiles
-	Missile missile; // projectile de base du joueur
-	missile.cercle.setPointCount(4); // pour créer un projectile en forme de losange
-	missile.cercle.setScale(0.9, 1.3); // gestion de la forme du projectile de base
-	Missile canon; // projectile spécial du joueur (tir en rafale)
+	Missile missile; /// projectile de base du joueur
+	missile.cercle.setPointCount(4); /// pour créer un projectile en forme de losange
+	missile.cercle.setScale(0.9, 1.3); /// gestion de la forme du projectile de base
+	Missile canon; /// projectile spécial du joueur (tir en rafale)
 	canon.forme.setSize(Vector2f(0, 0));
-	vector<Entite> missiles; // vecteur contenant les projectiles du joueur
+	vector<Entite> missiles; /// vecteur contenant les projectiles du joueur
 
 	//bords de l'écran
 	Bordure bordureGauche(Vector2f(1.f, 0.f), Vector2f(1.f, WINDOWY));
@@ -106,7 +106,7 @@ void Game::logiqueDuJeu()
 	Bordure bordureHaut(Vector2f(0.f, 0.f), Vector2f(WINDOWX, 1.f));
 	Bordure bordureBas(Vector2f(0.f, WINDOWY + 5), Vector2f(WINDOWX, 1.f));
 
-	string espaceOuStart; // Permet d'afficher "START" si un joystick est connecté ou "ESPACE" si aucun joystick n'est détecté 
+	string espaceOuStart; /// Permet d'afficher "START" si un joystick est connecté ou "ESPACE" si aucun joystick n'est détecté 
 	if (sf::Joystick::isConnected(0))
 		espaceOuStart = "START";
 	else
@@ -128,12 +128,12 @@ void Game::logiqueDuJeu()
 
 
 	// affichage des PV du joueur sur l'écran de jeu
-	string pointsVieString = "X " + to_string(niveaux.joueur.pv);
-	Texte pointsVie(30, Vector2f(WINDOWX - 50, 5), pointsVieString);
+	string pointsVieString = "Joueur X " + to_string(niveaux.joueur.pv);
+	Texte pointsVie(30, Vector2f(WINDOWX - 70, 5), pointsVieString);
 
 	// affichage du nombre de méga bombes sur l'écran de jeu
-	string strNbMegaBombe = "X " + to_string(nbMegaBombe);
-	Texte txtMegaBombe(30, Vector2f(WINDOWX - 50, 35), strNbMegaBombe);
+	string strNbMegaBombe = "Bombe X " + to_string(nbMegaBombe);
+	Texte txtMegaBombe(30, Vector2f(WINDOWX - 65, 35), strNbMegaBombe);
 
 
 
@@ -233,27 +233,6 @@ void Game::logiqueDuJeu()
 	{
 		Time frameRate = frame.restart();
 
-
-		if (sf::Joystick::isConnected(0))
-		{
-			cout << "is connected" << endl;
-
-		}
-		//cout << ecranScoreString << endl;
-
-		for (int i = 0; i< niveaux.ennemis.size(); i++)
-			cout << "vitesse tir " << niveaux.ennemis[i].vitesseTir << endl;
-
-		//cout << "frame rate : " << 1.f / frameRate.asMilliseconds() * 1000 << endl;
-		/*cout << "shoot1 " << niveaux.shoot1 << endl;
-		cout << "shoot12 " << niveaux.shoot12 << endl;
-		cout << "shoot2 " << niveaux.shoot2 << endl;
-		cout << "shoot3 " << niveaux.shoot3 << endl;
-		cout << "fini " << niveaux.fini << endl;
-		cout << "go " << niveaux.go << endl;
-		cout << "bossGo " << niveaux.bossGo << endl;
-		cout << "clock " << niveaux.clock1.getElapsedTime().asSeconds() << endl;*/
-
 		Event event;
 		//Gestion de la saisie utilisateur
 		while (window.pollEvent(event))
@@ -262,6 +241,9 @@ void Game::logiqueDuJeu()
 			{
 				window.close();
 			}
+
+			if (event.type == Event::Resized)
+				window.setSize(Vector2u( window.getSize().y*(8 / 7), window.getSize().y));
 		}
 
 
@@ -483,7 +465,7 @@ void Game::logiqueDuJeu()
 			megaBombeActive = true;
 			megaBombeRechargee = false;
 			nbMegaBombe--;
-			strNbMegaBombe = "X " + to_string(nbMegaBombe);
+			strNbMegaBombe = "Bombe X " + to_string(nbMegaBombe);
 			txtMegaBombe.textString = strNbMegaBombe;
 		}
 
@@ -517,7 +499,7 @@ void Game::logiqueDuJeu()
 				megaBombeCmpt = 0;
 			}
 		}
-		//cout << "pv" << niveaux.joueur.pv  << endl;
+		
 
 		for (int i = 0; i < niveaux.ennemis.size(); i++)
 		{
@@ -532,7 +514,7 @@ void Game::logiqueDuJeu()
 			if (niveaux.ennemis[i].dégatsJoueur == true)
 			{
 				niveaux.joueur.collisionEnnemi(niveaux.ennemis[i]);
-				pointsVie.textString = "X " + to_string(niveaux.joueur.pv);
+				pointsVie.textString = "Joueur X " + to_string(niveaux.joueur.pv);
 			}
 
 		}
@@ -541,7 +523,7 @@ void Game::logiqueDuJeu()
 			if (niveaux.vectMissileEnnemi[j].dégatsJoueur == true)
 			{
 				niveaux.joueur.collisionEnnemi(niveaux.vectMissileEnnemi[j]);
-				pointsVie.textString = "X " + to_string(niveaux.joueur.pv);
+				pointsVie.textString = "Joueur X " + to_string(niveaux.joueur.pv);
 			}
 		}
 		if (niveaux.joueur.tempsRestart == true)
@@ -556,8 +538,7 @@ void Game::logiqueDuJeu()
 		{
 			niveaux.joueur.joueurRepopInvincible(temps);
 		}
-		//cout << "temps " << temps.getElapsedTime().asSeconds() << endl;
-
+		
 
 		if (elapsed.asSeconds() > 2.5)
 		{
@@ -570,14 +551,17 @@ void Game::logiqueDuJeu()
 			jeu = GAMEOVER;
 		}
 
-		
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		//Etats du jeu et affichage ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		switch (jeu)
 		{
+		//Ecran Titre ///////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////
 		case TITRE:
 
-			//musiqueIntro.play();
+			
 			window.clear();
 			if (playMusic == true)
 			{
@@ -625,9 +609,7 @@ void Game::logiqueDuJeu()
 			//LOGIQUE
 
 			//On lance le jeu en appuyant sur espace (un message l'indique à l'écran)
-			cout << goOn << endl;
-			cout << tempsTitre.getElapsedTime().asSeconds() << endl;
-
+			
 			if (Keyboard::isKeyPressed(Keyboard::Space) && goOn == true ||
 				Joystick::isButtonPressed(0, 7) && goOn == true)
 			{
@@ -669,6 +651,8 @@ void Game::logiqueDuJeu()
 
 			break;
 
+		//Ecran Jeu /////////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////
 		case JEU:
 
 			//LOGIQUE
@@ -763,6 +747,8 @@ void Game::logiqueDuJeu()
 
 			break;
 
+		//Ecran Mission Accomplie ///////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////
 		case MISSIONACCOMPLIE:
 			window.clear();
 			if(niveauEnCours==4)
@@ -800,7 +786,7 @@ void Game::logiqueDuJeu()
 			window.draw(ecranScore4.ecrireTexte());
 
 
-			niveaux.fini = false;//
+			niveaux.fini = false;
 
 			niveaux.joueur.sprite.setPosition(POSITION_D_ORIGINE_JOUEUR);
 			goOn = false;
@@ -858,6 +844,8 @@ void Game::logiqueDuJeu()
 
 			break;
 
+		//Ecran Game Over ///////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////
 		case GAMEOVER:
 			window.clear();
 
@@ -874,10 +862,10 @@ void Game::logiqueDuJeu()
 			nomDuJoueur = highScore.entrerNom(window);
 			niveauEnCours = 0;
 			niveaux.joueur.pv = PVORIGINE;
-			pointsVieString = "X " + to_string(niveaux.joueur.pv);
+			pointsVieString = "Joueur X " + to_string(niveaux.joueur.pv);
 			pointsVie.textString = pointsVieString;
 			nbMegaBombe = 3;
-			strNbMegaBombe = "X " + to_string(nbMegaBombe);
+			strNbMegaBombe = "Bombe X " + to_string(nbMegaBombe);
 			txtMegaBombe.textString = strNbMegaBombe;
 
 
@@ -915,6 +903,8 @@ void Game::logiqueDuJeu()
 
 			break;
 
+		//Ecran High Score //////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////
 		case HISCORE:
 			window.clear();
 			niveauEnCours = 0;
@@ -938,6 +928,8 @@ void Game::logiqueDuJeu()
 
 			break;
 
+		//Ecran Fin /////////////////////////////////////////////////////////////////////////////////////
+		/////////////////////////////////////////////////////////////////////////////////////////////////
 		case FIN:
 			window.clear();
 			
@@ -958,14 +950,12 @@ void Game::logiqueDuJeu()
 				window.draw(txtFin6.ecrireTexte());
 			}
 			
-
-			
 			niveauEnCours = 0;
 			niveaux.joueur.pv = PVORIGINE;
-			pointsVieString = "X " + to_string(niveaux.joueur.pv);
+			pointsVieString = "Joueur X " + to_string(niveaux.joueur.pv);
 			pointsVie.textString = pointsVieString;
 			nbMegaBombe = 3;
-			strNbMegaBombe = "X " + to_string(nbMegaBombe);
+			strNbMegaBombe = "Bombe X " + to_string(nbMegaBombe);
 			txtMegaBombe.textString = strNbMegaBombe;
 
 
@@ -1009,14 +999,10 @@ void Game::logiqueDuJeu()
 
 		
 
-		window.display();
+		window.display(); // fonction SFML pour l'affichage
 	}
 
 
-	bdd.closeDatabase();
+	bdd.closeDatabase(); // Fermeture de la BDD
 }
 
-void Game::affichage()
-{
-
-}

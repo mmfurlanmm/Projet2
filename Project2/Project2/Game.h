@@ -22,42 +22,42 @@
 #include "BDD.h"
 #include "HighScore.h"
 
-//Gestion des évennements du jeu
 
-class Game
+
+class Game ///Cette classe gère la logique des évennements du jeu et l'affichage
 {
 public:
 	Game();
 	~Game();
-	void logiqueDuJeu();
-	void affichage();
+	void logiqueDuJeu(); /// Fonction principale gérant toute la logique et l'affichage
+	
 
 	//Niveaux
-	Niveaux niveaux;
+	Niveaux niveaux; /// Appel à la classe Niveaux quipossède toutes les méthodes pour créer plus facilement des niveaux
 
-	//Variables diverses
-	float rouge = 20;
-	float vert = 20;
-	float bleu = 20;
+	///Variables diverses
+	float rouge = 20; /// variable utilisée pour modifier la couleur rouge de l'arrière plan
+	float vert = 20; /// variable utilisée pour modifier la couleur verte de l'arrière plan
+	float bleu = 20; /// variable utilisée pour modifier la couleur bleue de l'arrière plan
 
-	bool goOn = false;//goOn = false empêche le joueur de passer à un autre état du jeu
+	bool goOn = false; ///goOn = false empêche le joueur de passer à un autre état du jeu
 	bool pause = false;//
 
 
 
 	
-	int niveauEnCours = 0;
+	int niveauEnCours = 0; /// Variable permettant de délectionner le niveaux
 	//Gestion du temps
-	sf::Clock temps; //horloge principale du jeu
-	sf::Clock tempsTitre;//horloge utilisée pendant l'écran titre
+	sf::Clock temps; ///horloge principale du jeu
+	sf::Clock tempsTitre;///horloge utilisée pendant l'écran titre
 
-	sf::Clock frame; // pour le calcul du frame rate
+	sf::Clock frame; /// pour le calcul du frame rate
 
-	//joueur
+	///joueur
 	
-	sf::Vector2f positionPrecedente; // pour la gestion des collisions
-	//armes du joueur
-	sf::Clock cadenceCanon; // clock pour gérer la vitesse du canon
+	sf::Vector2f positionPrecedente; /// pour la gestion des collisions
+	///armes du joueur
+	sf::Clock cadenceCanon; /// clock pour gérer la vitesse du canon
 	sf::Clock tempsActivationCanon;
 	sf::Clock tempsExplosion;
 
@@ -70,15 +70,15 @@ public:
 
 	//décors
 	
-	int etoilesSpawn = 0;
-	int spawn1 = 35;
+	int etoilesSpawn = 0; /// Ces deux variables sont utilisées pour gérer la vitesse d'apparition des étoiles composant le fond étoilé
+	int spawn1 = 35; /// Idem que etoileSpawn
 
 	//BDD
 	BDD bdd;
-	std::vector<enregistrementBDD*>* vectHighScore;
+	std::vector<enregistrementBDD*>* vectHighScore; /// Vecteur d'objet enregistrementBDD permettant de récupérer les valeurs dans la BDD
 
 	//High Score
-	HighScore highScore;
+	HighScore highScore; /// Objet permettant d'accéder aux fonction de création d'une table de score
 
 	
 	

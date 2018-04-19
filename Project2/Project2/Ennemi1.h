@@ -8,7 +8,7 @@ public:
 	
 	~Ennemi1();
 
-	sf::Vector2f xy;
+	//sf::Vector2f xy;
 	
 
 	

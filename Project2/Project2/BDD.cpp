@@ -21,7 +21,7 @@ void BDD::openDatabase()
 	sqlite3_initialize();
 	
 	sqlite3_open(dbfile.c_str(), &db);
-	cout << "bdd ouverte" << endl;
+	
 }
 
 void BDD::closeDatabase()
@@ -57,7 +57,7 @@ bool BDD::insertScore(std::string nom, int score)
 	query += cscore;
 	query += ")";
 
-	std::cout << query << std::endl;
+	
 
 	return executeQuery(query);
 	

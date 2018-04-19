@@ -9,14 +9,11 @@
 #include "Entite.h"
 
 
-class Missile : public Entite
+class Missile : public Entite /// Projectiles du joueur (2 types, missile et canon)
 {
 public:
 	Missile();
 	~Missile();
-	sf::Clock clock;
 	
-	
-	//sf::RectangleShape forme;
 };
 
